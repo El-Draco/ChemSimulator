@@ -19,7 +19,7 @@ public:
             electrons = p;
     }
 
-    int valency()
+    int valency() const 
     {
         switch (this->electrons)
         {
@@ -158,9 +158,10 @@ public:
         case 102:
             return 16;
         }
+        return (-1);
     }
 
-    int static ValenceDesired(const Atom &a)
+    int static desiredValence(const Atom &a)
     {
         for (int i = 1; i <= 8; ++i)
         {
@@ -175,7 +176,7 @@ public:
         return (-1);
     }
 
-    bool operator==(const Atom &rhs)
+    bool operator==(const Atom &rhs) const
     {
         return (this->position.x == rhs.position.x && this->position.y == rhs.position.y && this->position.z == rhs.position.z && this->protons == rhs.protons && this->neutrons == rhs.neutrons && this->electrons == rhs.electrons);
     }

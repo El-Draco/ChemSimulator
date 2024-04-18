@@ -1,27 +1,28 @@
 #pragma once
 
 #include "Atom.h"
-#include "ErrorHandler.hpp"
+#include "ErrorHandler.h"
 #include "ElectroNegativityTable.h"
 #include <iostream>
 #include <vector>
-
+/**
+ * @brief       Class to represent any Molecule thats a part of the simulation
+ *
+ */
 class Molecule
 {
 public:
     Atom *AtomSet;
     uint8_t size;
     uint8_t **Adjacency;
-    Molecule(int size_in = 0)
-    {
-        this->size = size_in;
-        Adjacency = new uint8_t *[size];
-        for (uint16_t i = 0; i < size; i++)
-            Adjacency[i] = new uint8_t[size];
+
+    Molecule() {
+
     }
+    Molecule(int size_in);
 
     template <std::size_t cardinality>
-    static Molecule Create(Atom *Atoms_input, std::initializer_list<std::initializer_list<Atom>> Bonds)
+    static Molecule Create(Atom *Atoms_input, std::vector<std::vector<Atom>> Bonds)
     {
         Molecule new_molecule(Bonds.size());
         new_molecule.AtomSet = Atoms_input;
@@ -33,11 +34,11 @@ public:
             return ERROR::MOLECULE_CREATE_ERR;
         }
         // TODO: FIX THIS BAD HACK
-        for (uint16_t i = 0; i < Bonds.size(); i++)
+        for (size_t i = 0; i < Bonds.size(); i++)
         {
-            for (uint16_t j = 0; j < (Bonds.begin() + i)->size(); j++)
+            for (size_t j = 0; j < Bonds[i].size(); j++)
             {
-                for (uint16_t k = 0; k < new_molecule.size; k++)
+                for (size_t k = 0; k < new_molecule.size; k++)
                 {
                     if (*((Bonds.begin() + i)->begin() + j) == Atoms_input[k])
                         new_molecule.Adjacency[i][k] += 1;
@@ -46,41 +47,8 @@ public:
         }
         return new_molecule;
     }
+    ~Molecule();
+    void static printAdj(Molecule &m);
+    Vector3 static computeDipole(Molecule &m);
 
-    void static printadj(Molecule &m)
-    {
-        for (int i = 0; i < m.size; ++i)
-        {
-            for (int j = 0; j < m.size; ++j)
-                std::cout << static_cast<int>(m.Adjacency[i][j]) << ' ';
-            std::cout << '\n';
-        }
-        std::cout << '\n';
-    }
-
-    Vector3 static ComputeDipole(Molecule &m)
-    {
-        Vector3 e = Vector3(0, 0, 0);
-        for (int i = 0; i < m.size; ++i)
-        {
-            for (int j = i + 1; j < m.size; ++j)
-                e += (m.AtomSet[i].position - m.AtomSet[j].position).unitvector() * (ElectroNegativity::ID(m.AtomSet[i]) - ElectroNegativity::ID(m.AtomSet[j]));
-        }
-        return e;
-    }
-
-    ~Molecule()
-    {
-        const uint16_t AtomSet_cardinality = sizeof(AtomSet) / sizeof(*AtomSet);
-        if (AtomSet_cardinality > 0)
-        {
-            for (uint16_t i = 0; i < AtomSet_cardinality; i++)
-            {
-                if (Adjacency[i] != nullptr)
-                    delete[] Adjacency[i];
-            }
-            if (Adjacency != nullptr)
-                delete[] Adjacency;
-        }
-    }
 };

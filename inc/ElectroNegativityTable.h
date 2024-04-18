@@ -1,5 +1,5 @@
 #pragma once
-#include "ErrorHandler.hpp"
+#include "ErrorHandler.h"
 #include "Atom.h"
 #include <concepts>
 
@@ -129,17 +129,17 @@ public:
 
 public:
     template <typename T = Atom>
-        // requires std::same_as<T, int> ||
-        //          std::same_as<T, Atom>
+    // requires std::same_as<T, int> ||
+    //          std::same_as<T, Atom>
     static const float ID(const T &input)
     {
-        if (std::same_as<T, int>)
-        {
-            return static_cast<float>(data[input - 1]);
-        }
-        else if (std::same_as<T, Atom>)
+        if (std::is_same<T, Atom>())
         {
             return static_cast<float>(data[input.protons - 1]);
         }
+        // if (std::is_same<T, int>())
+        // {
+        //     return static_cast<float>(data[input - 1]);
+        // }
     }
 };
