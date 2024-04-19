@@ -153,7 +153,7 @@ int main()
 
     file.close();
 
-    file = std::ofstream("bonds.txt");
+    file = std::ofstream("./conf/bonds.txt");
 
     printM(file, pmol);
 

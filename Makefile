@@ -1,5 +1,5 @@
 BACKEND		=	backend		#rename to simulator or engine
-FRONTEND	=	frontend	#rename to renderer or smthn
+FRONTEND	=	GUI 		#rename to renderer or smthn
 
 NVCC		=	nvcc
 NVCCFLAGS	=	-lcublas -lcurand
@@ -24,9 +24,12 @@ all: $(BIN_DIR)/$(BACKEND) $(BIN_DIR)/$(FRONTEND)
 $(BIN_DIR)/$(BACKEND): ${BACKEND_SRCS} ${COMM_SRCS}
 	${NVCC} ${NVCCFLAGS} ${INC} $(BACKEND_SRCS) $(COMM_SRCS) -o $(BIN_DIR)/$(BACKEND)
 
-$(BIN_DIR)/$(FRONTEND):	${FRONTEND_SRCS} ${COMM_SRCS}
-	${NVCC} ${NVCCFLAGS} ${INC} $(FRONTEND_SRCS) $(COMM_SRCS) -o $(BIN_DIR)/$(FRONTEND)
-
+$(BIN_DIR)/$(FRONTEND):
+							cmake -B "./srcs/GUI/" -H"./srcs/GUI"
+							cmake --build "./srcs/GUI/"
+							make -C ./srcs/GUI/
+							cp -rf ./srcs/GUI/GUI ./bin/frontend 
 
 clean:
 	${RM} $(BIN_DIR)/*
+	${RM} positions.txt
