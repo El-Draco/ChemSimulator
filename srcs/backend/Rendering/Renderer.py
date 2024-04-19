@@ -93,7 +93,7 @@ for line in slerp_data:
     ax3.scatter(x*scale, y*scale, z*scale, c=x*scale + y*scale + z*scale, marker='o', s = 60*scale)
     atoms_pos += [Vector3(x, y, z)]
 
-bond_data = open('./bonds.txt')
+bond_data = open('./conf/bonds.txt')
 i = 0
 for line in bond_data:
     if line.find('END') != -1:

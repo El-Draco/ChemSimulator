@@ -141,5 +141,6 @@ public:
         // {
         //     return static_cast<float>(data[input - 1]);
         // }
+        return (-9.99f);
     }
 };

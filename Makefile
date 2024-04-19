@@ -19,17 +19,21 @@ FRONTEND_SRCS	=	main.cpp#
 BACKEND_SRCS	:= ${addprefix srcs/backend/, ${BACKEND_SRCS}}
 FRONTEND_SRCS	:= ${addprefix srcs/frontend/, ${FRONTEND_SRCS}}
 
-all: $(BIN_DIR)/$(BACKEND) $(BIN_DIR)/$(FRONTEND)
+all: 
+	@make --no-print-directory exec
+exec:	$(BIN_DIR)/$(BACKEND) $(BIN_DIR)/$(FRONTEND)
+
 
 $(BIN_DIR)/$(BACKEND): ${BACKEND_SRCS} ${COMM_SRCS}
 	${NVCC} ${NVCCFLAGS} ${INC} $(BACKEND_SRCS) $(COMM_SRCS) -o $(BIN_DIR)/$(BACKEND)
 
-$(BIN_DIR)/$(FRONTEND):
-							cmake -B "./srcs/GUI/" -H"./srcs/GUI"
-							cmake --build "./srcs/GUI/"
-							make -C ./srcs/GUI/
-							cp -rf ./srcs/GUI/GUI ./bin/frontend 
+$(BIN_DIR)/$(FRONTEND): 
+							@cmake -B "./srcs/GUI/" -H"./srcs/GUI"
+							@cmake --build "./srcs/GUI/"
+							@make -C ./srcs/GUI/
+							@cp -rf ./srcs/GUI/GUI ./bin/frontend 
+fclean: clean
+	${RM} -rf $(BIN_DIR)/*
 
 clean:
-	${RM} $(BIN_DIR)/*
-	${RM} positions.txt
+	${RM} -rf positions.txt
