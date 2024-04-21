@@ -41,7 +41,6 @@ Bond *DataManager::getBondByUniqueID(int id, Molecule &mol)
 void DataManager::dataChangeListener()
 {
     if(auto blame = qobject_cast<AtomTableModel*>(sender())) {
-        qDebug() << blame->molUniqueID;
         for(Molecule& mol : *ptrToData.data()) {
             if(mol.uniqueID == blame->molUniqueID) {
                 mol.atoms = blame->atoms();
@@ -64,10 +63,10 @@ void DataManager::testData() {
     m1.uniqueID = 0;
     m1.entityID = -1;
     // Adding atoms to the test molecule
-    m1.atoms.append({0, -1, "Carbon", 6, 12.01, QVector3D(0.0, 0.0, 0.0) });
-    m1.atoms.append({1, -1, "Hydrogen", 1, 1.01, QVector3D(1.0, 0.0, 0.0) });
-    m1.atoms.append({2, -1, "Hydrogen", 1, 1.01, QVector3D(0.0, 1.0, 0.0) });
-    m1.atoms.append({3, -1, "Hydrogen", 1, 1.01, QVector3D(0.0, 0.0, 1.0) });
+    m1.atoms.append({0, -1, "Carbon", 6, QVector3D(0.0, 0.0, 0.0) });
+    m1.atoms.append({1, -1, "Hydrogen", 1, QVector3D(1.0, 0.0, 0.0) });
+    m1.atoms.append({2, -1, "Hydrogen", 1, QVector3D(0.0, 1.0, 0.0) });
+    m1.atoms.append({3, -1, "Hydrogen", 1, QVector3D(0.0, 0.0, 1.0) });
 
     // Adding bonds to the test molecule
     m1.bonds.append({ 0, -1, 0, 1, 1 }); // Carbon - Hydrogen bond
@@ -81,10 +80,10 @@ void DataManager::testData() {
     m2.uniqueID = 1;
     m2.entityID = -1;
     // Adding atoms to the test molecule
-    m2.atoms.append({-1, -1, "Carbon", 6, 12.01, QVector3D(0.0, 0.0, 0.0) });
-    m2.atoms.append({-1, -1, "Hydrogen", 1, 1.01, QVector3D(1.0, 0.0, 0.0) });
-    m2.atoms.append({-1, -1, "Oxygen", 1, 1.01, QVector3D(0.0, 1.0, 0.0) });
-    m2.atoms.append({-1, -1, "Hydrogen", 1, 1.01, QVector3D(0.0, 0.0, 1.0) });
+    m2.atoms.append({-1, -1, "Carbon", 6, QVector3D(0.0, 0.0, 0.0) });
+    m2.atoms.append({-1, -1, "Hydrogen", 1, QVector3D(1.0, 0.0, 0.0) });
+    m2.atoms.append({-1, -1, "Oxygen", 1, QVector3D(0.0, 1.0, 0.0) });
+    m2.atoms.append({-1, -1, "Hydrogen", 1, QVector3D(0.0, 0.0, 1.0) });
 
     // Adding bonds to the test molecule
     m2.bonds.append({ 0, 1, 1 }); // Carbon - Hydrogen bond

@@ -34,6 +34,10 @@ AtomEntity::AtomEntity(Qt3DCore::QNode *parent, Atom atom)
             SIGNAL(moved(Qt3DRender::QPickEvent*)),
             this,
             SLOT(handleDrag(Qt3DRender::QPickEvent*)));
+    connect(objectPicker,
+            &Qt3DRender::QObjectPicker::clicked,
+            this,
+            &AtomEntity::handleClicked);
 
     animation = new QPropertyAnimation(transform);
     animation->setTargetObject(transform);
@@ -64,6 +68,7 @@ void AtomEntity::setAtomData(const Atom newAtomData)
 
 void AtomEntity::onHover(bool containsMouse) {
     if (containsMouse) {
+
         QApplication::setOverrideCursor(Qt::PointingHandCursor);
         removeComponent(atomMaterial);
         atomMaterial = AtomEntity::highlightMaterial();
@@ -82,6 +87,15 @@ void AtomEntity::handleDrag(Qt3DRender::QPickEvent *event)
         emit draggingChanged(true);
     } else {
         emit draggingChanged(false);
+    }
+}
+
+void AtomEntity::handleClicked(Qt3DRender::QPickEvent *event)
+{
+    if(event->button() == Qt::RightButton) {
+        QApplication::restoreOverrideCursor();
+        setEnabled(false);
+        emit atomRemoved(m_atomData);
     }
 }
 

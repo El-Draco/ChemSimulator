@@ -25,13 +25,13 @@ private:
     Qt3DCore::QEntity *draggingEntity = nullptr;
     QSharedPointer<QList<Molecule>> ptrToModel;
 
-    MoleculeEntity* selectedMolEntity = nullptr;
+    int selectedMolEntity = 0;
     QList<MoleculeEntity*> molEntities;
+    QList<int> existingEntityIDs;
 
     DataManager* m_dm;
 
-    void redrawBonds();
-    void updateData(Qt3DCore::QEntity*);
+    void updateData(Qt3DCore::QEntity* blame = nullptr);
 
 signals:
     //signal data manager for changes in data
@@ -42,6 +42,8 @@ public slots:
     void changeDraggingEntity(bool);
 
     void animateDataUpdate();
+
+    void atomEntityRemoved(Atom);
 
 
 

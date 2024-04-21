@@ -41,11 +41,12 @@ MainWindow::MainWindow(QWidget *parent)
             &QItemSelectionModel::selectionChanged,
             this,
             &MainWindow::setupAtomTableWidget);
+
+    ui->listView->selectionModel()->select(moleculeListModel->index(0), QItemSelectionModel::Select);  // Line 45
 }
 
 MainWindow::~MainWindow()
 {
-    qDebug() << "mainWindow destructor";
     delete ui;
 }
 
@@ -69,13 +70,14 @@ void MainWindow::setupAtomTableWidget(const QItemSelection &selected, const QIte
 
 void MainWindow::resetViewsAndModels()
 {
-    qDebug() << "resetViews";
     moleculeListModel->resetModel();
 
-    auto qvariant = moleculeListModel->data(currentSelectedMolecule, MoleculeListModel::AtomsRole);
-    QList<Atom> atoms = qvariant.value<QList<Atom>>();
-    currentAtomTableModel->setAtoms(atoms);
-    currentAtomTableModel->molUniqueID = moleculeListModel->data(currentSelectedMolecule, MoleculeListModel::UniqueIDRole).toInt();
+    if(currentAtomTableModel) {
+        auto qvariant = moleculeListModel->data(currentSelectedMolecule, MoleculeListModel::AtomsRole);
+        QList<Atom> atoms = qvariant.value<QList<Atom>>();
+        currentAtomTableModel->setAtoms(atoms);
+        currentAtomTableModel->molUniqueID = moleculeListModel->data(currentSelectedMolecule, MoleculeListModel::UniqueIDRole).toInt();
+    }
 
     graphicsView->drawFromData();
 }

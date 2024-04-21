@@ -2,12 +2,19 @@
 
 #include <QPropertyAnimation>
 
-BondEntity::BondEntity(Qt3DCore::QNode *parent, Bond bond, QVector3D sourcePosition, QVector3D targetPosition)
-    : Qt3DCore::QEntity(parent), m_bondData(bond)
+inline QQuaternion calcRotation(QVector3D source, QVector3D target) {
+    QVector3D direction = target - source;
+    return QQuaternion::rotationTo(QVector3D(0, 1, 0), direction.normalized());
+}
+
+BondEntity::BondEntity(Qt3DCore::QNode *parent, Bond bond,
+                       QVector3D sourcePosition, QVector3D targetPosition)
+    : Qt3DCore::QEntity(parent), m_bondData(bond),
+    m_sourceAtomPosition(sourcePosition), m_targetAtomPosition(targetPosition)
 {
     //Mesh
     bondMesh = new Qt3DExtras::QCylinderMesh(this);
-    bondMesh->setLength((targetPosition - sourcePosition).length());
+    bondMesh->setLength((m_targetAtomPosition - m_sourceAtomPosition).length());
     bondMesh->setRadius(0.1f);
 
     //Material
@@ -18,11 +25,8 @@ BondEntity::BondEntity(Qt3DCore::QNode *parent, Bond bond, QVector3D sourcePosit
     // Transform
     transform = new Qt3DCore::QTransform(this);
     transform->setScale(1.0f);
-    transform->setTranslation((sourcePosition + targetPosition) * 0.5f);
-    // Set orientation towards target
-    QVector3D direction = targetPosition - sourcePosition;
-    QQuaternion rotation = QQuaternion::rotationTo(QVector3D(0, 1, 0), direction.normalized());
-    transform->setRotation(rotation);
+    transform->setTranslation((m_sourceAtomPosition + m_targetAtomPosition) * 0.5f);
+    transform->setRotation(calcRotation(m_sourceAtomPosition, m_targetAtomPosition));
 
     positionAnimation = new QPropertyAnimation(transform);
     positionAnimation->setTargetObject(transform);
@@ -44,6 +48,18 @@ BondEntity::BondEntity(Qt3DCore::QNode *parent, Bond bond, QVector3D sourcePosit
     addComponent(bondMaterial);
 }
 
+void BondEntity::redraw(bool source, QVector3D newPosition)
+{
+    if(source)
+        m_sourceAtomPosition = newPosition;
+    else
+        m_targetAtomPosition = newPosition;
+
+    bondMesh->setLength((m_targetAtomPosition - m_sourceAtomPosition).length());
+    transform->setTranslation((m_sourceAtomPosition + m_targetAtomPosition) * 0.5f);
+    transform->setRotation(calcRotation(m_sourceAtomPosition, m_targetAtomPosition));
+}
+
 QPropertyAnimation *BondEntity::getNewPositionAnimation(QVector3D sourcePosition, QVector3D targetPosition, int duration)
 {
     positionAnimation->setStartValue(QVariant::fromValue(transform->translation()));
@@ -55,9 +71,7 @@ QPropertyAnimation *BondEntity::getNewPositionAnimation(QVector3D sourcePosition
 QPropertyAnimation *BondEntity::getNewRotationAnimation(QVector3D sourcePosition, QVector3D targetPosition, int duration)
 {
     rotationAnimation->setStartValue(QVariant::fromValue(transform->rotation()));
-    QVector3D direction = targetPosition - sourcePosition;
-    QQuaternion newRotation = QQuaternion::rotationTo(QVector3D(0, 1, 0), direction.normalized());
-    rotationAnimation->setEndValue(QVariant::fromValue(newRotation));
+    rotationAnimation->setEndValue(QVariant::fromValue(calcRotation(sourcePosition, targetPosition)));
     rotationAnimation->setDuration(duration);
     return rotationAnimation;
 }

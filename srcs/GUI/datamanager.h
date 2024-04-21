@@ -1,7 +1,7 @@
 #ifndef DATAMANAGER_H
 #define DATAMANAGER_H
 
-    
+#include <QObject>
 #include <QQuaternion>
 #include <QString>
 #include <QVector3D>
@@ -12,15 +12,14 @@ struct Atom {
     int entityID;
     QString name;
     int atomicNumber;
-    double mass;
     QVector3D position;
 };
 
 struct Bond {
     int uniqueID;
     int entityID;
-    int sourceAtomIndex;
-    int targetAtomIndex;
+    int sourceAtomID;
+    int targetAtomID;
     int bondType;
 };
 
@@ -58,9 +57,5 @@ private:
     QSharedPointer<QList<Molecule>> ptrToData;
     void testData();
 };
-
-Q_DECLARE_METATYPE(Atom)
-Q_DECLARE_METATYPE(Molecule)
-
 
 #endif // DATAMANAGER_H

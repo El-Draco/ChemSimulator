@@ -26,7 +26,7 @@ public:
 
 private:
     MoleculeListModel *moleculeListModel;
-    AtomTableModel *currentAtomTableModel;
+    AtomTableModel *currentAtomTableModel = nullptr;
     GraphicsView *graphicsView;
     Ui::MainWindow *ui;
     DataManager *dataManager;

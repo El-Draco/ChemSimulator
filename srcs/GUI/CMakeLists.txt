@@ -2,68 +2,99 @@ cmake_minimum_required(VERSION 3.5)
 
 project(GUI VERSION 0.1 LANGUAGES CXX)
 
-# Set CMake policies
-if(POLICY CMP0071)
-    cmake_policy(SET CMP0071 NEW)
-endif()
-
-# Find required Qt components
-find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Widgets)
-find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets 3DCore 3DRender 3DLogic 3DExtras 3DAnimation)
-
-# Set project properties
 set(CMAKE_AUTOUIC ON)
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
+
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-# Define project sources
-set(PROJECT_SOURCES
-    main.cpp
-    mainwindow.cpp
-    mainwindow.h
-    mainwindow.ui
-    atomentity.h
-    atomentity.cpp
-    bondentity.h
-    bondentity.cpp
-    graphicsview.h
-    graphicsview.cpp
-    orbitcameracontroller.h
-    orbitcameracontroller.cpp
-    moleculeentity.h
-    moleculeentity.cpp
-    moleculelistmodel.h
-    moleculelistmodel.cpp
-    atomtablemodel.h
-    atomtablemodel.cpp
-    datamanager.h
-    datamanager.cpp
+find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Widgets)
+find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets)
+
+find_package(Qt6 REQUIRED COMPONENTS
+    3DCore
+    3DRender
+    3DInput
+    3DLogic
+    3DExtras
+    3DAnimation
 )
 
-# Create executable target
-add_executable(GUI ${PROJECT_SOURCES})
+set(PROJECT_SOURCES
+        main.cpp
+        mainwindow.cpp
+        mainwindow.h
+        mainwindow.ui
+)
 
-# Link necessary Qt modules
-target_link_libraries(GUI PRIVATE Qt${QT_VERSION_MAJOR}::Widgets Qt${QT_VERSION_MAJOR}::3DCore Qt${QT_VERSION_MAJOR}::3DRender Qt${QT_VERSION_MAJOR}::3DLogic Qt${QT_VERSION_MAJOR}::3DExtras Qt${QT_VERSION_MAJOR}::3DAnimation)
+if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
+    qt_add_executable(GUI
+        MANUAL_FINALIZATION
+        ${PROJECT_SOURCES}
+        atomentity.h atomentity.cpp
+        bondentity.h bondentity.cpp
+        graphicsview.h graphicsview.cpp
+        orbitcameracontroller.h orbitcameracontroller.cpp
+        moleculeentity.h moleculeentity.cpp
+        moleculelistmodel.h moleculelistmodel.cpp
+        atomtablemodel.h atomtablemodel.cpp
+
+        datamanager.h datamanager.cpp
+
+    )
+# Define target properties for Android with Qt 6 as:
+#    set_property(TARGET GUI APPEND PROPERTY QT_ANDROID_PACKAGE_SOURCE_DIR
+#                 ${CMAKE_CURRENT_SOURCE_DIR}/android)
+# For more information, see https://doc.qt.io/qt-6/qt-add-executable.html#target-creation
+else()
+    if(ANDROID)
+        add_library(GUI SHARED
+            ${PROJECT_SOURCES}
+        )
+# Define properties for Android with Qt 5 after find_package() calls as:
+#    set(ANDROID_PACKAGE_SOURCE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/android")
+    else()
+        add_executable(GUI
+            ${PROJECT_SOURCES}
+        )
+    endif()
+endif()
+
+target_link_libraries(GUI PRIVATE Qt${QT_VERSION_MAJOR}::Widgets)
+target_link_libraries(GUI PRIVATE
+    Qt6::3DCore
+    Qt6::3DRender
+    Qt6::3DLogic
+    Qt6::3DExtras
+    Qt6::3DAnimation
+)
 
 # Add the library to link against
-# target_link_libraries(GUI PUBLIC qt3dgizmo)ldd
+target_link_libraries(GUI PUBLIC qt3dgizmo)
 
-# Set target properties
+
+# Qt for iOS sets MACOSX_BUNDLE_GUI_IDENTIFIER automatically since Qt 6.1.
+# If you are developing for iOS or macOS you should consider setting an
+# explicit, fixed bundle identifier manually though.
+if(${QT_VERSION} VERSION_LESS 6.1.0)
+  set(BUNDLE_ID_OPTION MACOSX_BUNDLE_GUI_IDENTIFIER com.example.GUI)
+endif()
 set_target_properties(GUI PROPERTIES
-    MACOSX_BUNDLE TRUE
-    WIN32_EXECUTABLE TRUE
     ${BUNDLE_ID_OPTION}
     MACOSX_BUNDLE_BUNDLE_VERSION ${PROJECT_VERSION}
     MACOSX_BUNDLE_SHORT_VERSION_STRING ${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR}
+    MACOSX_BUNDLE TRUE
+    WIN32_EXECUTABLE TRUE
 )
 
-# Install target
 include(GNUInstallDirs)
 install(TARGETS GUI
     BUNDLE DESTINATION .
     LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
     RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
 )
+
+if(QT_VERSION_MAJOR EQUAL 6)
+    qt_finalize_executable(GUI)
+endif()
