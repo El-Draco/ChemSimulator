@@ -43,10 +43,6 @@ public slots:
 
     void animateDataUpdate();
 
-    void atomEntityRemoved(Atom);
-
-
-
 };
 
 #endif // GRAPHICSVIEW_H

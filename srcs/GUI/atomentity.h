@@ -23,6 +23,8 @@ public:
     void setAtomData(const Atom newAtomData);
 
     QPropertyAnimation *getNewAnimation();
+    Qt3DCore::QTransform *getTransform() const;
+
 private:
     Qt3DExtras::QSphereMesh *atomMesh;
     Qt3DExtras::QDiffuseSpecularMaterial *atomMaterial;
@@ -34,12 +36,10 @@ private:
 
 signals:
     void draggingChanged(bool);
-    void atomRemoved(Atom);
 
 private slots:
     void onHover(bool);
     void handleDrag(Qt3DRender::QPickEvent*);
-    void handleClicked(Qt3DRender::QPickEvent*);
 };
 
 #endif // ATOMENTITY_H

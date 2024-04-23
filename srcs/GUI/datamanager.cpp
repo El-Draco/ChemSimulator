@@ -1,6 +1,7 @@
 #include "datamanager.h"
 
 #include "atomtablemodel.h"
+#include "graphicsview.h"
 
 DataManager::DataManager(QObject *parent) : QObject(parent)
 {
@@ -24,7 +25,7 @@ Molecule *DataManager::getMoleculeByUniqueID(int id)
 
 Atom *DataManager::getAtomByUniqueID(int id, Molecule &mol)
 {
-    for(Atom& atom : mol.atoms) {
+    for(Atom& atom : getMoleculeByUniqueID(mol.uniqueID)->atoms) {
         if (atom.uniqueID == id) return &atom;
     }
     return nullptr;
@@ -32,7 +33,7 @@ Atom *DataManager::getAtomByUniqueID(int id, Molecule &mol)
 
 Bond *DataManager::getBondByUniqueID(int id, Molecule &mol)
 {
-    for(Bond& bond : mol.bonds) {
+    for(Bond& bond : getMoleculeByUniqueID(mol.uniqueID)->bonds) {
         if (bond.uniqueID == id) return &bond;
     }
     return nullptr;
@@ -47,7 +48,10 @@ void DataManager::dataChangeListener()
             }
         }
     }
-    emit dataUpdated();
+    if(qobject_cast<GraphicsView*>(sender()))
+        emit dataUpdated(true);
+    else
+        emit dataUpdated(false);
 }
 
 void DataManager::setNextDataForAnimation()

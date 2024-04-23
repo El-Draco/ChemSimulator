@@ -36,7 +36,7 @@ private:
 public slots:
     void setupAtomTableWidget(const QItemSelection &, const QItemSelection &);
 
-    void resetViewsAndModels();
+    void resetViewsAndModels(bool from3d);
 
 };
 #endif // MAINWINDOW_H

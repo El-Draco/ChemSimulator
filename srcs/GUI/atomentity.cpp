@@ -34,10 +34,6 @@ AtomEntity::AtomEntity(Qt3DCore::QNode *parent, Atom atom)
             SIGNAL(moved(Qt3DRender::QPickEvent*)),
             this,
             SLOT(handleDrag(Qt3DRender::QPickEvent*)));
-    connect(objectPicker,
-            &Qt3DRender::QObjectPicker::clicked,
-            this,
-            &AtomEntity::handleClicked);
 
     animation = new QPropertyAnimation(transform);
     animation->setTargetObject(transform);
@@ -54,6 +50,11 @@ QPropertyAnimation *AtomEntity::getNewAnimation() {
     animation->setStartValue(QVariant::fromValue(transform->translation()));
     animation->setEndValue(QVariant::fromValue(m_atomData.position));
     return animation;
+}
+
+Qt3DCore::QTransform *AtomEntity::getTransform() const
+{
+    return transform;
 }
 
 const Atom AtomEntity::atomData() const
@@ -89,16 +90,6 @@ void AtomEntity::handleDrag(Qt3DRender::QPickEvent *event)
         emit draggingChanged(false);
     }
 }
-
-void AtomEntity::handleClicked(Qt3DRender::QPickEvent *event)
-{
-    if(event->button() == Qt::RightButton) {
-        QApplication::restoreOverrideCursor();
-        setEnabled(false);
-        emit atomRemoved(m_atomData);
-    }
-}
-
 
 Qt3DExtras::QDiffuseSpecularMaterial *AtomEntity::originalMaterial()
 {

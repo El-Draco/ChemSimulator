@@ -72,10 +72,6 @@ void GraphicsView::drawFromData()
                     SIGNAL(draggingChanged(bool)),
                     this,
                     SLOT(changeDraggingEntity(bool)));
-            connect(atomEntity,
-                    &AtomEntity::atomRemoved,
-                    this,
-                    &GraphicsView::atomEntityRemoved);
         }
 
         //build bond entities
@@ -144,31 +140,6 @@ void GraphicsView::mouseMoveEvent(QMouseEvent *event)
     }
 }
 
-void GraphicsView::atomEntityRemoved(Atom removedAtom)
-{
-    for(Molecule &mol : *ptrToModel.data()) {
-        QMutableListIterator<Atom> atomIt(mol.atoms);
-        while(atomIt.hasNext()) {
-            atomIt.next();
-            Atom &atom = atomIt.value();
-            if(atom.uniqueID == removedAtom.uniqueID) {
-                atomIt.remove();
-            }
-        }
-
-        QMutableListIterator<Bond> bondIt(mol.bonds);
-        while(bondIt.hasNext()) {
-            bondIt.next();
-            Bond &bond = bondIt.value();
-            if ((bond.sourceAtomID == removedAtom.uniqueID) ||
-                (bond.targetAtomID == removedAtom.uniqueID)) {
-                bondIt.remove();
-            }
-        }
-    }
-    emit potentialDataChange();
-}
-
 inline bool areAtomsEqual(const Atom& atom1, const Atom& atom2) {
     return (atom1.uniqueID == atom2.uniqueID &&
             atom1.entityID == atom2.entityID &&
@@ -182,8 +153,12 @@ void GraphicsView::updateData(Qt3DCore::QEntity* blame)
     //if entity is an atom
     if (auto atomEntity = qobject_cast<AtomEntity*>(blame)) {
         int atomUniqueID = atomEntity->atomData().uniqueID;
+        Molecule mol = molEntities[selectedMolEntity]->molData();
+        Atom* atomToUpdate = m_dm->getAtomByUniqueID(atomUniqueID, mol);
 
+        atomToUpdate->position = atomEntity->getTransform()->translation();
     }
+    emit potentialDataChange();
 }
 
 void GraphicsView::animateDataUpdate()

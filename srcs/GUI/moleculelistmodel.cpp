@@ -20,8 +20,7 @@ Qt::ItemFlags MoleculeListModel::flags(const QModelIndex &index) const
     return QAbstractItemModel::flags(index) | Qt::ItemIsEditable;
 }
 
-bool MoleculeListModel::setData(const QModelIndex &index,
-                              const QVariant &value, int role)
+bool MoleculeListModel::setData(const QModelIndex &index, const QVariant &value, int role)
 {
     if (!index.isValid() || index.row() >= ptrToData.data()->size() || index.row() < 0)
         return false;

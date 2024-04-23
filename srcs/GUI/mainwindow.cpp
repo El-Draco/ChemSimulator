@@ -68,7 +68,7 @@ void MainWindow::setupAtomTableWidget(const QItemSelection &selected, const QIte
     ui->tableView->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
 }
 
-void MainWindow::resetViewsAndModels()
+void MainWindow::resetViewsAndModels(bool from3d)
 {
     moleculeListModel->resetModel();
 
@@ -79,7 +79,8 @@ void MainWindow::resetViewsAndModels()
         currentAtomTableModel->molUniqueID = moleculeListModel->data(currentSelectedMolecule, MoleculeListModel::UniqueIDRole).toInt();
     }
 
-    graphicsView->drawFromData();
+    if(!from3d)
+        graphicsView->drawFromData();
 }
 
 // void MainWindow::on_actionOpen_triggered()

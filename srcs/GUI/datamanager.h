@@ -51,7 +51,7 @@ public slots:
     void setNextDataForAnimation();
 
 signals:
-    void dataUpdated();
+    void dataUpdated(bool from3d);
 
 private:
     QSharedPointer<QList<Molecule>> ptrToData;
