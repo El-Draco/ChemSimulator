@@ -20,6 +20,8 @@ MainWindow::MainWindow(QWidget *parent)
     //setup qt3dwindow for drawing graphics
     graphicsView = new GraphicsView(this, dataManager);
     QWidget *container = QWidget::createWindowContainer(graphicsView);
+    container->setMinimumHeight(400);
+    container->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
     ui->graphicsWidget->layout()->addWidget(container);
     connect(graphicsView,
             &GraphicsView::potentialDataChange,
