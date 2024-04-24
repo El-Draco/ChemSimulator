@@ -1,7 +1,7 @@
 #include "orbitcameracontroller.h"
 #include <Qt3DCore/QNode>
+#include <Qt3DRender/QCamera>
 #include <QtMath>
-#include <QCamera>
 
 inline float clampInputs(float input1, float input2)
 {
@@ -17,10 +17,25 @@ void OrbitCameraController::moveCamera(const Qt3DExtras::QAbstractCameraControll
     auto cam = camera();
     if (!cam) return;
 
-    cam->translate(QVector3D(clampInputs(state.rightMouseButtonActive ? state.rxAxisValue : 0, state.txAxisValue) * linearSpeed(),
-                                   clampInputs(state.rightMouseButtonActive ? state.ryAxisValue : 0, state.tyAxisValue) * linearSpeed(),
-                                   state.tzAxisValue * 3 * linearSpeed()) * dt,
-                    Qt3DRender::QCamera::DontTranslateViewCenter);
-    cam->setViewCenter(centerPoint_);
-    //cam->rollAboutViewCenter(0.0f);
+    currentZoom = (centerPoint_ - cam->position()).length();
+
+    if(state.tzAxisValue != 0) {
+        if ((state.tzAxisValue > 0) & (currentZoom < 10))
+            return;
+        if ((state.tzAxisValue < 0) & (currentZoom > 70))
+            return;
+
+        float change = state.tzAxisValue * 200 * dt;
+        cam->translate(QVector3D(0, 0, change), Qt3DRender::QCamera::DontTranslateViewCenter);
+    }
+
+    if(state.rightMouseButtonActive) {
+        auto translation = QVector3D(state.rxAxisValue * linearSpeed(),
+                                     state.ryAxisValue * linearSpeed(), 0);
+        cam->translate(translation * dt, Qt3DRender::QCamera::DontTranslateViewCenter);
+        cam->setViewCenter(centerPoint_);
+        QVector3D direction = (centerPoint_ - cam->position()).normalized();
+        cam->setPosition(centerPoint_ - direction * currentZoom);
+        //cam->setUpVector(upVec);
+    }
 }

@@ -16,5 +16,6 @@ private:
 
     // Center point to orbit around
     QVector3D centerPoint_{0.0f, 0.0f, 1.0f};
+    float currentZoom;
 };
 #endif // ORBITCAMERACONTROLLER_H

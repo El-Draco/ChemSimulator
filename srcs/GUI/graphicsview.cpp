@@ -46,7 +46,6 @@ GraphicsView::GraphicsView(QWidget *parent, DataManager* dm)
     setRootEntity(scene);
 }
 
-
 void GraphicsView::drawFromData()
 {
     draggingEntity = nullptr;
