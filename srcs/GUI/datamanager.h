@@ -10,7 +10,6 @@
 struct Atom {
     int uniqueID;
     int entityID;
-    QString name;
     int atomicNumber;
     QVector3D position;
 };

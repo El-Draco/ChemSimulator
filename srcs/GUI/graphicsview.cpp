@@ -20,23 +20,26 @@ GraphicsView::GraphicsView(QWidget *parent, DataManager* dm)
 
     drawFromData();
 
-    Qt3DCore::QEntity *lightEntity = new Qt3DCore::QEntity(scene);
-    Qt3DRender::QPointLight *light = new Qt3DRender::QPointLight(lightEntity);
-    light->setColor("white");
-    light->setIntensity(1.0f);
-    lightEntity->addComponent(light);
-    auto t = new Qt3DCore::QTransform(lightEntity);
-    t->setTranslation(QVector3D(0.0, 0.0, 50.0));
-    lightEntity->addComponent(t);
+    Qt3DRender::QPointLight *light = new Qt3DRender::QPointLight(scene);
+    light->setIntensity(0.0f);
 
-    Qt3DCore::QEntity *lightEntity2 = new Qt3DCore::QEntity(scene);
-    Qt3DRender::QPointLight *light2 = new Qt3DRender::QPointLight(lightEntity2);
-    light2->setColor("white");
-    light2->setIntensity(1.0f);
-    lightEntity2->addComponent(light2);
-    auto t2 = new Qt3DCore::QTransform(lightEntity2);
-    t2->setTranslation(QVector3D(0.0, 0.0, -50.0));
-    lightEntity2->addComponent(t2);
+    // Qt3DCore::QEntity *lightEntity = new Qt3DCore::QEntity(scene);
+    // Qt3DRender::QPointLight *light = new Qt3DRender::QPointLight(lightEntity);
+    // light->setColor("white");
+    // light->setIntensity(1.0f);
+    // lightEntity->addComponent(light);
+    // auto t = new Qt3DCore::QTransform(lightEntity);
+    // t->setTranslation(QVector3D(0.0, 0.0, 50.0));
+    // lightEntity->addComponent(t);
+
+    // Qt3DCore::QEntity *lightEntity2 = new Qt3DCore::QEntity(scene);
+    // Qt3DRender::QPointLight *light2 = new Qt3DRender::QPointLight(lightEntity2);
+    // light2->setColor("white");
+    // light2->setIntensity(1.0f);
+    // lightEntity2->addComponent(light2);
+    // auto t2 = new Qt3DCore::QTransform(lightEntity2);
+    // t2->setTranslation(QVector3D(0.0, 0.0, -50.0));
+    // lightEntity2->addComponent(t2);
 
     OrbitCameraController *cameraController = new OrbitCameraController(scene);
     cameraController->setCamera(camera());
@@ -142,7 +145,6 @@ void GraphicsView::mouseMoveEvent(QMouseEvent *event)
 inline bool areAtomsEqual(const Atom& atom1, const Atom& atom2) {
     return (atom1.uniqueID == atom2.uniqueID &&
             atom1.entityID == atom2.entityID &&
-            atom1.name == atom2.name &&
             atom1.atomicNumber == atom2.atomicNumber &&
             atom1.position == atom2.position);
 }

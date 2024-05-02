@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string>AbInitioSim</string>
   </property>
   <property name="autoFillBackground">
    <bool>true</bool>
@@ -45,11 +45,14 @@
           <string>Molecules</string>
          </property>
          <layout class="QVBoxLayout" name="verticalLayout_3">
+          <property name="spacing">
+           <number>3</number>
+          </property>
           <property name="leftMargin">
            <number>5</number>
           </property>
           <property name="topMargin">
-           <number>0</number>
+           <number>5</number>
           </property>
           <property name="rightMargin">
            <number>5</number>
@@ -57,6 +60,38 @@
           <property name="bottomMargin">
            <number>5</number>
           </property>
+          <item>
+           <widget class="QWidget" name="widget_2" native="true">
+            <layout class="QHBoxLayout" name="horizontalLayout_3">
+             <property name="leftMargin">
+              <number>0</number>
+             </property>
+             <property name="topMargin">
+              <number>0</number>
+             </property>
+             <property name="rightMargin">
+              <number>0</number>
+             </property>
+             <property name="bottomMargin">
+              <number>0</number>
+             </property>
+             <item>
+              <widget class="QPushButton" name="deleteMolecule">
+               <property name="text">
+                <string>Delete Molecule</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QPushButton" name="addMolecule">
+               <property name="text">
+                <string>Add Molecule</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </item>
           <item>
            <widget class="QListView" name="listView"/>
           </item>
@@ -69,6 +104,9 @@
           <string>Atoms</string>
          </property>
          <layout class="QVBoxLayout" name="verticalLayout_4">
+          <property name="spacing">
+           <number>3</number>
+          </property>
           <property name="leftMargin">
            <number>5</number>
           </property>
@@ -81,6 +119,38 @@
           <property name="bottomMargin">
            <number>5</number>
           </property>
+          <item>
+           <widget class="QWidget" name="widget_3" native="true">
+            <layout class="QHBoxLayout" name="horizontalLayout_4">
+             <property name="leftMargin">
+              <number>0</number>
+             </property>
+             <property name="topMargin">
+              <number>0</number>
+             </property>
+             <property name="rightMargin">
+              <number>0</number>
+             </property>
+             <property name="bottomMargin">
+              <number>0</number>
+             </property>
+             <item>
+              <widget class="QPushButton" name="deleteAtom">
+               <property name="text">
+                <string>Delete Atom</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QPushButton" name="addAtom">
+               <property name="text">
+                <string>Add Atom</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </item>
           <item>
            <widget class="QTableView" name="tableView"/>
           </item>
@@ -93,6 +163,9 @@
           <string>Bonds</string>
          </property>
          <layout class="QVBoxLayout" name="verticalLayout_5">
+          <property name="spacing">
+           <number>3</number>
+          </property>
           <property name="leftMargin">
            <number>5</number>
           </property>
@@ -106,7 +179,39 @@
            <number>5</number>
           </property>
           <item>
-           <widget class="QTableView" name="tableView_2"/>
+           <widget class="QWidget" name="widget_4" native="true">
+            <layout class="QHBoxLayout" name="horizontalLayout_5">
+             <property name="leftMargin">
+              <number>0</number>
+             </property>
+             <property name="topMargin">
+              <number>0</number>
+             </property>
+             <property name="rightMargin">
+              <number>0</number>
+             </property>
+             <property name="bottomMargin">
+              <number>0</number>
+             </property>
+             <item>
+              <widget class="QPushButton" name="deleteBond">
+               <property name="text">
+                <string>Delete Bond</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QPushButton" name="addBond">
+               <property name="text">
+                <string>Add Bond</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </item>
+          <item>
+           <widget class="QTableView" name="bondView"/>
           </item>
          </layout>
         </widget>
@@ -177,6 +282,13 @@
              <property name="bottomMargin">
               <number>0</number>
              </property>
+             <item>
+              <widget class="QPushButton" name="pushButton_2">
+               <property name="text">
+                <string>View All</string>
+               </property>
+              </widget>
+             </item>
              <item>
               <spacer name="horizontalSpacer">
                <property name="orientation">

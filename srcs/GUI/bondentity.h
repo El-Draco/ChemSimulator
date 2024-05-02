@@ -2,7 +2,6 @@
 #define BONDENTITY_H
 
 #include "datamanager.h"
-
 #include <QCylinderMesh>
 #include <QDiffuseSpecularMaterial>
 #include <QEntity>
@@ -34,10 +33,13 @@ private:
     QPropertyAnimation *rotationAnimation;
     QPropertyAnimation *lengthAnimation;
 
+    QList<Qt3DCore::QEntity*> entList;
+
     QVector3D m_sourceAtomPosition;
     QVector3D m_targetAtomPosition;
 
     Bond m_bondData;
+    float m_length;
 };
 
 #endif // BONDENTITY_H

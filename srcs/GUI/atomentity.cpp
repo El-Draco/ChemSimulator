@@ -96,7 +96,7 @@ Qt3DExtras::QDiffuseSpecularMaterial *AtomEntity::originalMaterial()
     Qt3DExtras::QDiffuseSpecularMaterial *material = nullptr;
     if (!material) {
         material = new Qt3DExtras::QDiffuseSpecularMaterial();
-        material->setDiffuse(QColor(QRgb(0xFF0F00)));
+        material->setAmbient(QColor(QRgb(0xFF0F00)));
         material->setShininess(0.0f);
     }
     return material;
@@ -107,7 +107,7 @@ Qt3DExtras::QDiffuseSpecularMaterial *AtomEntity::highlightMaterial()
     Qt3DExtras::QDiffuseSpecularMaterial *material = nullptr;
     if (!material) {
         material = new Qt3DExtras::QDiffuseSpecularMaterial();
-        material->setDiffuse(QColor(QRgb(0xFFFF00)));
+        material->setAmbient(QColor(QRgb(0xFFFF00)));
         material->setSpecular(QColor(QRgb(0xFFFFFF)));
         material->setShininess(1.0f);
     }
