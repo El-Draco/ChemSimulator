@@ -152,7 +152,7 @@
            </widget>
           </item>
           <item>
-           <widget class="QTableView" name="tableView"/>
+           <widget class="QTableView" name="atomView"/>
           </item>
          </layout>
         </widget>
@@ -283,7 +283,7 @@
               <number>0</number>
              </property>
              <item>
-              <widget class="QPushButton" name="pushButton_2">
+              <widget class="QPushButton" name="viewAllButton">
                <property name="text">
                 <string>View All</string>
                </property>

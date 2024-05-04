@@ -69,6 +69,8 @@ QVariant MoleculeListModel::data(const QModelIndex &index, int role) const {
         return QVariant::fromValue(molecule.atoms);
     else if (role == Qt::DisplayRole)
         return QVariant::fromValue(molecule.name);
+    else if (role == BondsRole)
+        return QVariant::fromValue(molecule.bonds);
 
     return QVariant();
 }
@@ -79,6 +81,7 @@ QHash<int, QByteArray> MoleculeListModel::roleNames() const {
     roles[PositionRole] = "position";
     roles[RotationRole] = "rotation";
     roles[AtomsRole] = "atoms";
+    roles[BondsRole] = "bonds";
     return roles;
 }
 

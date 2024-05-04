@@ -17,6 +17,8 @@ public:
 
     void mouseMoveEvent(QMouseEvent *) override;
 
+    void viewAll();
+
     //draw Molecules
     void drawFromData();
 

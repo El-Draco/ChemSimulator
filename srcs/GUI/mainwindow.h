@@ -5,6 +5,7 @@
 #include "graphicsview.h"
 #include "moleculelistmodel.h"
 #include "atomtablemodel.h"
+#include "bondtablemodel.h"
 
 #include <QItemSelection>
 #include <QMainWindow>
@@ -26,7 +27,8 @@ public:
 
 private:
     MoleculeListModel *moleculeListModel;
-    AtomTableModel *currentAtomTableModel = nullptr;
+    AtomTableModel *currentAtomTableModel;
+    BondTableModel *currentBondTableModel;
     GraphicsView *graphicsView;
     Ui::MainWindow *ui;
     DataManager *dataManager;
@@ -34,9 +36,18 @@ private:
     QModelIndex currentSelectedMolecule;
 
 public slots:
-    void setupAtomTableWidget(const QItemSelection &, const QItemSelection &);
+    void setupAtomTableView(const QItemSelection &, const QItemSelection &);
 
     void resetViewsAndModels(bool from3d);
 
+    void setupBondTableView(const QItemSelection &selected, const QItemSelection &deselected);
+private slots:
+    void on_viewAllButton_clicked();
+    void on_addBond_clicked();
+    void on_deleteBond_clicked();
+    void on_addAtom_clicked();
+    void on_deleteAtom_clicked();
+    void on_addMolecule_clicked();
+    void on_deleteMolecule_clicked();
 };
 #endif // MAINWINDOW_H

@@ -17,7 +17,8 @@ public:
         PositionRole = Qt::UserRole + 1,
         RotationRole,
         UniqueIDRole,
-        AtomsRole
+        AtomsRole,
+        BondsRole
     };
 
     Qt::ItemFlags flags(const QModelIndex &index) const override;

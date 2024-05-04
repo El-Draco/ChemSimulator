@@ -16,30 +16,12 @@ GraphicsView::GraphicsView(QWidget *parent, DataManager* dm)
 {
     ptrToModel = m_dm->getPtrToData();
     scene = new Qt3DCore::QEntity();
-    defaultFrameGraph()->setClearColor(QColor(QRgb(0x000000)));
+    defaultFrameGraph()->setClearColor(QColor(QRgb(0xf3f6f4)));
 
     drawFromData();
 
     Qt3DRender::QPointLight *light = new Qt3DRender::QPointLight(scene);
     light->setIntensity(0.0f);
-
-    // Qt3DCore::QEntity *lightEntity = new Qt3DCore::QEntity(scene);
-    // Qt3DRender::QPointLight *light = new Qt3DRender::QPointLight(lightEntity);
-    // light->setColor("white");
-    // light->setIntensity(1.0f);
-    // lightEntity->addComponent(light);
-    // auto t = new Qt3DCore::QTransform(lightEntity);
-    // t->setTranslation(QVector3D(0.0, 0.0, 50.0));
-    // lightEntity->addComponent(t);
-
-    // Qt3DCore::QEntity *lightEntity2 = new Qt3DCore::QEntity(scene);
-    // Qt3DRender::QPointLight *light2 = new Qt3DRender::QPointLight(lightEntity2);
-    // light2->setColor("white");
-    // light2->setIntensity(1.0f);
-    // lightEntity2->addComponent(light2);
-    // auto t2 = new Qt3DCore::QTransform(lightEntity2);
-    // t2->setTranslation(QVector3D(0.0, 0.0, -50.0));
-    // lightEntity2->addComponent(t2);
 
     OrbitCameraController *cameraController = new OrbitCameraController(scene);
     cameraController->setCamera(camera());
@@ -140,6 +122,11 @@ void GraphicsView::mouseMoveEvent(QMouseEvent *event)
 
         updateData(draggingEntity);
     }
+}
+
+void GraphicsView::viewAll()
+{
+    camera()->viewAll();
 }
 
 inline bool areAtomsEqual(const Atom& atom1, const Atom& atom2) {
