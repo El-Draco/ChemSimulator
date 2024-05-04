@@ -95,8 +95,13 @@ Qt3DExtras::QDiffuseSpecularMaterial *AtomEntity::originalMaterial()
 {
     Qt3DExtras::QDiffuseSpecularMaterial *material = nullptr;
     if (!material) {
-        material = new Qt3DExtras::QDiffuseSpecularMaterial();
-        material->setAmbient(QColor(QRgb(0xFF0F00)));
+        material = new Qt3DExtras::QDiffuseSpecularMaterial(this);
+        if(m_atomData.atomicNumber == 9)
+            material->setAmbient(Qt::green);
+        else if(m_atomData.atomicNumber == 6)
+            material->setAmbient(QColor(QRgb(0x222222)));
+        else if(m_atomData.atomicNumber == 1)
+            material->setAmbient(Qt::gray);
         material->setShininess(0.0f);
     }
     return material;

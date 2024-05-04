@@ -41,6 +41,8 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         atomtablemodel.h atomtablemodel.cpp
 
         datamanager.h datamanager.cpp
+        bondtablemodel.h bondtablemodel.cpp
+        class_diagram.qmodel
 
 
     )

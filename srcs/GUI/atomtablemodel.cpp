@@ -97,7 +97,6 @@ bool AtomTableModel::setData(const QModelIndex& index, const QVariant& value, in
     return false;
 }
 
-// Implement flags function to allow editing for the name column
 Qt::ItemFlags AtomTableModel::flags(const QModelIndex& index) const {
     Qt::ItemFlags flags = QAbstractTableModel::flags(index);
     if (index.isValid() && index.column() != 1) {

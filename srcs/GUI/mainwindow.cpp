@@ -42,9 +42,14 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->listView->selectionModel(),
             &QItemSelectionModel::selectionChanged,
             this,
-            &MainWindow::setupAtomTableWidget);
+            &MainWindow::setupAtomTableView);
+    connect(ui->listView->selectionModel(),
+            &QItemSelectionModel::selectionChanged,
+            this,
+            &MainWindow::setupBondTableView);
 
     ui->listView->selectionModel()->select(moleculeListModel->index(0), QItemSelectionModel::Select);  // Line 45
+    graphicsView->viewAll();
 }
 
 MainWindow::~MainWindow()
@@ -52,7 +57,7 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-void MainWindow::setupAtomTableWidget(const QItemSelection &selected, const QItemSelection &deselected)
+void MainWindow::setupAtomTableView(const QItemSelection &selected, const QItemSelection &deselected)
 {
     currentSelectedMolecule = selected.indexes().first();
     auto qvariant = moleculeListModel->data(currentSelectedMolecule, MoleculeListModel::AtomsRole);
@@ -65,10 +70,29 @@ void MainWindow::setupAtomTableWidget(const QItemSelection &selected, const QIte
             dataManager,
             &DataManager::dataChangeListener);
 
-    ui->tableView->setModel(currentAtomTableModel);
-    ui->tableView->setAlternatingRowColors(true);
-    ui->tableView->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+    ui->atomView->setModel(currentAtomTableModel);
+    ui->atomView->setAlternatingRowColors(true);
+    ui->atomView->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
 }
+
+void MainWindow::setupBondTableView(const QItemSelection &selected, const QItemSelection &deselected)
+{
+    currentSelectedMolecule = selected.indexes().first();
+    auto qvariant = moleculeListModel->data(currentSelectedMolecule, MoleculeListModel::BondsRole);
+    QList<Bond> bonds = qvariant.value<QList<Bond>>();
+
+    currentBondTableModel = new BondTableModel(nullptr, bonds);
+    currentBondTableModel->molUniqueID = moleculeListModel->data(currentSelectedMolecule, MoleculeListModel::UniqueIDRole).toInt();
+    connect(currentBondTableModel,
+            &BondTableModel::dataChanged,
+            dataManager,
+            &DataManager::dataChangeListener);
+
+    ui->bondView->setModel(currentBondTableModel);
+    ui->bondView->setAlternatingRowColors(true);
+    ui->bondView->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+}
+
 
 void MainWindow::resetViewsAndModels(bool from3d)
 {
@@ -78,7 +102,12 @@ void MainWindow::resetViewsAndModels(bool from3d)
         auto qvariant = moleculeListModel->data(currentSelectedMolecule, MoleculeListModel::AtomsRole);
         QList<Atom> atoms = qvariant.value<QList<Atom>>();
         currentAtomTableModel->setAtoms(atoms);
-        currentAtomTableModel->molUniqueID = moleculeListModel->data(currentSelectedMolecule, MoleculeListModel::UniqueIDRole).toInt();
+    }
+
+    if(currentBondTableModel) {
+        auto qvariant = moleculeListModel->data(currentSelectedMolecule, MoleculeListModel::BondsRole);
+        QList<Bond> bonds = qvariant.value<QList<Bond>>();
+        currentBondTableModel->setBonds(bonds);
     }
 
     if(!from3d)
@@ -113,4 +142,46 @@ void MainWindow::resetViewsAndModels(bool from3d)
 
 
 
+
+
+void MainWindow::on_viewAllButton_clicked()
+{
+    graphicsView->viewAll();
+}
+
+
+void MainWindow::on_addBond_clicked()
+{
+
+}
+
+
+void MainWindow::on_deleteBond_clicked()
+{
+
+}
+
+
+void MainWindow::on_addAtom_clicked()
+{
+
+}
+
+
+void MainWindow::on_deleteAtom_clicked()
+{
+
+}
+
+
+void MainWindow::on_addMolecule_clicked()
+{
+
+}
+
+
+void MainWindow::on_deleteMolecule_clicked()
+{
+
+}
 

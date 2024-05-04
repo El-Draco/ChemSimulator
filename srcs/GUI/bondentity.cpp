@@ -22,7 +22,7 @@ BondEntity::BondEntity(Qt3DCore::QNode *parent, Bond bond, QVector3D sourcePosit
 
         //Material
         bondMaterial = new Qt3DExtras::QDiffuseSpecularMaterial(ent);
-        bondMaterial->setAmbient(QColor(QRgb(0x808080)));
+        bondMaterial->setAmbient(QColor(QRgb(0x5b5b5b)));
         bondMaterial->setShininess(0.0f);
 
         // Transform
@@ -39,7 +39,7 @@ BondEntity::BondEntity(Qt3DCore::QNode *parent, Bond bond, QVector3D sourcePosit
     m_length = (m_targetAtomPosition - m_sourceAtomPosition).length();
     // Transform
     transform = new Qt3DCore::QTransform(this);
-    transform->setScale3D(QVector3D(1.0f, 1.0f, m_length));
+    transform->setScale3D(QVector3D(1.0f, m_length, 1.0f));
     transform->setTranslation((m_sourceAtomPosition + m_targetAtomPosition) * 0.5f);
     transform->setRotation(calcRotation(m_sourceAtomPosition, m_targetAtomPosition));
 

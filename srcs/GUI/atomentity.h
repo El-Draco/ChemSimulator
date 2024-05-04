@@ -16,8 +16,9 @@ class AtomEntity : public Qt3DCore::QEntity
 public:
     AtomEntity(Qt3DCore::QNode *parent, Atom atom);
 
-    static Qt3DExtras::QDiffuseSpecularMaterial *originalMaterial();
+    Qt3DExtras::QDiffuseSpecularMaterial *originalMaterial();
     static Qt3DExtras::QDiffuseSpecularMaterial *highlightMaterial();
+    static QList<QColor> colorScheme;
 
     const Atom atomData() const;
     void setAtomData(const Atom newAtomData);
