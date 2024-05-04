@@ -19,6 +19,9 @@ public:
             electrons = p;
     }
 
+    Atom(int _protons) : protons(_protons), electrons(_protons){
+        position = Vector3(0, 0, 0);
+    }
     int valency() const 
     {
         switch (this->electrons)

@@ -319,6 +319,7 @@ CMakeFiles/GUI.dir/moleculelistmodel.cpp.o: \
  /usr/include/x86_64-linux-gnu/qt6/QtCore/QList \
  /usr/include/x86_64-linux-gnu/qt6/QtCore/qlist.h \
  /home/eldraco/ChemSimulator/srcs/GUI/datamanager.h \
+ /usr/include/x86_64-linux-gnu/qt6/QtCore/QObject \
  /usr/include/x86_64-linux-gnu/qt6/QtGui/QQuaternion \
  /usr/include/x86_64-linux-gnu/qt6/QtGui/qquaternion.h \
  /usr/include/x86_64-linux-gnu/qt6/QtCore/QString \

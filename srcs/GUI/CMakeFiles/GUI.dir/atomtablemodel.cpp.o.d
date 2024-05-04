@@ -292,6 +292,8 @@ CMakeFiles/GUI.dir/atomtablemodel.cpp.o: \
  /usr/include/x86_64-linux-gnu/qt6/QtCore/qsharedpointer.h \
  /usr/include/x86_64-linux-gnu/qt6/QtCore/qsharedpointer_impl.h \
  /home/eldraco/ChemSimulator/srcs/GUI/datamanager.h \
+ /usr/include/x86_64-linux-gnu/qt6/QtCore/QObject \
+ /usr/include/x86_64-linux-gnu/qt6/QtCore/qobject.h \
  /usr/include/x86_64-linux-gnu/qt6/QtGui/QQuaternion \
  /usr/include/x86_64-linux-gnu/qt6/QtGui/qquaternion.h \
  /usr/include/x86_64-linux-gnu/qt6/QtGui/qtguiglobal.h \

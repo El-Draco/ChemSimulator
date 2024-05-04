@@ -389,6 +389,7 @@ CMakeFiles/GUI.dir/graphicsview.cpp.o: \
  /usr/include/x86_64-linux-gnu/qt6/QtCore/qflags.h \
  /home/eldraco/ChemSimulator/srcs/GUI/moleculeentity.h \
  /home/eldraco/ChemSimulator/srcs/GUI/datamanager.h \
+ /usr/include/x86_64-linux-gnu/qt6/QtCore/QObject \
  /usr/include/x86_64-linux-gnu/qt6/QtGui/QQuaternion \
  /usr/include/x86_64-linux-gnu/qt6/QtCore/QString \
  /usr/include/x86_64-linux-gnu/qt6/QtCore/qstring.h \
@@ -446,9 +447,13 @@ CMakeFiles/GUI.dir/graphicsview.cpp.o: \
  /usr/include/x86_64-linux-gnu/qt6/QtGui/QTransform \
  /usr/include/x86_64-linux-gnu/qt6/QtGui/qtransform.h \
  /usr/include/x86_64-linux-gnu/qt6/QtGui/qkeysequence.h \
+ /usr/include/x86_64-linux-gnu/qt6/QtCore/QMutableListIterator \
  /usr/include/x86_64-linux-gnu/qt6/QtCore/QParallelAnimationGroup \
  /usr/include/x86_64-linux-gnu/qt6/QtCore/qparallelanimationgroup.h \
  /usr/include/x86_64-linux-gnu/qt6/QtCore/qanimationgroup.h \
  /usr/include/x86_64-linux-gnu/qt6/Qt3DRender/QPointLight \
  /usr/include/x86_64-linux-gnu/qt6/Qt3DRender/qpointlight.h \
- /usr/include/x86_64-linux-gnu/qt6/Qt3DRender/qabstractlight.h
+ /usr/include/x86_64-linux-gnu/qt6/Qt3DRender/qabstractlight.h \
+ /usr/include/x86_64-linux-gnu/qt6/Qt3DRender/QRenderSettings \
+ /usr/include/x86_64-linux-gnu/qt6/Qt3DRender/qrendersettings.h \
+ /usr/include/x86_64-linux-gnu/qt6/Qt3DRender/qpickingsettings.h

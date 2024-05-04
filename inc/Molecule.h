@@ -5,6 +5,7 @@
 #include "ElectroNegativityTable.h"
 #include <iostream>
 #include <vector>
+#include "Bond.h"
 /**
  * @brief       Class to represent any Molecule thats a part of the simulation
  *
@@ -12,10 +13,10 @@
 class Molecule
 {
 public:
-    Atom *AtomSet;
-    uint8_t size;
-    uint8_t **Adjacency;
-
+    std::vector <Atom> atoms;
+    size_t size;
+    int **Adjacency;
+    std::vector<Bond> bonds;
     Molecule() {
 
     }
@@ -50,5 +51,7 @@ public:
     ~Molecule();
     void static printAdj(Molecule &m);
     Vector3 static computeDipole(Molecule &m);
-
+    void breakBond(SubMolecule &m);
 };
+
+typedef Molecule SubMolecule;

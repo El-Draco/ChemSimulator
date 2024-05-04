@@ -315,8 +315,6 @@ CMakeFiles/GUI.dir/orbitcameracontroller.cpp.o: \
  /usr/include/x86_64-linux-gnu/qt6/QtCore/qsize.h \
  /usr/include/x86_64-linux-gnu/qt6/Qt3DCore/QNode \
  /usr/include/x86_64-linux-gnu/qt6/Qt3DCore/qnode.h \
- /usr/include/x86_64-linux-gnu/qt6/QtCore/QtMath \
- /usr/include/x86_64-linux-gnu/qt6/QtCore/qmath.h \
  /usr/include/x86_64-linux-gnu/qt6/Qt3DRender/QCamera \
  /usr/include/x86_64-linux-gnu/qt6/Qt3DRender/qcamera.h \
  /usr/include/x86_64-linux-gnu/qt6/Qt3DCore/qentity.h \
@@ -335,4 +333,6 @@ CMakeFiles/GUI.dir/orbitcameracontroller.cpp.o: \
  /usr/include/x86_64-linux-gnu/qt6/QtGui/qmatrix4x4.h \
  /usr/include/x86_64-linux-gnu/qt6/QtGui/QQuaternion \
  /usr/include/x86_64-linux-gnu/qt6/QtGui/qquaternion.h \
- /usr/include/x86_64-linux-gnu/qt6/QtGui/QVector3D
+ /usr/include/x86_64-linux-gnu/qt6/QtGui/QVector3D \
+ /usr/include/x86_64-linux-gnu/qt6/QtCore/QtMath \
+ /usr/include/x86_64-linux-gnu/qt6/QtCore/qmath.h

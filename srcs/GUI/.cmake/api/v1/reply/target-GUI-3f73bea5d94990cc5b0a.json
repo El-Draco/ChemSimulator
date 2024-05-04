@@ -5,41 +5,75 @@
 			"path" : "GUI"
 		}
 	],
-	"backtrace" : 1,
+	"backtrace" : 4,
 	"backtraceGraph" : 
 	{
 		"commands" : 
 		[
 			"add_executable",
+			"_qt_internal_create_executable",
+			"qt6_add_executable",
+			"qt_add_executable",
 			"install",
 			"target_link_libraries"
 		],
 		"files" : 
 		[
+			"/usr/lib/x86_64-linux-gnu/cmake/Qt6Core/Qt6CoreMacros.cmake",
 			"CMakeLists.txt"
 		],
 		"nodes" : 
 		[
 			{
-				"file" : 0
+				"file" : 1
 			},
 			{
-				"command" : 0,
-				"file" : 0,
-				"line" : 46,
-				"parent" : 0
-			},
-			{
-				"command" : 1,
-				"file" : 0,
-				"line" : 65,
+				"command" : 3,
+				"file" : 1,
+				"line" : 32,
 				"parent" : 0
 			},
 			{
 				"command" : 2,
 				"file" : 0,
-				"line" : 49,
+				"line" : 933,
+				"parent" : 1
+			},
+			{
+				"command" : 1,
+				"file" : 0,
+				"line" : 523,
+				"parent" : 2
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 559,
+				"parent" : 3
+			},
+			{
+				"command" : 4,
+				"file" : 1,
+				"line" : 90,
 				"parent" : 0
+			},
+			{
+				"command" : 5,
+				"file" : 1,
+				"line" : 65,
+				"parent" : 0
+			},
+			{
+				"command" : 5,
+				"file" : 1,
+				"line" : 66,
+				"parent" : 0
+			},
+			{
+				"command" : 5,
+				"file" : 0,
+				"line" : 524,
+				"parent" : 2
 			}
 		]
 	},
@@ -49,7 +83,7 @@
 			"compileCommandFragments" : 
 			[
 				{
-					"backtrace" : 3,
+					"backtrace" : 8,
 					"fragment" : "-fPIC"
 				},
 				{
@@ -59,55 +93,55 @@
 			"defines" : 
 			[
 				{
-					"backtrace" : 3,
+					"backtrace" : 7,
 					"define" : "QT_3DANIMATION_LIB"
 				},
 				{
-					"backtrace" : 3,
+					"backtrace" : 7,
 					"define" : "QT_3DCORE_LIB"
 				},
 				{
-					"backtrace" : 3,
+					"backtrace" : 7,
 					"define" : "QT_3DEXTRAS_LIB"
 				},
 				{
-					"backtrace" : 3,
+					"backtrace" : 7,
 					"define" : "QT_3DINPUT_LIB"
 				},
 				{
-					"backtrace" : 3,
+					"backtrace" : 7,
 					"define" : "QT_3DLOGIC_LIB"
 				},
 				{
-					"backtrace" : 3,
+					"backtrace" : 7,
 					"define" : "QT_3DRENDER_LIB"
 				},
 				{
-					"backtrace" : 3,
+					"backtrace" : 7,
 					"define" : "QT_CONCURRENT_LIB"
 				},
 				{
-					"backtrace" : 3,
+					"backtrace" : 8,
 					"define" : "QT_CORE_LIB"
 				},
 				{
-					"backtrace" : 3,
+					"backtrace" : 6,
 					"define" : "QT_GUI_LIB"
 				},
 				{
-					"backtrace" : 3,
+					"backtrace" : 7,
 					"define" : "QT_NETWORK_LIB"
 				},
 				{
-					"backtrace" : 3,
+					"backtrace" : 8,
 					"define" : "QT_NO_DEBUG"
 				},
 				{
-					"backtrace" : 3,
+					"backtrace" : 7,
 					"define" : "QT_OPENGL_LIB"
 				},
 				{
-					"backtrace" : 3,
+					"backtrace" : 6,
 					"define" : "QT_WIDGETS_LIB"
 				}
 			],
@@ -118,72 +152,72 @@
 					"path" : "/home/eldraco/ChemSimulator/srcs/GUI/GUI_autogen/include"
 				},
 				{
-					"backtrace" : 3,
-					"isSystem" : true,
-					"path" : "/usr/include/x86_64-linux-gnu/qt6/QtWidgets"
-				},
-				{
-					"backtrace" : 3,
-					"isSystem" : true,
-					"path" : "/usr/include/x86_64-linux-gnu/qt6"
-				},
-				{
-					"backtrace" : 3,
+					"backtrace" : 8,
 					"isSystem" : true,
 					"path" : "/usr/include/x86_64-linux-gnu/qt6/QtCore"
 				},
 				{
-					"backtrace" : 3,
+					"backtrace" : 8,
+					"isSystem" : true,
+					"path" : "/usr/include/x86_64-linux-gnu/qt6"
+				},
+				{
+					"backtrace" : 8,
 					"isSystem" : true,
 					"path" : "/usr/lib/x86_64-linux-gnu/qt6/mkspecs/linux-g++"
 				},
 				{
-					"backtrace" : 3,
+					"backtrace" : 6,
+					"isSystem" : true,
+					"path" : "/usr/include/x86_64-linux-gnu/qt6/QtWidgets"
+				},
+				{
+					"backtrace" : 6,
 					"isSystem" : true,
 					"path" : "/usr/include/x86_64-linux-gnu/qt6/QtGui"
 				},
 				{
-					"backtrace" : 3,
+					"backtrace" : 7,
 					"isSystem" : true,
 					"path" : "/usr/include/x86_64-linux-gnu/qt6/Qt3DCore"
 				},
 				{
-					"backtrace" : 3,
+					"backtrace" : 7,
 					"isSystem" : true,
 					"path" : "/usr/include/x86_64-linux-gnu/qt6/QtConcurrent"
 				},
 				{
-					"backtrace" : 3,
+					"backtrace" : 7,
 					"isSystem" : true,
 					"path" : "/usr/include/x86_64-linux-gnu/qt6/QtNetwork"
 				},
 				{
-					"backtrace" : 3,
+					"backtrace" : 7,
 					"isSystem" : true,
 					"path" : "/usr/include/x86_64-linux-gnu/qt6/Qt3DRender"
 				},
 				{
-					"backtrace" : 3,
+					"backtrace" : 7,
 					"isSystem" : true,
 					"path" : "/usr/include/x86_64-linux-gnu/qt6/QtOpenGL"
 				},
 				{
-					"backtrace" : 3,
+					"backtrace" : 7,
 					"isSystem" : true,
 					"path" : "/usr/include/x86_64-linux-gnu/qt6/Qt3DLogic"
 				},
 				{
-					"backtrace" : 3,
+					"backtrace" : 7,
 					"isSystem" : true,
 					"path" : "/usr/include/x86_64-linux-gnu/qt6/Qt3DExtras"
 				},
 				{
-					"backtrace" : 3,
+					"backtrace" : 7,
 					"isSystem" : true,
 					"path" : "/usr/include/x86_64-linux-gnu/qt6/Qt3DInput"
 				},
 				{
-					"backtrace" : 3,
+					"backtrace" : 7,
 					"isSystem" : true,
 					"path" : "/usr/include/x86_64-linux-gnu/qt6/Qt3DAnimation"
 				}
@@ -193,8 +227,8 @@
 			{
 				"backtraces" : 
 				[
-					3,
-					3
+					8,
+					8
 				],
 				"standard" : "17"
 			},
@@ -227,7 +261,7 @@
 		"destinations" : 
 		[
 			{
-				"backtrace" : 2,
+				"backtrace" : 5,
 				"path" : "bin"
 			}
 		],
@@ -245,22 +279,22 @@
 				"role" : "flags"
 			},
 			{
-				"backtrace" : 3,
+				"backtrace" : 6,
 				"fragment" : "/usr/lib/x86_64-linux-gnu/libQt6Widgets.so.6.2.4",
 				"role" : "libraries"
 			},
 			{
-				"backtrace" : 3,
+				"backtrace" : 7,
 				"fragment" : "/usr/lib/x86_64-linux-gnu/libQt63DExtras.so.6.2.4",
 				"role" : "libraries"
 			},
 			{
-				"backtrace" : 3,
+				"backtrace" : 7,
 				"fragment" : "/usr/lib/x86_64-linux-gnu/libQt63DAnimation.so.6.2.4",
 				"role" : "libraries"
 			},
 			{
-				"backtrace" : 3,
+				"backtrace" : 7,
 				"fragment" : "/usr/lib/x86_64-linux-gnu/libQt63DLogic.so.6.2.4",
 				"role" : "libraries"
 			},
@@ -269,12 +303,12 @@
 				"role" : "libraries"
 			},
 			{
-				"backtrace" : 3,
+				"backtrace" : 7,
 				"fragment" : "/usr/lib/x86_64-linux-gnu/libQt63DRender.so.6.2.4",
 				"role" : "libraries"
 			},
 			{
-				"backtrace" : 3,
+				"backtrace" : 7,
 				"fragment" : "/usr/lib/x86_64-linux-gnu/libQt63DCore.so.6.2.4",
 				"role" : "libraries"
 			},
@@ -295,6 +329,7 @@
 				"role" : "libraries"
 			},
 			{
+				"backtrace" : 8,
 				"fragment" : "/usr/lib/x86_64-linux-gnu/libQt6Core.so.6.2.4",
 				"role" : "libraries"
 			},
@@ -369,111 +404,111 @@
 			"sourceGroupIndex" : 0
 		},
 		{
-			"backtrace" : 1,
+			"backtrace" : 4,
 			"compileGroupIndex" : 0,
 			"path" : "main.cpp",
 			"sourceGroupIndex" : 0
 		},
 		{
-			"backtrace" : 1,
+			"backtrace" : 4,
 			"compileGroupIndex" : 0,
 			"path" : "mainwindow.cpp",
 			"sourceGroupIndex" : 0
 		},
 		{
-			"backtrace" : 1,
+			"backtrace" : 4,
 			"path" : "mainwindow.h",
 			"sourceGroupIndex" : 1
 		},
 		{
-			"backtrace" : 1,
+			"backtrace" : 4,
 			"path" : "mainwindow.ui",
 			"sourceGroupIndex" : 2
 		},
 		{
-			"backtrace" : 1,
+			"backtrace" : 4,
 			"path" : "atomentity.h",
 			"sourceGroupIndex" : 1
 		},
 		{
-			"backtrace" : 1,
+			"backtrace" : 4,
 			"compileGroupIndex" : 0,
 			"path" : "atomentity.cpp",
 			"sourceGroupIndex" : 0
 		},
 		{
-			"backtrace" : 1,
+			"backtrace" : 4,
 			"path" : "bondentity.h",
 			"sourceGroupIndex" : 1
 		},
 		{
-			"backtrace" : 1,
+			"backtrace" : 4,
 			"compileGroupIndex" : 0,
 			"path" : "bondentity.cpp",
 			"sourceGroupIndex" : 0
 		},
 		{
-			"backtrace" : 1,
+			"backtrace" : 4,
 			"path" : "graphicsview.h",
 			"sourceGroupIndex" : 1
 		},
 		{
-			"backtrace" : 1,
+			"backtrace" : 4,
 			"compileGroupIndex" : 0,
 			"path" : "graphicsview.cpp",
 			"sourceGroupIndex" : 0
 		},
 		{
-			"backtrace" : 1,
+			"backtrace" : 4,
 			"path" : "orbitcameracontroller.h",
 			"sourceGroupIndex" : 1
 		},
 		{
-			"backtrace" : 1,
+			"backtrace" : 4,
 			"compileGroupIndex" : 0,
 			"path" : "orbitcameracontroller.cpp",
 			"sourceGroupIndex" : 0
 		},
 		{
-			"backtrace" : 1,
+			"backtrace" : 4,
 			"path" : "moleculeentity.h",
 			"sourceGroupIndex" : 1
 		},
 		{
-			"backtrace" : 1,
+			"backtrace" : 4,
 			"compileGroupIndex" : 0,
 			"path" : "moleculeentity.cpp",
 			"sourceGroupIndex" : 0
 		},
 		{
-			"backtrace" : 1,
+			"backtrace" : 4,
 			"path" : "moleculelistmodel.h",
 			"sourceGroupIndex" : 1
 		},
 		{
-			"backtrace" : 1,
+			"backtrace" : 4,
 			"compileGroupIndex" : 0,
 			"path" : "moleculelistmodel.cpp",
 			"sourceGroupIndex" : 0
 		},
 		{
-			"backtrace" : 1,
+			"backtrace" : 4,
 			"path" : "atomtablemodel.h",
 			"sourceGroupIndex" : 1
 		},
 		{
-			"backtrace" : 1,
+			"backtrace" : 4,
 			"compileGroupIndex" : 0,
 			"path" : "atomtablemodel.cpp",
 			"sourceGroupIndex" : 0
 		},
 		{
-			"backtrace" : 1,
+			"backtrace" : 4,
 			"path" : "datamanager.h",
 			"sourceGroupIndex" : 1
 		},
 		{
-			"backtrace" : 1,
+			"backtrace" : 4,
 			"compileGroupIndex" : 0,
 			"path" : "datamanager.cpp",
 			"sourceGroupIndex" : 0
