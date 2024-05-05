@@ -11,6 +11,9 @@ public:
     explicit OrbitCameraController(Qt3DCore::QNode* parent = nullptr);
     ~OrbitCameraController() = default;
 
+public slots:
+    void updateCenterPoint(const QVector3D &viewCenter);
+
 private:
     void moveCamera(const QAbstractCameraController::InputState& state, float dt) override;
 

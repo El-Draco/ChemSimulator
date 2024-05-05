@@ -73,7 +73,7 @@ bool BondTableModel::setData(const QModelIndex& index, const QVariant& value, in
     else if(index.column() == 2) {
         if (!value.canConvert<int>()) return false;
         const int newBondType = value.toInt();
-        if((newBondType < 0) or (newBondType > 2)) return false;
+        if((newBondType < 1) or (newBondType > 3)) return false;
         m_bonds[index.row()].bondType = newBondType;
         emit dataChanged(index, index);
         return true;

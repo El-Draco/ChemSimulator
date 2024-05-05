@@ -51,6 +51,7 @@ public:
     bool addAtom(int molId);
     bool deleteMolecule(int id);
     bool addMolecule();
+    void fromXYZ(QString filepath);
 public slots:
     void dataChangeListener();
 

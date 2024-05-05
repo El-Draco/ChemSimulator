@@ -9,16 +9,17 @@ inline QQuaternion calcRotation(QVector3D source, QVector3D target) {
 BondEntity::BondEntity(Qt3DCore::QNode *parent, Bond bond, QVector3D sourcePosition, QVector3D targetPosition)
     : Qt3DCore::QEntity(parent), m_bondData(bond), m_sourceAtomPosition(sourcePosition), m_targetAtomPosition(targetPosition)
 {
-    float separation = 0.125f;
+    float radius = 0.1f;
+    float separation = radius + 0.075f;
     float readjustment = (m_bondData.bondType * separation) / 2;
 
-    for(int i = 0; i <= m_bondData.bondType; i++) {
+    for(int i = 0; i <= m_bondData.bondType - 1; i++) {
         Qt3DCore::QEntity* ent = new Qt3DCore::QEntity(this);
 
         //Mesh
         bondMesh = new Qt3DExtras::QCylinderMesh(ent);
         bondMesh->setLength(1.0f);
-        bondMesh->setRadius(0.05f);
+        bondMesh->setRadius(radius);
 
         //Material
         bondMaterial = new Qt3DExtras::QDiffuseSpecularMaterial(ent);

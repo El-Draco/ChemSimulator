@@ -6,12 +6,12 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>800</width>
+    <width>834</width>
     <height>600</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>AbInitioSim</string>
+   <string>ChemSim</string>
   </property>
   <property name="autoFillBackground">
    <bool>true</bool>
@@ -325,7 +325,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>800</width>
+     <width>834</width>
      <height>21</height>
     </rect>
    </property>
@@ -339,10 +339,16 @@
     <property name="title">
      <string>File</string>
     </property>
+    <addaction name="actionAdd_Molecule_From_File"/>
    </widget>
    <addaction name="menuFile"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
+  <action name="actionAdd_Molecule_From_File">
+   <property name="text">
+    <string>Add Molecule From File</string>
+   </property>
+  </action>
  </widget>
  <resources/>
  <connections/>

@@ -7,18 +7,13 @@
 AtomEntity::AtomEntity(Qt3DCore::QNode *parent, Atom atom)
     : Qt3DCore::QEntity(parent), m_atomData(atom)
 {
-    if(m_atomData.atomicNumber == 9)
-        m_color = Qt::green;
-    else if(m_atomData.atomicNumber == 6)
-        m_color = QColor(QRgb(0x222222));
-    else if(m_atomData.atomicNumber == 1)
-        m_color = Qt::gray;
+    m_color = AtomEntity::CPKcolorScheme(m_atomData.atomicNumber);
 
     //Mesh
     atomMesh = new Qt3DExtras::QSphereMesh(this);
-    atomMesh->setRings(20);
-    atomMesh->setSlices(20);
-    atomMesh->setRadius((atom.atomicNumber/118)*2 + 0.2);
+    atomMesh->setRings(30);
+    atomMesh->setSlices(30);
+    atomMesh->setRadius((atom.atomicNumber/118)*2 + 0.3);
 
     //Material
     atomMaterial = new Qt3DExtras::QDiffuseSpecularMaterial(this);
@@ -80,9 +75,9 @@ void AtomEntity::onHover(bool containsMouse) {
     if (containsMouse) {
 
         QApplication::setOverrideCursor(Qt::PointingHandCursor);
-        atomMaterial->setAmbient(QColor(QRgb(0xFFFF00)));
-        atomMaterial->setSpecular(QColor(QRgb(0xFFFFFF)));
-        atomMaterial->setShininess(1.0f);
+        atomMaterial->setAmbient(QColor(QRgb(0x0000FA)));
+        atomMaterial->setSpecular(QColor(QRgb(0xF0F0FF)));
+        atomMaterial->setShininess(0.6f);
     } else {
         QApplication::restoreOverrideCursor();
         atomMaterial->setAmbient(m_color);
@@ -98,3 +93,72 @@ void AtomEntity::handleDrag(Qt3DRender::QPickEvent *event)
         emit draggingChanged(false);
     }
 }
+
+QColor AtomEntity::CPKcolorScheme(int atomicNumber) {
+    switch(atomicNumber) {
+    case 1:
+        return Qt::white;
+        break;
+    case 6:
+        return Qt::black;
+        break;
+    case 7:
+        return Qt::blue;
+        break;
+    case 8:
+        return Qt::red;
+        break;
+    case 9:
+    case 17:
+        return Qt::green;
+        break;
+    case 35:
+        return Qt::darkRed;
+        break;
+    case 53:
+        return Qt::darkMagenta;
+        break;
+    case 2:
+    case 10:
+    case 18:
+    case 36:
+    case 54:
+        return Qt::cyan;
+        break;
+    case 15:
+        return QRgb(0xffa500);
+        break;
+    case 16:
+        return Qt::yellow;
+        break;
+    case 5:
+        return QRgb(0xf5f5dc);
+        break;
+    case 3:
+    case 11:
+    case 19:
+    case 37:
+    case 55:
+    case 87:
+        return Qt::magenta;
+        break;
+    case 4:
+    case 12:
+    case 20:
+    case 38:
+    case 56:
+    case 88:
+        return Qt::darkGreen;
+        break;
+    case 22:
+        return Qt::gray;
+        break;
+    case 26:
+        return QRgb(0xff8c00);
+        break;
+    default:
+        return QRgb(0xffc0cb);
+        break;
+    }
+}
+

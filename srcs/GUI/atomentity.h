@@ -26,6 +26,7 @@ public:
 
     int molID = -1;
 
+    static QColor CPKcolorScheme(int atomicNumber);
 private:
     Qt3DExtras::QSphereMesh *atomMesh;
     Qt3DExtras::QDiffuseSpecularMaterial *atomMaterial;

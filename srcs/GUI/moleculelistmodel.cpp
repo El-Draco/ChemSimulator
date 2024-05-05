@@ -68,7 +68,7 @@ QVariant MoleculeListModel::data(const QModelIndex &index, int role) const {
     else if (role == AtomsRole)
         return QVariant::fromValue(molecule.atoms);
     else if (role == Qt::DisplayRole)
-        return QVariant::fromValue(molecule.name);
+        return QVariant::fromValue(QString::number(molecule.uniqueID) + " " + molecule.name);
     else if (role == BondsRole)
         return QVariant::fromValue(molecule.bonds);
 

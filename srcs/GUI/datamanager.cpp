@@ -1,8 +1,28 @@
 #include "datamanager.h"
-
+#include "elements.h"
 #include "atomtablemodel.h"
 #include "bondtablemodel.h"
 #include "graphicsview.h"
+#include <QString>
+#include <QHash>
+#include <QDebug> // for debugging
+#include <QFile>
+#include <QRegularExpression>
+
+int getAtomicNumber(const QString& symbol) {
+    static QHash<QString, int> atomicNumbers({
+        {"H", 1}, {"He", 2}, {"Li", 3}, {"Be", 4}, {"B", 5}, {"C", 6}, {"N", 7}, {"O", 8}, {"F", 9}, {"Ne", 10},
+        {"Na", 11}, {"Mg", 12}, {"Al", 13}, {"Si", 14}, {"P", 15}, {"S", 16}, {"Cl", 17}, {"Ar", 18}, {"K", 19}, {"Ca", 20}
+
+    });
+
+    if (atomicNumbers.contains(symbol)) {
+        return atomicNumbers.value(symbol);
+    } else {
+        qWarning() << "Invalid atomic symbol:" << symbol;
+        return 0; // Or return a specific value to indicate an error
+    }
+}
 
 DataManager::DataManager(QObject *parent) : QObject(parent)
 {
@@ -198,6 +218,67 @@ void DataManager::setNextDataForAnimation()
 
 }
 
+void DataManager::fromXYZ(QString filepath) {
+    QList<Molecule> molecules;
+    QFile file(filepath);
+    if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
+        return;
+    }
+
+    while (!file.atEnd()) {
+        QString line = file.readLine();
+        QStringList tokens = line.split(QRegularExpression("\\s+"));
+        int numAtoms = tokens[0].toInt();
+
+        Molecule molecule;
+        molecule.uniqueID = -1;
+        molecule.name = tokens[1];
+        molecule.atoms.reserve(numAtoms);
+
+
+        // Read atom data
+        for (int i = 0; i < numAtoms; ++i) {
+            line = file.readLine();
+            QStringList tokens = line.split(QRegularExpression("\\s+"));
+
+            qDebug() << tokens[0];
+            int atomicNumber = 1;
+            if(!atomicNumbers.contains(tokens[0])) {
+                qDebug() << "Atomic Symbol wrong!";
+            } else {
+                atomicNumber = atomicNumbers.value(tokens[0]);
+            }
+            molecule.atoms.append({i, -1, atomicNumber,
+                                   QVector3D(tokens[1].toFloat(), tokens[2].toFloat(), tokens[3].toFloat())});
+        }
+
+        //Bonds
+        int x = 0;
+        for (int j = 0; j < numAtoms; ++j) {
+            line = file.readLine();
+            QStringList bondList = line.split(QRegularExpression("\\s+"));
+            for (int k = j; k < numAtoms; ++k) {
+                if (bondList[k].toInt() == 1) {
+                    Bond bond;
+                    bond.uniqueID = x;
+                    x++;
+                    bond.entityID = -1;
+                    bond.sourceAtomID = j;
+                    bond.targetAtomID = k;
+                    bond.bondType = 1;
+                    molecule.bonds.append(bond);
+                }
+            }
+        }
+
+        molecules.append(molecule);
+    }
+
+    file.close();
+    ptrToData.data()->append(molecules);
+    resetID();
+    emit dataUpdated(false);
+}
 
 
 void DataManager::testData() {
@@ -218,13 +299,13 @@ void DataManager::testData() {
     m1.atoms.append({7, -1, 1, QVector3D(-1.0678055429, -1.0828676784, -0.8859444674) });
 
     // Adding bonds to the test molecule
-    m1.bonds.append({ 0, -1, 0, 1, 0 });
-    m1.bonds.append({ 1, -1, 1, 2, 0 });
-    m1.bonds.append({ 2, -1, 1, 5, 0 });
-    m1.bonds.append({ 3, -1, 1, 4, 0 });
-    m1.bonds.append({ 4, -1, 2, 3, 0 });
-    m1.bonds.append({ 5, -1, 2, 6, 0 });
-    m1.bonds.append({ 6, -1, 2, 7, 0 });
+    m1.bonds.append({ 0, -1, 0, 1, 1 });
+    m1.bonds.append({ 1, -1, 1, 2, 1 });
+    m1.bonds.append({ 2, -1, 1, 5, 1 });
+    m1.bonds.append({ 3, -1, 1, 4, 1 });
+    m1.bonds.append({ 4, -1, 2, 3, 1 });
+    m1.bonds.append({ 5, -1, 2, 6, 1 });
+    m1.bonds.append({ 6, -1, 2, 7, 1 });
 
     Molecule m2;
     m2.rotation = QQuaternion::fromAxisAndAngle(0.0, 1.0, 0.0, 45.0);
@@ -239,9 +320,9 @@ void DataManager::testData() {
     m2.atoms.append({-1, -1, 1, QVector3D(0.0, 0.0, 1.0) });
 
     // Adding bonds to the test molecule
-    m2.bonds.append({ 0, -1, 0, 1, 1 }); // Carbon - Hydrogen bond
-    m2.bonds.append({ 1, -1, 0, 2, 1 }); // Carbon - Hydrogen bond
-    m2.bonds.append({ 2, -1, 0, 3, 1 }); // Carbon - Hydrogen bond
+    m2.bonds.append({ 0, -1, 1, 1, 1 }); // Carbon - Hydrogen bond
+    m2.bonds.append({ 1, -1, 1, 2, 1 }); // Carbon - Hydrogen bond
+    m2.bonds.append({ 2, -1, 1, 3, 1 }); // Carbon - Hydrogen bond
 
     // Adding the test molecule to the data
     ptrToData.data()->append(m1);

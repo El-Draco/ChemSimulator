@@ -39,3 +39,8 @@ void OrbitCameraController::moveCamera(const Qt3DExtras::QAbstractCameraControll
         //cam->setUpVector(upVec);
     }
 }
+
+void OrbitCameraController::updateCenterPoint(const QVector3D &viewCenter) {
+    qDebug() << viewCenter;
+    centerPoint_ = QVector3D(viewCenter);
+}

@@ -3,7 +3,7 @@
 MoleculeEntity::MoleculeEntity(Qt3DCore::QNode* parent, Molecule mol)
     : QEntity(parent), m_molData(mol)
 {
-
+    transform = new Qt3DCore::QTransform(this);
 }
 
 const Molecule MoleculeEntity::molData() const

@@ -4,6 +4,8 @@
 #include <QVBoxLayout>
 #include <QWidget>
 #include <QVariant>
+#include <QFileDialog>
+#include <QStandardPaths>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -47,9 +49,13 @@ MainWindow::MainWindow(QWidget *parent)
             &QItemSelectionModel::selectionChanged,
             this,
             &MainWindow::setupBondTableView);
+    connect(ui->listView->selectionModel(),
+            &QItemSelectionModel::selectionChanged,
+            graphicsView,
+            &GraphicsView::showMolecule);
+
 
     ui->listView->selectionModel()->select(moleculeListModel->index(0), QItemSelectionModel::Select);  // Line 45
-    graphicsView->viewAll();
 }
 
 MainWindow::~MainWindow()
@@ -133,7 +139,6 @@ void MainWindow::on_viewAllButton_clicked()
     graphicsView->viewAll();
 }
 
-
 void MainWindow::on_addBond_clicked()
 {
     QVariant molid = moleculeListModel->data(currentSelectedMolecule, MoleculeListModel::UniqueIDRole);
@@ -189,5 +194,13 @@ void MainWindow::on_deleteMolecule_clicked()
 {
     QVariant molid = moleculeListModel->data(currentSelectedMolecule, MoleculeListModel::UniqueIDRole);
     dataManager->deleteMolecule(molid.value<int>());
+}
+
+
+void MainWindow::on_actionAdd_Molecule_From_File_triggered()
+{
+    QString desktopPath = QStandardPaths::writableLocation(QStandardPaths::DesktopLocation);
+    QString filepath = QFileDialog::getOpenFileName(this, "Add Molecule From File", desktopPath);
+    dataManager->fromXYZ(filepath);
 }
 

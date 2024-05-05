@@ -22,9 +22,9 @@ QVariant AtomTableModel::data(const QModelIndex& index, int role) const {
     switch (role) {
     case Qt::DisplayRole:
         if (index.column() == 0) {
-            return atom.atomicNumber;
-        } else if (index.column() == 1) {
             return atom.uniqueID;
+        } else if (index.column() == 1) {
+            return atom.atomicNumber;
         } else if (index.column() == 2) {
             return QString::number(atom.position.x(), 'f', 2);
         } else if (index.column() == 3) {
@@ -42,9 +42,9 @@ QVariant AtomTableModel::data(const QModelIndex& index, int role) const {
 QVariant AtomTableModel::headerData(int section, Qt::Orientation orientation, int role) const {
     if (orientation == Qt::Horizontal && role == Qt::DisplayRole) {
         if (section == 0) {
-            return "Atom";
-        } else if (section == 1) {
             return "ID";
+        } else if (section == 1) {
+            return "Atom";
         }else if (section == 2) {
             return "X";
         } else if (section == 3) {
@@ -60,7 +60,7 @@ bool AtomTableModel::setData(const QModelIndex& index, const QVariant& value, in
     if (!index.isValid()) return false;
     if (role != Qt::EditRole) return false;
 
-    if(index.column() == 0) {
+    if(index.column() == 1) {
         if (!value.canConvert<int>()) return false;
         const int newAtomicNumber = value.toInt();
         if((newAtomicNumber < 1) | (newAtomicNumber > 118)) return false;
@@ -99,7 +99,7 @@ bool AtomTableModel::setData(const QModelIndex& index, const QVariant& value, in
 
 Qt::ItemFlags AtomTableModel::flags(const QModelIndex& index) const {
     Qt::ItemFlags flags = QAbstractTableModel::flags(index);
-    if (index.isValid() && index.column() != 1) {
+    if (index.isValid() && index.column() != 0) {
         flags |= Qt::ItemIsEditable;
     }
     return flags;

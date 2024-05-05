@@ -1,10 +1,11 @@
 #ifndef GRAPHICSVIEW_H
 #define GRAPHICSVIEW_H
-
+#include "orbitcameracontroller.h"
 #include <QEntity>
 #include <Qt3DWindow>
 #include <QCamera>
 #include <QForwardRenderer>
+#include <QItemSelection>
 #include "moleculeentity.h"
 
 #include "datamanager.h"
@@ -22,9 +23,14 @@ public:
     //draw Molecules
     void drawFromData();
 
+public slots:
+    void showMolecule(const QItemSelection &selected, const QItemSelection &deselected);
+
 private:
     Qt3DCore::QEntity *scene;
     Qt3DCore::QEntity *draggingEntity = nullptr;
+    OrbitCameraController *cameraController;
+
     QSharedPointer<QList<Molecule>> ptrToModel;
 
     int selectedMolEntity = 0;

@@ -1,7 +1,7 @@
 #include "graphicsview.h"
 #include "atomentity.h"
 #include "moleculeentity.h"
-#include "orbitcameracontroller.h"
+
 #include "bondentity.h"
 
 #include <QMouseEvent>
@@ -9,6 +9,7 @@
 #include <QMutableListIterator>
 #include <QParallelAnimationGroup>
 #include <QPointLight>
+#include <QPlaneMesh>
 #include <Qt3DRender/QRenderSettings>
 
 GraphicsView::GraphicsView(QWidget *parent, DataManager* dm)
@@ -20,13 +21,30 @@ GraphicsView::GraphicsView(QWidget *parent, DataManager* dm)
 
     drawFromData();
 
+    // auto plane = new Qt3DCore::QEntity(scene);
+
+    // auto planeMesh = new Qt3DExtras::QPlaneMesh(plane);
+    // planeMesh->setWidth(10.0);
+    // planeMesh->setHeight(10.0);
+
+    // auto planeMaterial = new Qt3DExtras::QDiffuseSpecularMaterial(plane);
+    // planeMaterial->setAmbient(Qt::yellow);
+
+    // plane->addComponent(planeMesh);
+    // plane->addComponent(planeMaterial);
+
     Qt3DRender::QPointLight *light = new Qt3DRender::QPointLight(scene);
     light->setIntensity(0.0f);
 
-    OrbitCameraController *cameraController = new OrbitCameraController(scene);
+    cameraController = new OrbitCameraController(scene);
     cameraController->setCamera(camera());
     cameraController->setLinearSpeed(300.0f);
     cameraController->setLookSpeed(100.0f);
+
+    connect(camera(),
+            &Qt3DRender::QCamera::viewCenterChanged,
+            cameraController,
+            &OrbitCameraController::updateCenterPoint);
 
     setRootEntity(scene);
 }
@@ -68,6 +86,12 @@ void GraphicsView::drawFromData()
             bondEntity->molID = mol.uniqueID;
         }
     }
+}
+
+void GraphicsView::showMolecule(const QItemSelection &selected, const QItemSelection &deselected)
+{
+    if(selected.empty()) return;
+    camera()->viewEntity(molEntities.at(selected.indexes().first().row()));
 }
 
 void GraphicsView::changeDraggingEntity(bool dragging)

@@ -41,6 +41,7 @@ public slots:
     void resetViewsAndModels(bool from3d);
 
     void setupBondTableView(const QItemSelection &selected, const QItemSelection &deselected);
+
 private slots:
     void on_viewAllButton_clicked();
     void on_addBond_clicked();
@@ -49,5 +50,6 @@ private slots:
     void on_deleteAtom_clicked();
     void on_addMolecule_clicked();
     void on_deleteMolecule_clicked();
+    void on_actionAdd_Molecule_From_File_triggered();
 };
 #endif // MAINWINDOW_H
