@@ -655,9 +655,21 @@
 			null
 		],
 		[
+			"/home/eldraco/ChemSimulator/srcs/GUI/bondtablemodel.h",
+			"MU",
+			"EWIEGA46WW/moc_bondtablemodel.cpp",
+			null
+		],
+		[
 			"/home/eldraco/ChemSimulator/srcs/GUI/datamanager.h",
 			"MU",
 			"EWIEGA46WW/moc_datamanager.cpp",
+			null
+		],
+		[
+			"/home/eldraco/ChemSimulator/srcs/GUI/elements.h",
+			"MU",
+			"EWIEGA46WW/moc_elements.cpp",
 			null
 		],
 		[
@@ -768,6 +780,7 @@
 		[ "/home/eldraco/ChemSimulator/srcs/GUI/atomentity.cpp", "MU", null ],
 		[ "/home/eldraco/ChemSimulator/srcs/GUI/atomtablemodel.cpp", "MU", null ],
 		[ "/home/eldraco/ChemSimulator/srcs/GUI/bondentity.cpp", "MU", null ],
+		[ "/home/eldraco/ChemSimulator/srcs/GUI/bondtablemodel.cpp", "MU", null ],
 		[ "/home/eldraco/ChemSimulator/srcs/GUI/datamanager.cpp", "MU", null ],
 		[ "/home/eldraco/ChemSimulator/srcs/GUI/graphicsview.cpp", "MU", null ],
 		[ "/home/eldraco/ChemSimulator/srcs/GUI/main.cpp", "MU", null ],

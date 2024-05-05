@@ -3,10 +3,12 @@
   /home/eldraco/ChemSimulator/srcs/GUI/atomentity.h \
   /home/eldraco/ChemSimulator/srcs/GUI/atomtablemodel.h \
   /home/eldraco/ChemSimulator/srcs/GUI/bondentity.h \
+  /home/eldraco/ChemSimulator/srcs/GUI/bondtablemodel.h \
   /home/eldraco/ChemSimulator/srcs/GUI/datamanager.h \
   /home/eldraco/ChemSimulator/srcs/GUI/graphicsview.h \
   /home/eldraco/ChemSimulator/srcs/GUI/moleculeentity.h \
   /home/eldraco/ChemSimulator/srcs/GUI/moleculelistmodel.h \
+  /home/eldraco/ChemSimulator/srcs/GUI/orbitcameracontroller.h \
   /usr/include/GL/gl.h \
   /usr/include/alloca.h \
   /usr/include/asm-generic/errno-base.h \
@@ -300,11 +302,13 @@
   /usr/include/x86_64-linux-gnu/qt6/Qt3DCore/qt3dcore-config.h \
   /usr/include/x86_64-linux-gnu/qt6/Qt3DCore/qt3dcore_global.h \
   /usr/include/x86_64-linux-gnu/qt6/Qt3DCore/qtransform.h \
+  /usr/include/x86_64-linux-gnu/qt6/Qt3DExtras/QAbstractCameraController \
   /usr/include/x86_64-linux-gnu/qt6/Qt3DExtras/QCylinderMesh \
   /usr/include/x86_64-linux-gnu/qt6/Qt3DExtras/QDiffuseSpecularMaterial \
   /usr/include/x86_64-linux-gnu/qt6/Qt3DExtras/QForwardRenderer \
   /usr/include/x86_64-linux-gnu/qt6/Qt3DExtras/QSphereMesh \
   /usr/include/x86_64-linux-gnu/qt6/Qt3DExtras/Qt3DWindow \
+  /usr/include/x86_64-linux-gnu/qt6/Qt3DExtras/qabstractcameracontroller.h \
   /usr/include/x86_64-linux-gnu/qt6/Qt3DExtras/qcylindermesh.h \
   /usr/include/x86_64-linux-gnu/qt6/Qt3DExtras/qdiffusespecularmaterial.h \
   /usr/include/x86_64-linux-gnu/qt6/Qt3DExtras/qforwardrenderer.h \

@@ -13,11 +13,6 @@ enum BOND_TYPE
     NEG_INF  = _NEG_INF
 };
 
-//TODO
-float getElectronegativity(const Atom &atom)
-{
-
-}
 
 //TODO
 float computeResidue(int protons, int i) {
@@ -37,23 +32,23 @@ int thresholdValency(const Atom &atom)
 //Algo 1:
 BOND_TYPE determineBondType(const Atom &a1, const Atom &a2)
 {
-    if (fabs(getElectronegativity(a1) - getElectronegativity(a2)) > 1.8f)
+    if (fabs(ElectroNegativity::ID(a1) - ElectroNegativity::ID(a2)) > 1.8f)
     {
         if (a1.valency() >= thresholdValency(a1) && a2.valency() <= thresholdValency(a1))
             return IONIC;
     }
 
-    if (fabs(getElectronegativity(a1) - getElectronegativity(a2)) > 0.4)
+    if (fabs(ElectroNegativity::ID(a1) - ElectroNegativity::ID(a2)) > 0.4)
     {
 
-        if (fabs(getElectronegativity(a1) - getElectronegativity(a2)) <= 1.8f)
+        if (fabs(ElectroNegativity::ID(a1) - ElectroNegativity::ID(a2)) <= 1.8f)
         {
             if (a1.valency() >= thresholdValency(a1) && a2.valency() >= thresholdValency(a1))
                 return (POLAR_COVALENT);
         }
     }
 
-    if (fabs(getElectronegativity(a1) - getElectronegativity(a2)) <= 0.4f)
+    if (fabs(ElectroNegativity::ID(a1) - ElectroNegativity::ID(a2)) <= 0.4f)
     {
         if (a1.valency() >= thresholdValency(a1) && a2.valency() >= thresholdValency(a1))
             return (COVALENT);
@@ -92,7 +87,7 @@ std::vector<int> getCovalentBondWeights(Atom &atom) {
 //Algo 4:
 float computeFormalCharge(Atom &atom) {
     float sum = 0;
-    Atom element(atom.protons);
+    Atom element(atom.protons, atom.neutrons);
 
     std::vector<int> weights = getCovalentBondWeights(atom);
     for (int i = 0; i < weights.size(); i++) {
@@ -125,7 +120,7 @@ int nonBondingElectrons(Atom &atom) {
 
 //Algo 7:
 bool canFormDative(Atom &a1, Atom &a2) {
-    if (fabs(getElectronegativity(a1) - getElectronegativity(a2)) <= 1.8) {
+    if (fabs(ElectroNegativity::ID(a1) - ElectroNegativity::ID(a2)) <= 1.8) {
         if (computeDeltaValue(a1) == 0 && computeDeltaValue(a2) >= 2) {
             if (nonBondingElectrons(a1) >= 2)
                 return (true);
@@ -247,7 +242,7 @@ float computeAtomicCharge(Atom &atom) {
     
     if (isNonMetal(atom))
         return (computeFormalCharge(atom));
-    Atom element(atom.protons);
+    Atom element(atom.protons, atom.neutrons);
     float sum = 0;
 
     std::vector<int> weights = getCovalentBondWeights(atom);
@@ -276,9 +271,9 @@ Atom &PairwiseLGPreference(Atom &u, Atom &a1, Atom &a2) {
         return (a1);
     if (size(a1) < size(a2))
         return (a2);   
-    if (getElectronegativity(a1) > getElectronegativity(a2))
+    if (ElectroNegativity::ID(a1) > ElectroNegativity::ID(a2))
         return (a1);
-    if (getElectronegativity(a1) < getElectronegativity(a2))
+    if (ElectroNegativity::ID(a1) < ElectroNegativity::ID(a2))
         return (a2); 
     float sum1 = 0;
     float sum2 = 0;
@@ -289,10 +284,10 @@ Atom &PairwiseLGPreference(Atom &u, Atom &a1, Atom &a2) {
     N2.erase(u);
 
     for (Atom v: N1) {
-        sum1 += getElectronegativity(v) / (u.position - v.position).magnitude();
+        sum1 += ElectroNegativity::ID(v) / (u.position - v.position).magnitude();
     }
     for (Atom v: N2) {
-        sum2 += getElectronegativity(v) / (u.position - v.position).magnitude();
+        sum2 += ElectroNegativity::ID(v) / (u.position - v.position).magnitude();
     }
     if (sum1 >= sum2)
         return (a1);
@@ -323,7 +318,7 @@ Atom &NUPreference(Atom &a1, Atom &a2, Molecule &m) {
             return (a2);
     }
 
-    if (getElectronegativity(a1) < getElectronegativity(a2))
+    if (ElectroNegativity::ID(a1) < ElectroNegativity::ID(a2))
         return (a1);
     return (a2);
 }

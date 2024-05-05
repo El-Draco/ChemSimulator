@@ -10,6 +10,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/GUI.dir/atomtablemodel.cpp.o.d"
   "CMakeFiles/GUI.dir/bondentity.cpp.o"
   "CMakeFiles/GUI.dir/bondentity.cpp.o.d"
+  "CMakeFiles/GUI.dir/bondtablemodel.cpp.o"
+  "CMakeFiles/GUI.dir/bondtablemodel.cpp.o.d"
   "CMakeFiles/GUI.dir/datamanager.cpp.o"
   "CMakeFiles/GUI.dir/datamanager.cpp.o.d"
   "CMakeFiles/GUI.dir/graphicsview.cpp.o"

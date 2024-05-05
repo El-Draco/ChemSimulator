@@ -1,15 +1,11 @@
-CMakeFiles/GUI.dir/graphicsview.cpp.o: \
- /home/eldraco/ChemSimulator/srcs/GUI/graphicsview.cpp \
+CMakeFiles/GUI.dir/bondtablemodel.cpp.o: \
+ /home/eldraco/ChemSimulator/srcs/GUI/bondtablemodel.cpp \
  /usr/include/stdc-predef.h \
- /home/eldraco/ChemSimulator/srcs/GUI/graphicsview.h \
- /home/eldraco/ChemSimulator/srcs/GUI/orbitcameracontroller.h \
- /usr/include/x86_64-linux-gnu/qt6/Qt3DExtras/QAbstractCameraController \
- /usr/include/x86_64-linux-gnu/qt6/Qt3DExtras/qabstractcameracontroller.h \
- /usr/include/x86_64-linux-gnu/qt6/Qt3DCore/QEntity \
- /usr/include/x86_64-linux-gnu/qt6/Qt3DCore/qentity.h \
- /usr/include/x86_64-linux-gnu/qt6/Qt3DCore/qnode.h \
- /usr/include/x86_64-linux-gnu/qt6/Qt3DCore/qnodeid.h \
- /usr/include/x86_64-linux-gnu/qt6/Qt3DCore/qt3dcore_global.h \
+ /home/eldraco/ChemSimulator/srcs/GUI/bondtablemodel.h \
+ /usr/include/x86_64-linux-gnu/qt6/QtCore/QAbstractTableModel \
+ /usr/include/x86_64-linux-gnu/qt6/QtCore/qabstractitemmodel.h \
+ /usr/include/x86_64-linux-gnu/qt6/QtCore/qhash.h \
+ /usr/include/x86_64-linux-gnu/qt6/QtCore/qcontainertools_impl.h \
  /usr/include/x86_64-linux-gnu/qt6/QtCore/qglobal.h \
  /usr/include/c++/11/type_traits \
  /usr/include/x86_64-linux-gnu/c++/11/bits/c++config.h \
@@ -158,12 +154,6 @@ CMakeFiles/GUI.dir/graphicsview.cpp.o: \
  /usr/include/c++/11/tr1/poly_laguerre.tcc \
  /usr/include/c++/11/tr1/riemann_zeta.tcc \
  /usr/include/x86_64-linux-gnu/qt6/QtCore/qversiontagging.h \
- /usr/include/x86_64-linux-gnu/qt6/Qt3DCore/qt3dcore-config.h \
- /usr/include/x86_64-linux-gnu/qt6/QtCore/QDebug \
- /usr/include/x86_64-linux-gnu/qt6/QtCore/qdebug.h \
- /usr/include/x86_64-linux-gnu/qt6/QtCore/qalgorithms.h \
- /usr/include/x86_64-linux-gnu/qt6/QtCore/qhash.h \
- /usr/include/x86_64-linux-gnu/qt6/QtCore/qcontainertools_impl.h \
  /usr/include/c++/11/cstring /usr/include/string.h /usr/include/strings.h \
  /usr/include/c++/11/iterator /usr/include/c++/11/iosfwd \
  /usr/include/c++/11/bits/stringfwd.h /usr/include/c++/11/bits/postypes.h \
@@ -257,17 +247,37 @@ CMakeFiles/GUI.dir/graphicsview.cpp.o: \
  /usr/include/x86_64-linux-gnu/qt6/QtCore/qlist.h \
  /usr/include/x86_64-linux-gnu/qt6/QtCore/qbytearraylist.h \
  /usr/include/x86_64-linux-gnu/qt6/QtCore/qstringlist.h \
+ /usr/include/x86_64-linux-gnu/qt6/QtCore/qalgorithms.h \
  /usr/include/x86_64-linux-gnu/qt6/QtCore/qstringmatcher.h \
  /usr/include/x86_64-linux-gnu/qt6/QtCore/qmath.h \
+ /usr/include/x86_64-linux-gnu/qt6/QtCore/qobject.h \
+ /usr/include/x86_64-linux-gnu/qt6/QtCore/qobjectdefs.h \
+ /usr/include/x86_64-linux-gnu/qt6/QtCore/qobjectdefs_impl.h \
+ /usr/include/x86_64-linux-gnu/qt6/QtCore/qscopedpointer.h \
+ /usr/include/x86_64-linux-gnu/qt6/QtCore/qmetatype.h \
+ /usr/include/x86_64-linux-gnu/qt6/QtCore/qcompare.h \
+ /usr/include/x86_64-linux-gnu/qt6/QtCore/qvarlengtharray.h \
+ /usr/include/x86_64-linux-gnu/qt6/QtCore/qscopeguard.h \
+ /usr/include/x86_64-linux-gnu/qt6/QtCore/qdatastream.h \
+ /usr/include/x86_64-linux-gnu/qt6/QtCore/qiodevicebase.h \
+ /usr/include/x86_64-linux-gnu/qt6/QtCore/qiterable.h \
+ /usr/include/x86_64-linux-gnu/qt6/QtCore/qmetacontainer.h \
+ /usr/include/x86_64-linux-gnu/qt6/QtCore/qcontainerinfo.h \
+ /usr/include/x86_64-linux-gnu/qt6/QtCore/qtaggedpointer.h \
+ /usr/include/c++/11/list /usr/include/c++/11/bits/stl_list.h \
+ /usr/include/c++/11/bits/list.tcc /usr/include/c++/11/map \
+ /usr/include/c++/11/bits/stl_tree.h /usr/include/c++/11/bits/stl_map.h \
+ /usr/include/c++/11/bits/stl_multimap.h \
+ /usr/include/x86_64-linux-gnu/qt6/QtCore/qobject_impl.h \
+ /usr/include/x86_64-linux-gnu/qt6/QtCore/qbindingstorage.h \
+ /usr/include/c++/11/chrono /usr/include/c++/11/ratio \
+ /usr/include/c++/11/ctime \
+ /usr/include/x86_64-linux-gnu/qt6/QtCore/qvariant.h \
  /usr/include/x86_64-linux-gnu/qt6/QtCore/qmap.h \
  /usr/include/x86_64-linux-gnu/qt6/QtCore/qshareddata.h \
  /usr/include/x86_64-linux-gnu/qt6/QtCore/qshareddata_impl.h \
- /usr/include/c++/11/map /usr/include/c++/11/bits/stl_tree.h \
- /usr/include/c++/11/bits/stl_map.h \
- /usr/include/c++/11/bits/stl_multimap.h \
+ /usr/include/x86_64-linux-gnu/qt6/QtCore/qdebug.h \
  /usr/include/x86_64-linux-gnu/qt6/QtCore/qtextstream.h \
- /usr/include/x86_64-linux-gnu/qt6/QtCore/qiodevicebase.h \
- /usr/include/x86_64-linux-gnu/qt6/QtCore/qscopedpointer.h \
  /usr/include/x86_64-linux-gnu/qt6/QtCore/qstringconverter.h \
  /usr/include/x86_64-linux-gnu/qt6/QtCore/qset.h \
  /usr/include/x86_64-linux-gnu/qt6/QtCore/qcontiguouscache.h \
@@ -281,184 +291,24 @@ CMakeFiles/GUI.dir/graphicsview.cpp.o: \
  /usr/include/x86_64-linux-gnu/bits/uio_lim.h \
  /usr/include/x86_64-linux-gnu/qt6/QtCore/qsharedpointer.h \
  /usr/include/x86_64-linux-gnu/qt6/QtCore/qsharedpointer_impl.h \
- /usr/include/x86_64-linux-gnu/qt6/QtCore/qobject.h \
- /usr/include/x86_64-linux-gnu/qt6/QtCore/qobjectdefs.h \
- /usr/include/x86_64-linux-gnu/qt6/QtCore/qobjectdefs_impl.h \
- /usr/include/x86_64-linux-gnu/qt6/QtCore/qmetatype.h \
- /usr/include/x86_64-linux-gnu/qt6/QtCore/qcompare.h \
- /usr/include/x86_64-linux-gnu/qt6/QtCore/qvarlengtharray.h \
- /usr/include/x86_64-linux-gnu/qt6/QtCore/qscopeguard.h \
- /usr/include/x86_64-linux-gnu/qt6/QtCore/qdatastream.h \
- /usr/include/x86_64-linux-gnu/qt6/QtCore/qiterable.h \
- /usr/include/x86_64-linux-gnu/qt6/QtCore/qmetacontainer.h \
- /usr/include/x86_64-linux-gnu/qt6/QtCore/qcontainerinfo.h \
- /usr/include/x86_64-linux-gnu/qt6/QtCore/qtaggedpointer.h \
- /usr/include/c++/11/list /usr/include/c++/11/bits/stl_list.h \
- /usr/include/c++/11/bits/list.tcc \
- /usr/include/x86_64-linux-gnu/qt6/QtCore/qobject_impl.h \
- /usr/include/x86_64-linux-gnu/qt6/QtCore/qbindingstorage.h \
- /usr/include/c++/11/chrono /usr/include/c++/11/ratio \
- /usr/include/c++/11/ctime \
- /usr/include/x86_64-linux-gnu/qt6/QtCore/QHashFunctions \
- /usr/include/x86_64-linux-gnu/qt6/QtCore/qhashfunctions.h \
+ /home/eldraco/ChemSimulator/srcs/GUI/datamanager.h \
  /usr/include/x86_64-linux-gnu/qt6/QtCore/QObject \
  /usr/include/x86_64-linux-gnu/qt6/QtCore/qobject.h \
- /usr/include/x86_64-linux-gnu/qt6/QtCore/QMetaType \
- /usr/include/x86_64-linux-gnu/qt6/QtCore/qmetatype.h \
- /usr/include/x86_64-linux-gnu/qt6/Qt3DExtras/qt3dextras_global.h \
- /usr/include/x86_64-linux-gnu/qt6/QtGui/QVector3D \
- /usr/include/x86_64-linux-gnu/qt6/QtGui/qvectornd.h \
+ /usr/include/x86_64-linux-gnu/qt6/QtGui/QQuaternion \
+ /usr/include/x86_64-linux-gnu/qt6/QtGui/qquaternion.h \
  /usr/include/x86_64-linux-gnu/qt6/QtGui/qtguiglobal.h \
  /usr/include/x86_64-linux-gnu/qt6/QtGui/qtgui-config.h \
+ /usr/include/x86_64-linux-gnu/qt6/QtGui/qgenericmatrix.h \
+ /usr/include/x86_64-linux-gnu/qt6/QtGui/qvector3d.h \
+ /usr/include/x86_64-linux-gnu/qt6/QtGui/qvectornd.h \
  /usr/include/x86_64-linux-gnu/qt6/QtCore/qpoint.h \
  /usr/include/x86_64-linux-gnu/qt6/QtCore/qrect.h \
  /usr/include/x86_64-linux-gnu/qt6/QtCore/qmargins.h \
  /usr/include/x86_64-linux-gnu/qt6/QtCore/qsize.h \
- /usr/include/x86_64-linux-gnu/qt6/Qt3DCore/QEntity \
- /usr/include/x86_64-linux-gnu/qt6/Qt3DExtras/Qt3DWindow \
- /usr/include/x86_64-linux-gnu/qt6/Qt3DExtras/qt3dwindow.h \
- /usr/include/x86_64-linux-gnu/qt6/Qt3DRender/qrenderapi.h \
- /usr/include/x86_64-linux-gnu/qt6/Qt3DRender/qt3drender_global.h \
- /usr/include/x86_64-linux-gnu/qt6/QtGui/QWindow \
- /usr/include/x86_64-linux-gnu/qt6/QtGui/qwindow.h \
- /usr/include/x86_64-linux-gnu/qt6/QtCore/QEvent \
- /usr/include/x86_64-linux-gnu/qt6/QtCore/qcoreevent.h \
- /usr/include/x86_64-linux-gnu/qt6/QtCore/QMargins \
- /usr/include/x86_64-linux-gnu/qt6/QtCore/qmargins.h \
- /usr/include/x86_64-linux-gnu/qt6/QtCore/QRect \
- /usr/include/x86_64-linux-gnu/qt6/QtCore/qrect.h \
- /usr/include/x86_64-linux-gnu/qt6/QtCore/qnativeinterface.h \
- /usr/include/x86_64-linux-gnu/qt6/QtGui/qsurface.h \
- /usr/include/x86_64-linux-gnu/qt6/QtGui/qsurfaceformat.h \
- /usr/include/x86_64-linux-gnu/qt6/QtGui/qwindowdefs.h \
- /usr/include/x86_64-linux-gnu/qt6/QtGui/qicon.h \
- /usr/include/x86_64-linux-gnu/qt6/QtGui/qpixmap.h \
- /usr/include/x86_64-linux-gnu/qt6/QtGui/qpaintdevice.h \
- /usr/include/x86_64-linux-gnu/qt6/QtGui/qcolor.h \
- /usr/include/x86_64-linux-gnu/qt6/QtGui/qrgb.h \
- /usr/include/x86_64-linux-gnu/qt6/QtGui/qrgba64.h \
- /usr/include/x86_64-linux-gnu/qt6/QtGui/qimage.h \
- /usr/include/x86_64-linux-gnu/qt6/QtGui/qpixelformat.h \
- /usr/include/x86_64-linux-gnu/qt6/QtGui/qtransform.h \
- /usr/include/x86_64-linux-gnu/qt6/QtGui/qpolygon.h \
- /usr/include/x86_64-linux-gnu/qt6/QtGui/qregion.h \
- /usr/include/x86_64-linux-gnu/qt6/QtCore/qline.h \
- /usr/include/x86_64-linux-gnu/qt6/QtGui/qcursor.h \
- /usr/include/x86_64-linux-gnu/qt6/QtGui/qbitmap.h \
- /usr/include/x86_64-linux-gnu/qt6/Qt3DRender/QCamera \
- /usr/include/x86_64-linux-gnu/qt6/Qt3DRender/qcamera.h \
- /usr/include/x86_64-linux-gnu/qt6/Qt3DCore/qentity.h \
- /usr/include/x86_64-linux-gnu/qt6/Qt3DCore/qtransform.h \
- /usr/include/x86_64-linux-gnu/qt6/Qt3DCore/qcomponent.h \
- /usr/include/x86_64-linux-gnu/qt6/QtGui/qmatrix4x4.h \
- /usr/include/x86_64-linux-gnu/qt6/QtGui/qvector3d.h \
- /usr/include/x86_64-linux-gnu/qt6/QtGui/qvectornd.h \
  /usr/include/x86_64-linux-gnu/qt6/QtGui/qvector4d.h \
- /usr/include/x86_64-linux-gnu/qt6/QtGui/qquaternion.h \
- /usr/include/x86_64-linux-gnu/qt6/QtGui/qgenericmatrix.h \
- /usr/include/x86_64-linux-gnu/qt6/QtCore/qdebug.h \
- /usr/include/x86_64-linux-gnu/qt6/Qt3DRender/qcameralens.h \
- /usr/include/x86_64-linux-gnu/qt6/QtGui/QMatrix4x4 \
- /usr/include/x86_64-linux-gnu/qt6/QtGui/qmatrix4x4.h \
- /usr/include/x86_64-linux-gnu/qt6/QtGui/QQuaternion \
- /usr/include/x86_64-linux-gnu/qt6/QtGui/qquaternion.h \
- /usr/include/x86_64-linux-gnu/qt6/QtGui/QVector3D \
- /usr/include/x86_64-linux-gnu/qt6/Qt3DExtras/QForwardRenderer \
- /usr/include/x86_64-linux-gnu/qt6/Qt3DExtras/qforwardrenderer.h \
- /usr/include/x86_64-linux-gnu/qt6/Qt3DRender/qtechniquefilter.h \
- /usr/include/x86_64-linux-gnu/qt6/Qt3DRender/qframegraphnode.h \
- /usr/include/x86_64-linux-gnu/qt6/QtCore/QRectF \
- /usr/include/x86_64-linux-gnu/qt6/QtGui/QColor \
- /usr/include/x86_64-linux-gnu/qt6/QtGui/qcolor.h \
- /usr/include/x86_64-linux-gnu/qt6/Qt3DRender/QClearBuffers \
- /usr/include/x86_64-linux-gnu/qt6/Qt3DRender/qclearbuffers.h \
- /usr/include/x86_64-linux-gnu/qt6/Qt3DRender/qrendertargetoutput.h \
- /usr/include/x86_64-linux-gnu/qt6/Qt3DRender/QAbstractTexture \
- /usr/include/x86_64-linux-gnu/qt6/Qt3DRender/qabstracttexture.h \
- /usr/include/x86_64-linux-gnu/qt6/Qt3DRender/qtextureimagedata.h \
- /usr/include/x86_64-linux-gnu/qt6/QtOpenGL/qopengltexture.h \
- /usr/include/x86_64-linux-gnu/qt6/QtOpenGL/qtopenglglobal.h \
- /usr/include/x86_64-linux-gnu/qt6/QtGui/qopengl.h /usr/include/GL/gl.h \
- /usr/include/x86_64-linux-gnu/qt6/QtGui/qopenglext.h \
- /usr/include/inttypes.h \
- /usr/include/x86_64-linux-gnu/qt6/QtCore/QScopedPointer \
- /usr/include/x86_64-linux-gnu/qt6/QtCore/qscopedpointer.h \
- /usr/include/x86_64-linux-gnu/qt6/QtGui/QImage \
- /usr/include/x86_64-linux-gnu/qt6/QtGui/qimage.h \
- /usr/include/x86_64-linux-gnu/qt6/QtCore/QSharedPointer \
- /usr/include/x86_64-linux-gnu/qt6/QtCore/qsharedpointer.h \
- /usr/include/x86_64-linux-gnu/qt6/Qt3DRender/qtexturewrapmode.h \
- /usr/include/x86_64-linux-gnu/qt6/QtCore/QVariant \
- /usr/include/x86_64-linux-gnu/qt6/QtCore/qvariant.h \
- /usr/include/x86_64-linux-gnu/qt6/QtCore/QFlags \
- /usr/include/x86_64-linux-gnu/qt6/QtCore/qflags.h \
- /usr/include/x86_64-linux-gnu/qt6/QtCore/QItemSelection \
- /usr/include/x86_64-linux-gnu/qt6/QtCore/qitemselectionmodel.h \
- /usr/include/x86_64-linux-gnu/qt6/QtCore/qabstractitemmodel.h \
- /usr/include/x86_64-linux-gnu/qt6/QtCore/qvariant.h \
- /home/eldraco/ChemSimulator/srcs/GUI/moleculeentity.h \
- /home/eldraco/ChemSimulator/srcs/GUI/datamanager.h \
- /usr/include/x86_64-linux-gnu/qt6/QtCore/QObject \
- /usr/include/x86_64-linux-gnu/qt6/QtGui/QQuaternion \
  /usr/include/x86_64-linux-gnu/qt6/QtCore/QString \
  /usr/include/x86_64-linux-gnu/qt6/QtCore/qstring.h \
+ /usr/include/x86_64-linux-gnu/qt6/QtGui/QVector3D \
+ /usr/include/x86_64-linux-gnu/qt6/QtGui/qvectornd.h \
  /usr/include/x86_64-linux-gnu/qt6/QtCore/QSharedPointer \
- /home/eldraco/ChemSimulator/srcs/GUI/atomentity.h \
- /usr/include/x86_64-linux-gnu/qt6/Qt3DExtras/QDiffuseSpecularMaterial \
- /usr/include/x86_64-linux-gnu/qt6/Qt3DExtras/qdiffusespecularmaterial.h \
- /usr/include/x86_64-linux-gnu/qt6/Qt3DRender/qmaterial.h \
- /usr/include/x86_64-linux-gnu/qt6/Qt3DRender/qeffect.h \
- /usr/include/x86_64-linux-gnu/qt6/Qt3DRender/qabstracttexture.h \
- /usr/include/x86_64-linux-gnu/qt6/Qt3DRender/QObjectPicker \
- /usr/include/x86_64-linux-gnu/qt6/Qt3DRender/qobjectpicker.h \
- /usr/include/x86_64-linux-gnu/qt6/Qt3DExtras/QSphereMesh \
- /usr/include/x86_64-linux-gnu/qt6/Qt3DExtras/qspheremesh.h \
- /usr/include/x86_64-linux-gnu/qt6/Qt3DRender/qgeometryrenderer.h \
- /usr/include/x86_64-linux-gnu/qt6/Qt3DCore/qboundingvolume.h \
- /usr/include/x86_64-linux-gnu/qt6/Qt3DCore/qgeometryview.h \
- /usr/include/x86_64-linux-gnu/qt6/Qt3DCore/qgeometry.h \
- /usr/include/x86_64-linux-gnu/qt6/Qt3DCore/qattribute.h \
- /usr/include/x86_64-linux-gnu/qt6/Qt3DCore/qbuffer.h \
- /usr/include/x86_64-linux-gnu/qt6/Qt3DCore/QTransform \
- /usr/include/x86_64-linux-gnu/qt6/Qt3DCore/qtransform.h \
- /usr/include/x86_64-linux-gnu/qt6/QtCore/QPropertyAnimation \
- /usr/include/x86_64-linux-gnu/qt6/QtCore/qpropertyanimation.h \
- /usr/include/x86_64-linux-gnu/qt6/QtCore/qvariantanimation.h \
- /usr/include/x86_64-linux-gnu/qt6/QtCore/qabstractanimation.h \
- /usr/include/x86_64-linux-gnu/qt6/QtCore/qeasingcurve.h \
- /home/eldraco/ChemSimulator/srcs/GUI/bondentity.h \
- /usr/include/x86_64-linux-gnu/qt6/Qt3DExtras/QCylinderMesh \
- /usr/include/x86_64-linux-gnu/qt6/Qt3DExtras/qcylindermesh.h \
- /usr/include/x86_64-linux-gnu/qt6/Qt3DCore/QNode \
- /usr/include/x86_64-linux-gnu/qt6/Qt3DCore/qnode.h \
- /usr/include/x86_64-linux-gnu/qt6/QtGui/QMouseEvent \
- /usr/include/x86_64-linux-gnu/qt6/QtGui/qevent.h \
- /usr/include/x86_64-linux-gnu/qt6/QtCore/qcoreevent.h \
- /usr/include/x86_64-linux-gnu/qt6/QtCore/qiodevice.h \
- /usr/include/x86_64-linux-gnu/qt6/QtCore/qpointer.h \
- /usr/include/x86_64-linux-gnu/qt6/QtCore/qurl.h \
- /usr/include/x86_64-linux-gnu/qt6/QtGui/qeventpoint.h \
- /usr/include/x86_64-linux-gnu/qt6/QtGui/qvector2d.h \
- /usr/include/x86_64-linux-gnu/qt6/QtGui/qpointingdevice.h \
- /usr/include/x86_64-linux-gnu/qt6/QtGui/qinputdevice.h \
- /usr/include/x86_64-linux-gnu/qt6/QtGui/qscreen.h \
- /usr/include/x86_64-linux-gnu/qt6/QtCore/QList \
- /usr/include/x86_64-linux-gnu/qt6/QtCore/qlist.h \
- /usr/include/x86_64-linux-gnu/qt6/QtCore/QSize \
- /usr/include/x86_64-linux-gnu/qt6/QtCore/qsize.h \
- /usr/include/x86_64-linux-gnu/qt6/QtCore/QSizeF \
- /usr/include/x86_64-linux-gnu/qt6/QtGui/QTransform \
- /usr/include/x86_64-linux-gnu/qt6/QtGui/qtransform.h \
- /usr/include/x86_64-linux-gnu/qt6/QtGui/qkeysequence.h \
- /usr/include/x86_64-linux-gnu/qt6/QtCore/QMutableListIterator \
- /usr/include/x86_64-linux-gnu/qt6/QtCore/QParallelAnimationGroup \
- /usr/include/x86_64-linux-gnu/qt6/QtCore/qparallelanimationgroup.h \
- /usr/include/x86_64-linux-gnu/qt6/QtCore/qanimationgroup.h \
- /usr/include/x86_64-linux-gnu/qt6/Qt3DRender/QPointLight \
- /usr/include/x86_64-linux-gnu/qt6/Qt3DRender/qpointlight.h \
- /usr/include/x86_64-linux-gnu/qt6/Qt3DRender/qabstractlight.h \
- /usr/include/x86_64-linux-gnu/qt6/Qt3DExtras/QPlaneMesh \
- /usr/include/x86_64-linux-gnu/qt6/Qt3DExtras/qplanemesh.h \
- /usr/include/x86_64-linux-gnu/qt6/Qt3DRender/QRenderSettings \
- /usr/include/x86_64-linux-gnu/qt6/Qt3DRender/qrendersettings.h \
- /usr/include/x86_64-linux-gnu/qt6/Qt3DRender/qpickingsettings.h
+ /usr/include/x86_64-linux-gnu/qt6/QtCore/qsharedpointer.h

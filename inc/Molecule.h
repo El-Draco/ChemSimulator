@@ -6,16 +6,15 @@
 #include <iostream>
 #include <vector>
 #include "Bond.h"
-/**
- * @brief       Class to represent any Molecule thats a part of the simulation
- *
- */
+
+typedef Molecule SubMolecule;
+
 class Molecule
 {
 public:
     std::vector <Atom> atoms;
     size_t size;
-    int **Adjacency;
+    uint8_t **Adjacency;
     std::vector<Bond> bonds;
     Molecule() {
 
@@ -26,7 +25,7 @@ public:
     static Molecule Create(Atom *Atoms_input, std::vector<std::vector<Atom>> Bonds)
     {
         Molecule new_molecule(Bonds.size());
-        new_molecule.AtomSet = Atoms_input;
+        new_molecule.atoms = Atoms_input;
         new_molecule.size = Bonds.size();
 
         if (cardinality != Bonds.size())
@@ -53,5 +52,3 @@ public:
     Vector3 static computeDipole(Molecule &m);
     void breakBond(SubMolecule &m);
 };
-
-typedef Molecule SubMolecule;

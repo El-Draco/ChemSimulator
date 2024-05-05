@@ -5,7 +5,6 @@
 #include "bondentity.h"
 
 #include <QMouseEvent>
-#include <QMutableVectorIterator>
 #include <QMutableListIterator>
 #include <QParallelAnimationGroup>
 #include <QPointLight>

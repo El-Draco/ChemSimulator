@@ -309,6 +309,9 @@ CMakeFiles/GUI.dir/main.cpp.o: \
  /usr/include/x86_64-linux-gnu/qt6/QtCore/QSharedPointer \
  /usr/include/x86_64-linux-gnu/qt6/QtCore/qsharedpointer.h \
  /home/eldraco/ChemSimulator/srcs/GUI/graphicsview.h \
+ /home/eldraco/ChemSimulator/srcs/GUI/orbitcameracontroller.h \
+ /usr/include/x86_64-linux-gnu/qt6/Qt3DExtras/QAbstractCameraController \
+ /usr/include/x86_64-linux-gnu/qt6/Qt3DExtras/qabstractcameracontroller.h \
  /usr/include/x86_64-linux-gnu/qt6/Qt3DCore/QEntity \
  /usr/include/x86_64-linux-gnu/qt6/Qt3DCore/qentity.h \
  /usr/include/x86_64-linux-gnu/qt6/Qt3DCore/qnode.h \
@@ -322,9 +325,10 @@ CMakeFiles/GUI.dir/main.cpp.o: \
  /usr/include/x86_64-linux-gnu/qt6/QtCore/QObject \
  /usr/include/x86_64-linux-gnu/qt6/QtCore/QMetaType \
  /usr/include/x86_64-linux-gnu/qt6/QtCore/qmetatype.h \
+ /usr/include/x86_64-linux-gnu/qt6/Qt3DExtras/qt3dextras_global.h \
+ /usr/include/x86_64-linux-gnu/qt6/Qt3DCore/QEntity \
  /usr/include/x86_64-linux-gnu/qt6/Qt3DExtras/Qt3DWindow \
  /usr/include/x86_64-linux-gnu/qt6/Qt3DExtras/qt3dwindow.h \
- /usr/include/x86_64-linux-gnu/qt6/Qt3DExtras/qt3dextras_global.h \
  /usr/include/x86_64-linux-gnu/qt6/Qt3DRender/qrenderapi.h \
  /usr/include/x86_64-linux-gnu/qt6/Qt3DRender/qt3drender_global.h \
  /usr/include/x86_64-linux-gnu/qt6/QtGui/QWindow \
@@ -393,6 +397,10 @@ CMakeFiles/GUI.dir/main.cpp.o: \
  /usr/include/x86_64-linux-gnu/qt6/QtCore/qvariant.h \
  /usr/include/x86_64-linux-gnu/qt6/QtCore/QFlags \
  /usr/include/x86_64-linux-gnu/qt6/QtCore/qflags.h \
+ /usr/include/x86_64-linux-gnu/qt6/QtCore/QItemSelection \
+ /usr/include/x86_64-linux-gnu/qt6/QtCore/qitemselectionmodel.h \
+ /usr/include/x86_64-linux-gnu/qt6/QtCore/qabstractitemmodel.h \
+ /usr/include/x86_64-linux-gnu/qt6/QtCore/qvariant.h \
  /home/eldraco/ChemSimulator/srcs/GUI/moleculeentity.h \
  /home/eldraco/ChemSimulator/srcs/GUI/atomentity.h \
  /usr/include/x86_64-linux-gnu/qt6/Qt3DExtras/QDiffuseSpecularMaterial \
@@ -417,7 +425,6 @@ CMakeFiles/GUI.dir/main.cpp.o: \
  /usr/include/x86_64-linux-gnu/qt6/QtCore/qvariantanimation.h \
  /usr/include/x86_64-linux-gnu/qt6/QtCore/qabstractanimation.h \
  /usr/include/x86_64-linux-gnu/qt6/QtCore/qeasingcurve.h \
- /usr/include/x86_64-linux-gnu/qt6/QtCore/qvariant.h \
  /home/eldraco/ChemSimulator/srcs/GUI/bondentity.h \
  /usr/include/x86_64-linux-gnu/qt6/Qt3DExtras/QCylinderMesh \
  /usr/include/x86_64-linux-gnu/qt6/Qt3DExtras/qcylindermesh.h \
@@ -430,9 +437,7 @@ CMakeFiles/GUI.dir/main.cpp.o: \
  /usr/include/x86_64-linux-gnu/qt6/QtCore/qlist.h \
  /home/eldraco/ChemSimulator/srcs/GUI/atomtablemodel.h \
  /usr/include/x86_64-linux-gnu/qt6/QtCore/QAbstractTableModel \
- /usr/include/x86_64-linux-gnu/qt6/QtCore/QItemSelection \
- /usr/include/x86_64-linux-gnu/qt6/QtCore/qitemselectionmodel.h \
- /usr/include/x86_64-linux-gnu/qt6/QtCore/qabstractitemmodel.h \
+ /home/eldraco/ChemSimulator/srcs/GUI/bondtablemodel.h \
  /usr/include/x86_64-linux-gnu/qt6/QtWidgets/QMainWindow \
  /usr/include/x86_64-linux-gnu/qt6/QtWidgets/qmainwindow.h \
  /usr/include/x86_64-linux-gnu/qt6/QtWidgets/qtwidgetsglobal.h \

@@ -22,8 +22,8 @@ QT_BEGIN_MOC_NAMESPACE
 QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_GraphicsView_t {
-    const uint offsetsAndSize[10];
-    char stringdata0[73];
+    const uint offsetsAndSize[18];
+    char stringdata0[121];
 };
 #define QT_MOC_LITERAL(ofs, len) \
     uint(offsetof(qt_meta_stringdata_GraphicsView_t, stringdata0) + ofs), len 
@@ -32,12 +32,18 @@ static const qt_meta_stringdata_GraphicsView_t qt_meta_stringdata_GraphicsView =
 QT_MOC_LITERAL(0, 12), // "GraphicsView"
 QT_MOC_LITERAL(13, 19), // "potentialDataChange"
 QT_MOC_LITERAL(33, 0), // ""
-QT_MOC_LITERAL(34, 20), // "changeDraggingEntity"
-QT_MOC_LITERAL(55, 17) // "animateDataUpdate"
+QT_MOC_LITERAL(34, 12), // "showMolecule"
+QT_MOC_LITERAL(47, 14), // "QItemSelection"
+QT_MOC_LITERAL(62, 8), // "selected"
+QT_MOC_LITERAL(71, 10), // "deselected"
+QT_MOC_LITERAL(82, 20), // "changeDraggingEntity"
+QT_MOC_LITERAL(103, 17) // "animateDataUpdate"
 
     },
     "GraphicsView\0potentialDataChange\0\0"
-    "changeDraggingEntity\0animateDataUpdate"
+    "showMolecule\0QItemSelection\0selected\0"
+    "deselected\0changeDraggingEntity\0"
+    "animateDataUpdate"
 };
 #undef QT_MOC_LITERAL
 
@@ -47,7 +53,7 @@ static const uint qt_meta_data_GraphicsView[] = {
       10,       // revision
        0,       // classname
        0,    0, // classinfo
-       3,   14, // methods
+       4,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -55,16 +61,18 @@ static const uint qt_meta_data_GraphicsView[] = {
        1,       // signalCount
 
  // signals: name, argc, parameters, tag, flags, initial metatype offsets
-       1,    0,   32,    2, 0x06,    1 /* Public */,
+       1,    0,   38,    2, 0x06,    1 /* Public */,
 
  // slots: name, argc, parameters, tag, flags, initial metatype offsets
-       3,    1,   33,    2, 0x0a,    2 /* Public */,
-       4,    0,   36,    2, 0x0a,    4 /* Public */,
+       3,    2,   39,    2, 0x0a,    2 /* Public */,
+       7,    1,   44,    2, 0x0a,    5 /* Public */,
+       8,    0,   47,    2, 0x0a,    7 /* Public */,
 
  // signals: parameters
     QMetaType::Void,
 
  // slots: parameters
+    QMetaType::Void, 0x80000000 | 4, 0x80000000 | 4,    5,    6,
     QMetaType::Void, QMetaType::Bool,    2,
     QMetaType::Void,
 
@@ -78,9 +86,22 @@ void GraphicsView::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id
         (void)_t;
         switch (_id) {
         case 0: _t->potentialDataChange(); break;
-        case 1: _t->changeDraggingEntity((*reinterpret_cast< std::add_pointer_t<bool>>(_a[1]))); break;
-        case 2: _t->animateDataUpdate(); break;
+        case 1: _t->showMolecule((*reinterpret_cast< std::add_pointer_t<QItemSelection>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<QItemSelection>>(_a[2]))); break;
+        case 2: _t->changeDraggingEntity((*reinterpret_cast< std::add_pointer_t<bool>>(_a[1]))); break;
+        case 3: _t->animateDataUpdate(); break;
         default: ;
+        }
+    } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
+        switch (_id) {
+        default: *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType(); break;
+        case 1:
+            switch (*reinterpret_cast<int*>(_a[1])) {
+            default: *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType(); break;
+            case 1:
+            case 0:
+                *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType::fromType< QItemSelection >(); break;
+            }
+            break;
         }
     } else if (_c == QMetaObject::IndexOfMethod) {
         int *result = reinterpret_cast<int *>(_a[0]);
@@ -102,7 +123,7 @@ const QMetaObject GraphicsView::staticMetaObject = { {
     nullptr,
 qt_incomplete_metaTypeArray<qt_meta_stringdata_GraphicsView_t
 , QtPrivate::TypeAndForceComplete<GraphicsView, std::true_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>
-, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<bool, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>
+, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<const QItemSelection &, std::false_type>, QtPrivate::TypeAndForceComplete<const QItemSelection &, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<bool, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>
 
 
 >,
@@ -129,13 +150,13 @@ int GraphicsView::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 3)
+        if (_id < 4)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 3;
+        _id -= 4;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 3)
-            *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType();
-        _id -= 3;
+        if (_id < 4)
+            qt_static_metacall(this, _c, _id, _a);
+        _id -= 4;
     }
     return _id;
 }

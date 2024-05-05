@@ -19,8 +19,7 @@ public:
             electrons = p;
     }
 
-    Atom(int _protons) : protons(_protons), electrons(_protons){
-        position = Vector3(0, 0, 0);
+    Atom(int _p, int _n) : protons(_p), electrons(_p), neutrons(_n){
     }
     int valency() const 
     {

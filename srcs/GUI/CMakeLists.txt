@@ -75,7 +75,7 @@ target_link_libraries(GUI PRIVATE
 )
 
 # Add the library to link against
-target_link_libraries(GUI PUBLIC qt3dgizmo)
+# target_link_libraries(GUI PUBLIC qt3dgizmo)
 
 
 # Qt for iOS sets MACOSX_BUNDLE_GUI_IDENTIFIER automatically since Qt 6.1.

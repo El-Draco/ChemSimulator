@@ -54,19 +54,19 @@
 			{
 				"command" : 4,
 				"file" : 1,
-				"line" : 90,
+				"line" : 96,
 				"parent" : 0
 			},
 			{
 				"command" : 5,
 				"file" : 1,
-				"line" : 65,
+				"line" : 68,
 				"parent" : 0
 			},
 			{
 				"command" : 5,
 				"file" : 1,
-				"line" : 66,
+				"line" : 69,
 				"parent" : 0
 			},
 			{
@@ -244,7 +244,8 @@
 				14,
 				16,
 				18,
-				20
+				20,
+				22
 			]
 		}
 	],
@@ -367,7 +368,8 @@
 				14,
 				16,
 				18,
-				20
+				20,
+				22
 			]
 		},
 		{
@@ -383,14 +385,17 @@
 				15,
 				17,
 				19,
-				21
+				21,
+				24,
+				25
 			]
 		},
 		{
 			"name" : "",
 			"sourceIndexes" : 
 			[
-				4
+				4,
+				23
 			]
 		}
 	],
@@ -512,6 +517,27 @@
 			"compileGroupIndex" : 0,
 			"path" : "datamanager.cpp",
 			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 4,
+			"path" : "bondtablemodel.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 4,
+			"compileGroupIndex" : 0,
+			"path" : "bondtablemodel.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 4,
+			"path" : "class_diagram.qmodel",
+			"sourceGroupIndex" : 2
+		},
+		{
+			"backtrace" : 4,
+			"path" : "elements.h",
+			"sourceGroupIndex" : 1
 		},
 		{
 			"backtrace" : 0,

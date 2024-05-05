@@ -308,11 +308,16 @@ CMakeFiles/GUI.dir/datamanager.cpp.o: \
  /usr/include/x86_64-linux-gnu/qt6/QtGui/qvectornd.h \
  /usr/include/x86_64-linux-gnu/qt6/QtCore/QSharedPointer \
  /usr/include/x86_64-linux-gnu/qt6/QtCore/qsharedpointer.h \
+ /home/eldraco/ChemSimulator/srcs/GUI/elements.h \
  /home/eldraco/ChemSimulator/srcs/GUI/atomtablemodel.h \
  /usr/include/x86_64-linux-gnu/qt6/QtCore/QAbstractTableModel \
  /usr/include/x86_64-linux-gnu/qt6/QtCore/qabstractitemmodel.h \
  /usr/include/x86_64-linux-gnu/qt6/QtCore/qvariant.h \
+ /home/eldraco/ChemSimulator/srcs/GUI/bondtablemodel.h \
  /home/eldraco/ChemSimulator/srcs/GUI/graphicsview.h \
+ /home/eldraco/ChemSimulator/srcs/GUI/orbitcameracontroller.h \
+ /usr/include/x86_64-linux-gnu/qt6/Qt3DExtras/QAbstractCameraController \
+ /usr/include/x86_64-linux-gnu/qt6/Qt3DExtras/qabstractcameracontroller.h \
  /usr/include/x86_64-linux-gnu/qt6/Qt3DCore/QEntity \
  /usr/include/x86_64-linux-gnu/qt6/Qt3DCore/qentity.h \
  /usr/include/x86_64-linux-gnu/qt6/Qt3DCore/qnode.h \
@@ -326,9 +331,10 @@ CMakeFiles/GUI.dir/datamanager.cpp.o: \
  /usr/include/x86_64-linux-gnu/qt6/QtCore/QObject \
  /usr/include/x86_64-linux-gnu/qt6/QtCore/QMetaType \
  /usr/include/x86_64-linux-gnu/qt6/QtCore/qmetatype.h \
+ /usr/include/x86_64-linux-gnu/qt6/Qt3DExtras/qt3dextras_global.h \
+ /usr/include/x86_64-linux-gnu/qt6/Qt3DCore/QEntity \
  /usr/include/x86_64-linux-gnu/qt6/Qt3DExtras/Qt3DWindow \
  /usr/include/x86_64-linux-gnu/qt6/Qt3DExtras/qt3dwindow.h \
- /usr/include/x86_64-linux-gnu/qt6/Qt3DExtras/qt3dextras_global.h \
  /usr/include/x86_64-linux-gnu/qt6/Qt3DRender/qrenderapi.h \
  /usr/include/x86_64-linux-gnu/qt6/Qt3DRender/qt3drender_global.h \
  /usr/include/x86_64-linux-gnu/qt6/QtGui/QWindow \
@@ -397,6 +403,9 @@ CMakeFiles/GUI.dir/datamanager.cpp.o: \
  /usr/include/x86_64-linux-gnu/qt6/QtCore/qvariant.h \
  /usr/include/x86_64-linux-gnu/qt6/QtCore/QFlags \
  /usr/include/x86_64-linux-gnu/qt6/QtCore/qflags.h \
+ /usr/include/x86_64-linux-gnu/qt6/QtCore/QItemSelection \
+ /usr/include/x86_64-linux-gnu/qt6/QtCore/qitemselectionmodel.h \
+ /usr/include/x86_64-linux-gnu/qt6/QtCore/qabstractitemmodel.h \
  /home/eldraco/ChemSimulator/srcs/GUI/moleculeentity.h \
  /home/eldraco/ChemSimulator/srcs/GUI/atomentity.h \
  /usr/include/x86_64-linux-gnu/qt6/Qt3DExtras/QDiffuseSpecularMaterial \
@@ -425,4 +434,34 @@ CMakeFiles/GUI.dir/datamanager.cpp.o: \
  /usr/include/x86_64-linux-gnu/qt6/Qt3DExtras/QCylinderMesh \
  /usr/include/x86_64-linux-gnu/qt6/Qt3DExtras/qcylindermesh.h \
  /usr/include/x86_64-linux-gnu/qt6/Qt3DCore/QNode \
- /usr/include/x86_64-linux-gnu/qt6/Qt3DCore/qnode.h
+ /usr/include/x86_64-linux-gnu/qt6/Qt3DCore/qnode.h \
+ /usr/include/x86_64-linux-gnu/qt6/QtCore/QHash \
+ /usr/include/x86_64-linux-gnu/qt6/QtCore/qhash.h \
+ /usr/include/x86_64-linux-gnu/qt6/QtCore/QDebug \
+ /usr/include/x86_64-linux-gnu/qt6/QtCore/QFile \
+ /usr/include/x86_64-linux-gnu/qt6/QtCore/qfile.h \
+ /usr/include/x86_64-linux-gnu/qt6/QtCore/qfiledevice.h \
+ /usr/include/x86_64-linux-gnu/qt6/QtCore/qiodevice.h \
+ /usr/include/c++/11/filesystem /usr/include/c++/11/bits/fs_fwd.h \
+ /usr/include/c++/11/bits/fs_path.h /usr/include/c++/11/locale \
+ /usr/include/c++/11/bits/locale_facets.h /usr/include/c++/11/cwctype \
+ /usr/include/wctype.h /usr/include/x86_64-linux-gnu/bits/wctype-wchar.h \
+ /usr/include/x86_64-linux-gnu/c++/11/bits/ctype_base.h \
+ /usr/include/x86_64-linux-gnu/c++/11/bits/ctype_inline.h \
+ /usr/include/c++/11/bits/locale_facets.tcc \
+ /usr/include/c++/11/bits/locale_facets_nonio.h \
+ /usr/include/x86_64-linux-gnu/c++/11/bits/time_members.h \
+ /usr/include/x86_64-linux-gnu/c++/11/bits/messages_members.h \
+ /usr/include/libintl.h /usr/include/c++/11/bits/codecvt.h \
+ /usr/include/c++/11/bits/locale_facets_nonio.tcc \
+ /usr/include/c++/11/bits/locale_conv.h /usr/include/c++/11/iomanip \
+ /usr/include/c++/11/bits/quoted_string.h /usr/include/c++/11/sstream \
+ /usr/include/c++/11/istream /usr/include/c++/11/ios \
+ /usr/include/c++/11/bits/basic_ios.h \
+ /usr/include/c++/11/bits/basic_ios.tcc /usr/include/c++/11/ostream \
+ /usr/include/c++/11/bits/ostream.tcc \
+ /usr/include/c++/11/bits/istream.tcc \
+ /usr/include/c++/11/bits/sstream.tcc /usr/include/c++/11/codecvt \
+ /usr/include/c++/11/bits/fs_dir.h /usr/include/c++/11/bits/fs_ops.h \
+ /usr/include/x86_64-linux-gnu/qt6/QtCore/QRegularExpression \
+ /usr/include/x86_64-linux-gnu/qt6/QtCore/qregularexpression.h

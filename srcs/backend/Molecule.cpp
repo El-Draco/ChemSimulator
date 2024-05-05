@@ -27,17 +27,17 @@ Vector3 Molecule::computeDipole(Molecule &m)
     for (int i = 0; i < m.size; ++i)
     {
         for (int j = i + 1; j < m.size; ++j)
-            e += (m.AtomSet[i].position - m.AtomSet[j].position).unitvector() * (ElectroNegativity::ID(m.AtomSet[i]) - ElectroNegativity::ID(m.AtomSet[j]));
+            e += (m.atoms[i].position - m.atoms[j].position).unitvector() * (ElectroNegativity::ID(m.atoms[i]) - ElectroNegativity::ID(m.atoms[j]));
     }
     return e;
 }
 
 Molecule::~Molecule()
 {
-    const uint16_t AtomSet_cardinality = sizeof(AtomSet) / sizeof(*AtomSet);
-    if (AtomSet_cardinality > 0)
+    const uint16_t atoms_cardinality = atoms.size();
+    if (atoms_cardinality > 0)
     {
-        for (uint16_t i = 0; i < AtomSet_cardinality; i++)
+        for (uint16_t i = 0; i < atoms_cardinality; i++)
         {
             if (Adjacency[i] != nullptr)
                 delete[] Adjacency[i];
