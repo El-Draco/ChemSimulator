@@ -28,6 +28,11 @@ QVariant BondTableModel::data(const QModelIndex& index, int role) const {
             return bond.bondType;
         }
         break;
+    case Qt::UserRole:
+        if (index.column() == 0) {
+            return bond.uniqueID;
+        }
+        break;
     default:
         break;
     }
@@ -78,7 +83,7 @@ bool BondTableModel::setData(const QModelIndex& index, const QVariant& value, in
 
 Qt::ItemFlags BondTableModel::flags(const QModelIndex& index) const {
     Qt::ItemFlags flags = QAbstractTableModel::flags(index);
-    if (index.isValid() && index.column() != 1) {
+    if (index.isValid()) {
         flags |= Qt::ItemIsEditable;
     }
     return flags;

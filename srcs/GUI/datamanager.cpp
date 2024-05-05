@@ -62,10 +62,143 @@ void DataManager::dataChangeListener()
         emit dataUpdated(false);
 }
 
+void DataManager::resetID() {
+    int x = 0;
+    for(Molecule& mol : *ptrToData.data()) {
+        mol.uniqueID = x;
+        x++;
+
+        int y = 0;
+        int z = 0;
+        for(Atom& atom : mol.atoms) {
+            atom.uniqueID = y;
+            y++;
+        }
+        for(Bond& bond : mol.bonds) {
+            bond.uniqueID = z;
+            z++;
+        }
+    }
+}
+
+bool DataManager::deleteAtom(int id, int molId) {
+    Molecule* mol = getMoleculeByUniqueID(molId);
+    if (!mol) return false;
+
+    int ind = -1;
+    for (int i = 0; i < mol->atoms.size(); i++) {
+        if(mol->atoms.at(i).uniqueID == id) {
+            ind = i;
+            break;
+        }
+    }
+
+    if(ind == -1) return false;
+    mol->atoms.removeAt(ind);
+
+    int j = mol->bonds.size();
+    for(int i = 0; i < j; i++) {
+        if((mol->bonds.at(i).sourceAtomID == id) || (mol->bonds.at(i).targetAtomID == id)) {
+            mol->bonds.removeAt(i);
+            i--;
+            j--;
+        }
+    }
+    for(int i = 0; i < mol->bonds.size(); i++) {
+        if(mol->bonds.at(i).sourceAtomID > id) {
+            mol->bonds[i].sourceAtomID -= 1;
+        }
+        if(mol->bonds.at(i).targetAtomID > id) {
+            mol->bonds[i].targetAtomID -= 1;
+        }
+    }
+
+    resetID();
+    emit dataUpdated(false);
+    return true;
+}
+
+bool DataManager::addAtom(int molId) {
+    Molecule* mol = getMoleculeByUniqueID(molId);
+    if (!mol) return false;
+
+    mol->atoms.append({-1, -1, 1, QVector3D( 0.0, 0.0, 0.0) });
+    resetID();
+    emit dataUpdated(false);
+    return true;
+}
+
+bool DataManager::deleteBond(int id, int molId) {
+    Molecule* mol = getMoleculeByUniqueID(molId);
+    if (!mol) return false;
+
+    int ind = -1;
+    for (int i = 0; i < mol->bonds.size(); i++) {
+        if(mol->bonds.at(i).uniqueID == id) {
+            ind = i;
+            break;
+        }
+    }
+
+    if(ind == -1) return false;
+    mol->bonds.removeAt(ind);
+
+    resetID();
+    emit dataUpdated(false);
+}
+
+bool DataManager::addBond(int molId) {
+    Molecule* mol = getMoleculeByUniqueID(molId);
+    if (!mol) return false;
+
+    if(mol->atoms.size() < 2) return false;
+
+    mol->bonds.append({ -1, -1, 0, 0, 0 });
+    resetID();
+    emit dataUpdated(false);
+    return true;
+}
+
+bool DataManager::deleteMolecule(int id) {
+    int ind = -1;
+    for(int i = 0; i < (*ptrToData.data()).size(); i++) {
+        if ((*ptrToData.data()).at(i).uniqueID == id) {
+            ind = i;
+            break;
+        }
+    }
+    if (ind == -1) return false;
+
+    (*ptrToData.data()).removeAt(ind);
+    if ((*ptrToData.data()).empty()) {
+        return addMolecule();
+    }
+
+    resetID();
+    emit dataUpdated(false);
+    return true;
+}
+
+bool DataManager::addMolecule() {
+    Molecule m1;
+    m1.position = QVector3D(0.0, 0.0, 0.0);
+    m1.rotation = QQuaternion::fromAxisAndAngle(0.0, 1.0, 0.0, 45.0);
+    m1.name = "Empty Molecule";
+    m1.uniqueID = -1;
+    m1.entityID = -1;
+
+    ptrToData.data()->append(m1);
+    resetID();
+    emit dataUpdated(false);
+    return true;
+}
+
 void DataManager::setNextDataForAnimation()
 {
 
 }
+
+
 
 void DataManager::testData() {
     Molecule m1;
@@ -114,4 +247,5 @@ void DataManager::testData() {
     ptrToData.data()->append(m1);
     //ptrToData.data()->append(m2);
 }
+
 

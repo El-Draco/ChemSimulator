@@ -5,7 +5,7 @@
 #include "bondentity.h"
 
 #include <QMouseEvent>
-// #include <QMutableVectorIterator>
+#include <QMutableVectorIterator>
 #include <QMutableListIterator>
 #include <QParallelAnimationGroup>
 #include <QPointLight>
@@ -51,6 +51,7 @@ void GraphicsView::drawFromData()
         for(Atom& atom : mol.atoms) {
             AtomEntity *atomEntity = new AtomEntity(molEntity, atom);
             atom.entityID = atomEntity->id().id();
+            atomEntity->molID = mol.uniqueID;
             //dragging
             connect(atomEntity,
                     SIGNAL(draggingChanged(bool)),
@@ -64,6 +65,7 @@ void GraphicsView::drawFromData()
             QVector3D target = m_dm->getAtomByUniqueID(bond.targetAtomID, mol)->position;
             BondEntity *bondEntity = new BondEntity(molEntity, bond, source, target);
             bond.entityID = bondEntity->id().id();
+            bondEntity->molID = mol.uniqueID;
         }
     }
 }
@@ -107,8 +109,9 @@ void GraphicsView::mouseMoveEvent(QMouseEvent *event)
         transform->setTranslation(mouseIn3D);
 
         //redraw bonds
-        int atomIndex = qobject_cast<AtomEntity*>(draggingEntity)->atomData().uniqueID;
-        for(Qt3DCore::QNode *node : molEntities[selectedMolEntity]->childNodes()) {
+        AtomEntity* draggingAtom = qobject_cast<AtomEntity*>(draggingEntity);
+        int atomIndex = draggingAtom->atomData().uniqueID;
+        for(Qt3DCore::QNode *node : draggingAtom->parentNode()->childNodes()) {
             if(BondEntity *bondEntity = qobject_cast<BondEntity*>(node)) {
                 int sourceAtom = bondEntity->bondData().sourceAtomID;
                 int targetAtom = bondEntity->bondData().targetAtomID;
@@ -124,29 +127,22 @@ void GraphicsView::mouseMoveEvent(QMouseEvent *event)
     }
 }
 
-void GraphicsView::viewAll()
-{
-    camera()->viewAll();
-}
-
-inline bool areAtomsEqual(const Atom& atom1, const Atom& atom2) {
-    return (atom1.uniqueID == atom2.uniqueID &&
-            atom1.entityID == atom2.entityID &&
-            atom1.atomicNumber == atom2.atomicNumber &&
-            atom1.position == atom2.position);
-}
-
 void GraphicsView::updateData(Qt3DCore::QEntity* blame)
 {
     //if entity is an atom
     if (auto atomEntity = qobject_cast<AtomEntity*>(blame)) {
         int atomUniqueID = atomEntity->atomData().uniqueID;
-        Molecule mol = molEntities[selectedMolEntity]->molData();
-        Atom* atomToUpdate = m_dm->getAtomByUniqueID(atomUniqueID, mol);
+        Molecule* mol = m_dm->getMoleculeByUniqueID(atomEntity->molID);
+        Atom* atomToUpdate = m_dm->getAtomByUniqueID(atomUniqueID, *mol);
 
         atomToUpdate->position = atomEntity->getTransform()->translation();
     }
     emit potentialDataChange();
+}
+
+void GraphicsView::viewAll()
+{
+    camera()->viewAll();
 }
 
 void GraphicsView::animateDataUpdate()

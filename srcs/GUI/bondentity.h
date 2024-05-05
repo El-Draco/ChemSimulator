@@ -24,6 +24,7 @@ public:
     QPropertyAnimation *getNewRotationAnimation(QVector3D sourcePosition, QVector3D targetPosition, int duration);
     QPropertyAnimation *getNewPositionAnimation(QVector3D sourcePosition, QVector3D targetPosition, int duration);
 
+    int molID = -1;
 
 private:
     Qt3DExtras::QCylinderMesh *bondMesh;

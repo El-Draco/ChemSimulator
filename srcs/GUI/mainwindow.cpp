@@ -59,7 +59,12 @@ MainWindow::~MainWindow()
 
 void MainWindow::setupAtomTableView(const QItemSelection &selected, const QItemSelection &deselected)
 {
+    if(selected.empty()) {
+        ui->listView->selectionModel()->select(moleculeListModel->index(0), QItemSelectionModel::Select);
+        return;
+    }
     currentSelectedMolecule = selected.indexes().first();
+
     auto qvariant = moleculeListModel->data(currentSelectedMolecule, MoleculeListModel::AtomsRole);
     QList<Atom> atoms = qvariant.value<QList<Atom>>();
 
@@ -73,11 +78,16 @@ void MainWindow::setupAtomTableView(const QItemSelection &selected, const QItemS
     ui->atomView->setModel(currentAtomTableModel);
     ui->atomView->setAlternatingRowColors(true);
     ui->atomView->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+    ui->atomView->setSelectionBehavior(QAbstractItemView::SelectRows);
+    ui->atomView->setSelectionMode(QAbstractItemView::SingleSelection);
 }
 
 void MainWindow::setupBondTableView(const QItemSelection &selected, const QItemSelection &deselected)
 {
-    currentSelectedMolecule = selected.indexes().first();
+    if(selected.empty()) {
+        ui->listView->selectionModel()->select(moleculeListModel->index(0), QItemSelectionModel::Select);
+        return;
+    }
     auto qvariant = moleculeListModel->data(currentSelectedMolecule, MoleculeListModel::BondsRole);
     QList<Bond> bonds = qvariant.value<QList<Bond>>();
 
@@ -91,12 +101,15 @@ void MainWindow::setupBondTableView(const QItemSelection &selected, const QItemS
     ui->bondView->setModel(currentBondTableModel);
     ui->bondView->setAlternatingRowColors(true);
     ui->bondView->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+    ui->bondView->setSelectionBehavior(QAbstractItemView::SelectRows);
+    ui->bondView->setSelectionMode(QAbstractItemView::SingleSelection);
 }
 
 
 void MainWindow::resetViewsAndModels(bool from3d)
 {
     moleculeListModel->resetModel();
+
 
     if(currentAtomTableModel) {
         auto qvariant = moleculeListModel->data(currentSelectedMolecule, MoleculeListModel::AtomsRole);
@@ -114,35 +127,6 @@ void MainWindow::resetViewsAndModels(bool from3d)
         graphicsView->drawFromData();
 }
 
-// void MainWindow::on_actionOpen_triggered()
-// {
-//     QString fileName = QFileDialog::getOpenFileName(this, tr("Open XYZ File"), "", tr("XYZ Files (*.xyz)"));
-//     if (!fileName.isEmpty()) {
-//         QFile file(fileName);
-//         if (file.open(QIODevice::ReadOnly | QIODevice::Text)) {
-//             QList<Molecule> molecules;
-
-//             QTextStream in(&file);
-//             while (!in.atEnd()) {
-//                 QString line = in.readLine();
-//                 // Parse XYZ file line by line and extract molecule data
-//                 //QStringList tokens = line.split(QRegularExpression("\\s+"), QString::SkipEmptyParts);
-//                 if (true) {//tokens.size() >= 4) {
-//                     Molecule molecule;
-//                     //molecule.setName(tokens[0]);
-//                     //molecule.setPosition(QVector3D(tokens[1].toFloat(), tokens[2].toFloat(), tokens[3].toFloat()));
-//                     molecules.append(molecule);
-//                 }
-//             }
-//             file.close();
-//             //populateMoleculeModel();
-//         }
-//     }
-// }
-
-
-
-
 
 void MainWindow::on_viewAllButton_clicked()
 {
@@ -152,36 +136,58 @@ void MainWindow::on_viewAllButton_clicked()
 
 void MainWindow::on_addBond_clicked()
 {
-
+    QVariant molid = moleculeListModel->data(currentSelectedMolecule, MoleculeListModel::UniqueIDRole);
+    dataManager->addBond(molid.value<int>());
 }
-
 
 void MainWindow::on_deleteBond_clicked()
 {
+    QItemSelectionModel* selectionModel = ui->bondView->selectionModel();
+    if (!selectionModel->hasSelection()) return;
 
+    QModelIndexList selectedIndexes = selectionModel->selectedIndexes();
+    QModelIndex index = selectedIndexes.at(0);
+    QVariant bondid = currentBondTableModel->data(index, Qt::UserRole);
+
+    QVariant molid = moleculeListModel->data(currentSelectedMolecule, MoleculeListModel::UniqueIDRole);
+
+    qDebug() << bondid << molid;
+
+    dataManager->deleteBond(bondid.value<int>(), molid.value<int>());
 }
 
 
 void MainWindow::on_addAtom_clicked()
 {
-
+    QVariant molid = moleculeListModel->data(currentSelectedMolecule, MoleculeListModel::UniqueIDRole);
+    dataManager->addAtom(molid.value<int>());
 }
 
 
 void MainWindow::on_deleteAtom_clicked()
 {
+    QItemSelectionModel* selectionModel = ui->atomView->selectionModel();
+    if (!selectionModel->hasSelection()) return;
 
+    QModelIndexList selectedIndexes = selectionModel->selectedIndexes();
+    QModelIndex index = selectedIndexes.at(0);
+    QVariant atomid = index.model()->data(index.model()->index(index.row(), 1));
+
+    QVariant molid = moleculeListModel->data(currentSelectedMolecule, MoleculeListModel::UniqueIDRole);
+
+    dataManager->deleteAtom(atomid.value<int>(), molid.value<int>());
 }
 
 
 void MainWindow::on_addMolecule_clicked()
 {
-
+    dataManager->addMolecule();
 }
 
 
 void MainWindow::on_deleteMolecule_clicked()
 {
-
+    QVariant molid = moleculeListModel->data(currentSelectedMolecule, MoleculeListModel::UniqueIDRole);
+    dataManager->deleteMolecule(molid.value<int>());
 }
 

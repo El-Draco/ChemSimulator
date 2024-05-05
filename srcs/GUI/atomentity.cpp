@@ -7,6 +7,13 @@
 AtomEntity::AtomEntity(Qt3DCore::QNode *parent, Atom atom)
     : Qt3DCore::QEntity(parent), m_atomData(atom)
 {
+    if(m_atomData.atomicNumber == 9)
+        m_color = Qt::green;
+    else if(m_atomData.atomicNumber == 6)
+        m_color = QColor(QRgb(0x222222));
+    else if(m_atomData.atomicNumber == 1)
+        m_color = Qt::gray;
+
     //Mesh
     atomMesh = new Qt3DExtras::QSphereMesh(this);
     atomMesh->setRings(20);
@@ -14,7 +21,9 @@ AtomEntity::AtomEntity(Qt3DCore::QNode *parent, Atom atom)
     atomMesh->setRadius((atom.atomicNumber/118)*2 + 0.2);
 
     //Material
-    atomMaterial = AtomEntity::originalMaterial();
+    atomMaterial = new Qt3DExtras::QDiffuseSpecularMaterial(this);
+    atomMaterial->setAmbient(m_color);
+    atomMaterial->setShininess(0.0f);
 
     // Transform
     transform = new Qt3DCore::QTransform(this);
@@ -71,14 +80,13 @@ void AtomEntity::onHover(bool containsMouse) {
     if (containsMouse) {
 
         QApplication::setOverrideCursor(Qt::PointingHandCursor);
-        removeComponent(atomMaterial);
-        atomMaterial = AtomEntity::highlightMaterial();
-        addComponent(atomMaterial);
+        atomMaterial->setAmbient(QColor(QRgb(0xFFFF00)));
+        atomMaterial->setSpecular(QColor(QRgb(0xFFFFFF)));
+        atomMaterial->setShininess(1.0f);
     } else {
         QApplication::restoreOverrideCursor();
-        removeComponent(atomMaterial);
-        atomMaterial = AtomEntity::originalMaterial();
-        addComponent(atomMaterial);
+        atomMaterial->setAmbient(m_color);
+        atomMaterial->setShininess(0.0f);
     }
 }
 
@@ -90,32 +98,3 @@ void AtomEntity::handleDrag(Qt3DRender::QPickEvent *event)
         emit draggingChanged(false);
     }
 }
-
-Qt3DExtras::QDiffuseSpecularMaterial *AtomEntity::originalMaterial()
-{
-    Qt3DExtras::QDiffuseSpecularMaterial *material = nullptr;
-    if (!material) {
-        material = new Qt3DExtras::QDiffuseSpecularMaterial(this);
-        if(m_atomData.atomicNumber == 9)
-            material->setAmbient(Qt::green);
-        else if(m_atomData.atomicNumber == 6)
-            material->setAmbient(QColor(QRgb(0x222222)));
-        else if(m_atomData.atomicNumber == 1)
-            material->setAmbient(Qt::gray);
-        material->setShininess(0.0f);
-    }
-    return material;
-}
-
-Qt3DExtras::QDiffuseSpecularMaterial *AtomEntity::highlightMaterial()
-{
-    Qt3DExtras::QDiffuseSpecularMaterial *material = nullptr;
-    if (!material) {
-        material = new Qt3DExtras::QDiffuseSpecularMaterial();
-        material->setAmbient(QColor(QRgb(0xFFFF00)));
-        material->setSpecular(QColor(QRgb(0xFFFFFF)));
-        material->setShininess(1.0f);
-    }
-    return material;
-}
-

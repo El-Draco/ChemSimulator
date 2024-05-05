@@ -16,8 +16,6 @@ class AtomEntity : public Qt3DCore::QEntity
 public:
     AtomEntity(Qt3DCore::QNode *parent, Atom atom);
 
-    Qt3DExtras::QDiffuseSpecularMaterial *originalMaterial();
-    static Qt3DExtras::QDiffuseSpecularMaterial *highlightMaterial();
     static QList<QColor> colorScheme;
 
     const Atom atomData() const;
@@ -25,6 +23,8 @@ public:
 
     QPropertyAnimation *getNewAnimation();
     Qt3DCore::QTransform *getTransform() const;
+
+    int molID = -1;
 
 private:
     Qt3DExtras::QSphereMesh *atomMesh;
@@ -34,6 +34,8 @@ private:
     QPropertyAnimation *animation;
 
     Atom m_atomData;
+
+    QColor m_color;
 
 signals:
     void draggingChanged(bool);

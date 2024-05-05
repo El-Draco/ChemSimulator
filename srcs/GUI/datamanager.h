@@ -44,6 +44,13 @@ public:
     Atom *getAtomByUniqueID(int, Molecule &);
     Bond *getBondByUniqueID(int, Molecule &);
 
+    bool deleteAtom(int id, int molId);
+    bool deleteBond(int id, int molId);
+    void resetID();
+    bool addBond(int molId);
+    bool addAtom(int molId);
+    bool deleteMolecule(int id);
+    bool addMolecule();
 public slots:
     void dataChangeListener();
 
