@@ -105,8 +105,6 @@ int main(int argc, char **argv) {
     SubMolecule NU = identifyNucleophile(reactants);
 
 
-
-
     //*******************************************************************************
 
     //STEP 6: Seperate LG & NU from reactants

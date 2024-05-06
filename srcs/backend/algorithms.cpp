@@ -19,6 +19,78 @@ float computeResidue(int protons, int i) {
     return (0);
 }
 
+//TODO:
+int maxShellNumber(int protons) {
+
+}
+
+//TODO:
+int size(Atom &atom) {
+
+
+
+    return (0);
+}
+
+//TODO:
+std::vector<int> getCovalentBondWeights(Atom &atom) {
+    std::vector<int> weights;
+    return (weights);
+}
+
+
+//TODO:
+std::set<Atom> getNeighbours(Atom &atom) {
+    std::set<Atom> N;
+    return (N);
+}
+
+
+//TODO:
+int getWeight(Atom &a1, Atom &a2) {
+    return (0);
+}
+
+
+//TODO:
+void c_methyl_shift(Atom &a1, Atom &a2) {
+
+}
+
+//TODO:
+void c_hydride_shift(Atom &a1, Atom &a2) {
+    
+}
+
+std::vector<SubMolecule> findPotentialLGs(Molecule &m) {
+
+}
+
+std::vector<SubMolecule> findPotentialNUs(Molecule &m) {
+
+}
+
+std::vector<SubMolecule> findPotentialNUs(Molecule &m, Molecule &ms) {
+
+}
+
+SubMolecule findMax(std::vector<SubMolecule> potentialSubMols) {
+
+}
+
+
+SubMolecule performOptimalCarbocationRearrangement(Molecule &m) {
+
+}
+
+SubMolecule performOptimalResonanceStructure(Molecule &m) {
+
+}
+
+void attach(SubMolecule &m1, SubMolecule &m2) {
+
+}
+
 
 int thresholdValency(const Atom &atom)
 {
@@ -56,10 +128,7 @@ BOND_TYPE determineBondType(const Atom &a1, const Atom &a2)
     return (NEG_INF);
 }
 
-//TODO:
-int maxShellNumber(int protons) {
 
-}
 
 //Algo 2:
 int getNumElecInShell(int protons, int shell) {
@@ -77,11 +146,6 @@ float computeDeltaValue(const Atom &atom) {
 }
 
 
-//TODO:
-std::vector<int> getCovalentBondWeights(Atom &atom) {
-    std::vector<int> weights;
-    return (weights);
-}
 
 
 //Algo 4:
@@ -130,17 +194,7 @@ bool canFormDative(Atom &a1, Atom &a2) {
 }
 
 
-//TODO:
-std::set<Atom> getNeighbours(Atom &atom) {
-    std::set<Atom> N;
-    return (N);
-}
 
-
-//TODO:
-int getWeight(Atom &a1, Atom &a2) {
-    return (0);
-}
 
 //Algo 8:
 int getNumOfResonanceStructures(Atom &a1) {
@@ -193,15 +247,6 @@ int getCarbocationState(Atom &atom) {
 }
 
 
-//TODO:
-void c_methyl_shift(Atom &a1, Atom &a2) {
-
-}
-
-//TODO:
-void c_hydride_shift(Atom &a1, Atom &a2) {
-    
-}
 
 //Algo 11: UPDATE VISITED
 int carbocationShift(Atom &a1) {
@@ -254,13 +299,7 @@ float computeAtomicCharge(Atom &atom) {
 }
 
 
-//TODO:
-int size(Atom &atom) {
 
-
-
-    return (0);
-}
 //Algo 13:
 Atom &PairwiseLGPreference(Atom &u, Atom &a1, Atom &a2) {
     if (getNumOfResonanceStructures(a1) > getNumOfResonanceStructures(a2))
@@ -324,34 +363,7 @@ Atom &NUPreference(Atom &a1, Atom &a2, Molecule &m) {
 }
 
 
-std::vector<SubMolecule> findPotentialLGs(Molecule &m) {
 
-}
-
-std::vector<SubMolecule> findPotentialNUs(Molecule &m) {
-
-}
-
-std::vector<SubMolecule> findPotentialNUs(Molecule &m, Molecule &ms) {
-
-}
-
-SubMolecule findMax(std::vector<SubMolecule> potentialSubMols) {
-
-}
-
-
-SubMolecule performOptimalCarbocationRearrangement(Molecule &m) {
-
-}
-
-SubMolecule performOptimalResonanceStructure(Molecule &m) {
-
-}
-
-void attach(SubMolecule &m1, SubMolecule &m2) {
-
-}
 
 //Algo 15:
 void SN1_Mechanism(Molecule &m1, Molecule &m2) {
@@ -374,6 +386,7 @@ void SN1_Mechanism(Molecule &m1, Molecule &m2) {
 void SN2_Mechanism(Molecule &m1, Molecule &m2, Molecule &ms) {
     std::vector<SubMolecule> potentialLGs = findPotentialLGs(m1);
     std::vector<SubMolecule> potentialNUs = findPotentialNUs(m2, ms);
+    
     SubMolecule LG = findMax(potentialLGs);
     SubMolecule NU = findMax(potentialNUs);
     m1.breakBond(LG);
