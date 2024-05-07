@@ -2,6 +2,20 @@
 #include "Atom.h"
 #include "ElectroNegativityTable.h"
 
+#define _IONIC -2
+#define _POLAR_COVALENT -1
+#define _COVALENT 0
+#define _NEG_INF -9999999
+
+
+enum BOND_TYPE
+{
+    IONIC = _IONIC,
+    POLAR_COVALENT = _POLAR_COVALENT,
+    COVALENT = _COVALENT,
+    NEG_INF  = _NEG_INF
+};
+
 class Bond
 {
 public:
@@ -19,4 +33,5 @@ public:
     }
     bool static isPureCovalent(const Atom &a, const Atom &b);
     bool static isIonic(const Atom &a, const Atom &b);
+    static BOND_TYPE getBondType(Atom &a1, Atom &a2) const ;
 };

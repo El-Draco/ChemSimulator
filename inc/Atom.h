@@ -7,9 +7,20 @@ class Atom
 {
 public:
     Vector3 position;
-    const int protons;
-    const float neutrons;
+    int protons;
+    float neutrons;
     int electrons;
+    int valence;
+    int size;
+    int charge; 
+    //TODO:
+    
+    // COMPUTE CHARGE BY THE FORMULAS IN THE PAPER, PAGE 18/19
+    // CHECK IF ATOM HAS COVALENT OR IONIC BONDS
+    // THEN COMPUTE CHARGE BY EITHER FORMULA IN PAGE 18 BOTTOM PAGE (PROP 11)
+    
+    Molecule *parent;
+    int delta;
 
 public:
     Atom(const Vector3 pos = Vector3(0, 0, 0), const int &p = -1, const int &n = -1, const int &e = -1)
@@ -21,7 +32,7 @@ public:
 
     Atom(int _p, int _n) : protons(_p), electrons(_p), neutrons(_n){
     }
-    int valency() const 
+    int valence_in_isolation() const 
     {
         switch (this->electrons)
         {
@@ -162,7 +173,16 @@ public:
         }
         return (-1);
     }
+    int getValence() const {
+        return valence;
+    }
 
+    int degree() const {
+        
+    }
+    int size() const {
+
+    }
     int static desiredValence(const Atom &a)
     {
         for (int i = 1; i <= 8; ++i)
@@ -182,4 +202,19 @@ public:
     {
         return (this->position.x == rhs.position.x && this->position.y == rhs.position.y && this->position.z == rhs.position.z && this->protons == rhs.protons && this->neutrons == rhs.neutrons && this->electrons == rhs.electrons);
     }
+
+    Atom (const Atom &rhs) {
+        *this = rhs;
+    }
+    Atom &operator=(const Atom &rhs) {
+        return (*this);
+    }
+    Atom &operator+(Atom &m) {
+        return (*this);
+    }
+    
+    Atom &operator-(Atom &m) {
+        return (*this);
+    }
+
 };

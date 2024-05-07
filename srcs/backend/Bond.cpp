@@ -26,3 +26,7 @@ bool Bond::isIonic(const Atom &a, const Atom &b)
     }
     return false;
 }
+
+BOND_TYPE Bond::getBondType(Atom &a1, Atom &a2) const {
+    
+}

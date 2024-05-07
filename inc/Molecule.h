@@ -16,6 +16,8 @@ public:
     size_t size;
     uint8_t **Adjacency;
     std::vector<Bond> bonds;
+    Atom root;
+
     Molecule() {
 
     }
@@ -51,4 +53,20 @@ public:
     void static printAdj(Molecule &m);
     Vector3 static computeDipole(Molecule &m);
     void breakBond(SubMolecule &m);
+
+
+    Molecule (const Molecule &rhs) {
+        *this = rhs;
+    }
+    Molecule &operator=(const Molecule &rhs) {
+        return (*this);
+    }
+    Molecule &operator+(Molecule &m) {
+        return (*this);
+    }
+    
+    Molecule &operator-(Molecule &m) {
+        return (*this);
+    }
+
 };

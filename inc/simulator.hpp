@@ -9,6 +9,12 @@
 #include "Bond.h"
 #include <list>
 #include <fstream>
+#include <iostream>
+#include <fstream>
+#include <sstream>
+#include <vector>
+#include <string>
+#include <unordered_map>
 
 
 #define SN_1 101
@@ -21,13 +27,5 @@ enum MECH_TYPE {
     SN2 = SN_2
 };
 std::vector<Molecule> parse(std::string filename);
-void calculateInitialAtomicState(std::vector<Molecule> &molecules);
-MECH_TYPE determineMechanismType(std::vector<Molecule> &molecules);
-SubMolecule identifyLeavingGroup(std::vector<Molecule> &molecules);
-SubMolecule identifyNucleophile(std::vector<Molecule> &molecules);
-void constructProduct();
-std::vector<SubMolecule> seperateReactants();
-SubMolecule constructCarbocation(std::vector<Molecule> &reactants);
-SubMolecule identifyStableLGResonanceStructure(SubMolecule &LG);
-Molecule attachCarboToLG(SubMolecule &carbocation, SubMolecule &LG);
+
 void saveProduct();
