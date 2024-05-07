@@ -229,36 +229,37 @@ void DataManager::fromXYZ(QString filepath) {
 
     while (!file.atEnd()) {
         QString line = file.readLine();
-        QStringList tokens = line.split(QRegularExpression("\\s+"));
+        QStringList tokens = line.split(",");
         int numAtoms = tokens[0].toInt();
 
         Molecule molecule;
         molecule.uniqueID = -1;
-        molecule.name = tokens[1];
+        molecule.name = "M";
         molecule.atoms.reserve(numAtoms);
 
 
         // Read atom data
         for (int i = 0; i < numAtoms; ++i) {
             line = file.readLine();
-            QStringList tokens = line.split(QRegularExpression("\\s+"));
+            QStringList tokens = line.split(",");
 
-            qDebug() << tokens[0];
-            int atomicNumber = 1;
-            if(!atomicNumbers.contains(tokens[0])) {
-                qDebug() << "Atomic Symbol wrong!";
-            } else {
-                atomicNumber = atomicNumbers.value(tokens[0]);
-            }
-            molecule.atoms.append({i, -1, atomicNumber, 0, 0,
-                                   QVector3D(tokens[1].toFloat(), tokens[2].toFloat(), tokens[3].toFloat())});
+            Atom atom;
+            atom.uniqueID = i;
+            atom.entityID = -1;
+            atom.atomicNumber = tokens[1].toInt();
+            atom.neutrons = tokens[2].toInt();
+            atom.electrons = tokens[3].toInt();
+            atom.position = QVector3D(tokens[4].toFloat(),
+                                     tokens[5].toFloat(),
+                                     tokens[6].toFloat());
+            molecule.atoms.append(atom);
         }
 
         //Bonds
         int x = 0;
         for (int j = 0; j < numAtoms; ++j) {
             line = file.readLine();
-            QStringList bondList = line.split(QRegularExpression("\\s+"));
+            QStringList bondList = line.split(",");
             for (int k = j; k < numAtoms; ++k) {
                 if (bondList[k].toInt() == 1) {
                     Bond bond;
