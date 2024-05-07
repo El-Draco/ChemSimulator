@@ -11,6 +11,8 @@ struct Atom {
     int uniqueID;
     int entityID;
     int atomicNumber;
+    int neutrons;
+    int electrons;
     QVector3D position;
 };
 
@@ -52,6 +54,7 @@ public:
     bool deleteMolecule(int id);
     bool addMolecule();
     void fromXYZ(QString filepath);
+    void toXYZ(QString filePath, QList<int> molSelectionOrder);
 public slots:
     void dataChangeListener();
 

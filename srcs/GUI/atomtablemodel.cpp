@@ -10,7 +10,7 @@ int AtomTableModel::rowCount(const QModelIndex& parent) const {
 }
 
 int AtomTableModel::columnCount(const QModelIndex& parent) const {
-    return 5;
+    return 7;
 }
 
 QVariant AtomTableModel::data(const QModelIndex& index, int role) const {
@@ -26,10 +26,14 @@ QVariant AtomTableModel::data(const QModelIndex& index, int role) const {
         } else if (index.column() == 1) {
             return atom.atomicNumber;
         } else if (index.column() == 2) {
-            return QString::number(atom.position.x(), 'f', 2);
+            return atom.neutrons;
         } else if (index.column() == 3) {
-            return QString::number(atom.position.y(), 'f', 2);
+            return atom.electrons;
         } else if (index.column() == 4) {
+            return QString::number(atom.position.x(), 'f', 2);
+        } else if (index.column() == 5) {
+            return QString::number(atom.position.y(), 'f', 2);
+        } else if (index.column() == 6) {
             return QString::number(atom.position.z(), 'f', 2);
         }
         break;
@@ -44,12 +48,16 @@ QVariant AtomTableModel::headerData(int section, Qt::Orientation orientation, in
         if (section == 0) {
             return "ID";
         } else if (section == 1) {
-            return "Atom";
+            return "Protons";
         }else if (section == 2) {
-            return "X";
+            return "Neutrons";
         } else if (section == 3) {
-            return "Y";
+            return "Electrons";
         } else if (section == 4) {
+            return "X";
+        }else if (section == 5) {
+            return "Y";
+        }else if (section == 6) {
             return "Z";
         }
     }
@@ -70,6 +78,24 @@ bool AtomTableModel::setData(const QModelIndex& index, const QVariant& value, in
         return true;
     }
     else if(index.column() == 2) {
+        if (!value.canConvert<int>()) return false;
+
+        const int newNeutrons = value.toInt();
+        if((newNeutrons < 0) | (newNeutrons > (118+72))) return false;
+        m_atoms[index.row()].neutrons = newNeutrons;
+        emit dataChanged(index, index);
+        return true;
+    }
+    else if(index.column() == 3) {
+        if (!value.canConvert<int>()) return false;
+
+        const int newElectrons = value.toInt();
+        if((newElectrons < 0) | (newElectrons > (118+72))) return false;
+        m_atoms[index.row()].electrons = newElectrons;
+        emit dataChanged(index, index);
+        return true;
+    }
+    else if(index.column() == 4) {
         if (!value.canConvert<float>()) return false;
 
         const float newX = value.toFloat();
@@ -77,7 +103,7 @@ bool AtomTableModel::setData(const QModelIndex& index, const QVariant& value, in
         emit dataChanged(index, index);
         return true;
     }
-    else if(index.column() == 3) {
+    else if(index.column() == 5) {
         if (!value.canConvert<float>()) return false;
 
         const float newY = value.toFloat();
@@ -85,7 +111,7 @@ bool AtomTableModel::setData(const QModelIndex& index, const QVariant& value, in
         emit dataChanged(index, index);
         return true;
     }
-    else if(index.column() == 4) {
+    else if(index.column() == 6) {
         if (!value.canConvert<float>()) return false;
 
         const float newZ = value.toFloat();
@@ -93,6 +119,7 @@ bool AtomTableModel::setData(const QModelIndex& index, const QVariant& value, in
         emit dataChanged(index, index);
         return true;
     }
+
 
     return false;
 }

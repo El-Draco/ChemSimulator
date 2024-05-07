@@ -6,6 +6,7 @@
 #include <QVariant>
 #include <QFileDialog>
 #include <QStandardPaths>
+#include <QTimer>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -18,6 +19,9 @@ MainWindow::MainWindow(QWidget *parent)
             &DataManager::dataUpdated,
             this,
             &MainWindow::resetViewsAndModels);
+
+    ui->simTypeComboBox->insertItem(0, "SN1");
+    ui->simTypeComboBox->insertItem(1, "SN2");
 
     //setup qt3dwindow for drawing graphics
     graphicsView = new GraphicsView(this, dataManager);
@@ -36,6 +40,10 @@ MainWindow::MainWindow(QWidget *parent)
             &MoleculeListModel::dataChanged,
             dataManager,
             &DataManager::dataChangeListener);
+
+    ui->substrateComboBox->setModel(moleculeListModel);
+    ui->nucleoComboBox->setModel(moleculeListModel);
+    ui->solventComboBox->setModel(moleculeListModel);
 
     //setup list view
     ui->listView->setModel(moleculeListModel);
@@ -61,6 +69,10 @@ MainWindow::MainWindow(QWidget *parent)
 MainWindow::~MainWindow()
 {
     delete ui;
+}
+
+void MainWindow::validateMoleculeSelection(int index) {
+
 }
 
 void MainWindow::setupAtomTableView(const QItemSelection &selected, const QItemSelection &deselected)
@@ -176,7 +188,7 @@ void MainWindow::on_deleteAtom_clicked()
 
     QModelIndexList selectedIndexes = selectionModel->selectedIndexes();
     QModelIndex index = selectedIndexes.at(0);
-    QVariant atomid = index.model()->data(index.model()->index(index.row(), 1));
+    QVariant atomid = index.model()->data(index.model()->index(index.row(), 0));
 
     QVariant molid = moleculeListModel->data(currentSelectedMolecule, MoleculeListModel::UniqueIDRole);
 
@@ -202,5 +214,49 @@ void MainWindow::on_actionAdd_Molecule_From_File_triggered()
     QString desktopPath = QStandardPaths::writableLocation(QStandardPaths::DesktopLocation);
     QString filepath = QFileDialog::getOpenFileName(this, "Add Molecule From File", desktopPath);
     dataManager->fromXYZ(filepath);
+}
+
+
+void MainWindow::on_startButton_clicked()
+{
+    int substrate = ui->substrateComboBox->currentIndex();
+    int nucleo = ui->nucleoComboBox->currentIndex();
+    int solvent = ui->solventComboBox->currentIndex();
+
+    if (substrate == nucleo) {
+        ui->statusbar->showMessage("Error: The substrate and neuclophilic molecule can not be the same.");
+        QPalette errorPalette;
+        errorPalette.setColor(QPalette::WindowText, Qt::red);
+        auto originalPalatte = ui->statusbar->palette();
+        ui->statusbar->setPalette(errorPalette);
+
+        auto statusTimer = new QTimer(this);
+        connect(statusTimer, &QTimer::timeout, this, [this, originalPalatte]() {
+            ui->statusbar->clearMessage();
+            ui->statusbar->setPalette(originalPalatte);
+        });
+
+        statusTimer->setInterval(5000);
+        statusTimer->start();
+
+        return;
+    }
+
+    //int doMonteCarlo = ui->monteCarloCheckBox;
+    //int
+}
+
+
+void MainWindow::on_actionExport_Molecules_To_File_triggered()
+{
+    QList<int> molSelectionOrder;
+    molSelectionOrder.append(ui->substrateComboBox->currentIndex());
+    molSelectionOrder.append(ui->nucleoComboBox->currentIndex());
+    molSelectionOrder.append(ui->solventComboBox->currentIndex());
+
+    QString desktopPath = QStandardPaths::writableLocation(QStandardPaths::DesktopLocation);
+    QString filepath = QFileDialog::getSaveFileName(this, "Export Molecules To File", desktopPath);
+
+    dataManager->toXYZ(filepath, molSelectionOrder);
 }
 

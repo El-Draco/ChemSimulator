@@ -283,30 +283,6 @@ bondentity.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/GUI.dir/build.make CMakeFiles/GUI.dir/bondentity.cpp.s
 .PHONY : bondentity.cpp.s
 
-bondtablemodel.o: bondtablemodel.cpp.o
-.PHONY : bondtablemodel.o
-
-# target to build an object file
-bondtablemodel.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/GUI.dir/build.make CMakeFiles/GUI.dir/bondtablemodel.cpp.o
-.PHONY : bondtablemodel.cpp.o
-
-bondtablemodel.i: bondtablemodel.cpp.i
-.PHONY : bondtablemodel.i
-
-# target to preprocess a source file
-bondtablemodel.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/GUI.dir/build.make CMakeFiles/GUI.dir/bondtablemodel.cpp.i
-.PHONY : bondtablemodel.cpp.i
-
-bondtablemodel.s: bondtablemodel.cpp.s
-.PHONY : bondtablemodel.s
-
-# target to generate assembly for a file
-bondtablemodel.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/GUI.dir/build.make CMakeFiles/GUI.dir/bondtablemodel.cpp.s
-.PHONY : bondtablemodel.cpp.s
-
 datamanager.o: datamanager.cpp.o
 .PHONY : datamanager.o
 
@@ -501,9 +477,6 @@ help:
 	@echo "... bondentity.o"
 	@echo "... bondentity.i"
 	@echo "... bondentity.s"
-	@echo "... bondtablemodel.o"
-	@echo "... bondtablemodel.i"
-	@echo "... bondtablemodel.s"
 	@echo "... datamanager.o"
 	@echo "... datamanager.i"
 	@echo "... datamanager.s"

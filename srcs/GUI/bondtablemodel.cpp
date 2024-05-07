@@ -46,7 +46,7 @@ QVariant BondTableModel::headerData(int section, Qt::Orientation orientation, in
         } else if (section == 1) {
             return "Target Atom";
         }else if (section == 2) {
-            return "Bond Type";
+            return "Bond Weight";
         }
     }
     return QVariant();

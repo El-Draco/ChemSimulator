@@ -1,7 +1,7 @@
 #ifndef ORBITCAMERACONTROLLER_H
 #define ORBITCAMERACONTROLLER_H
 
-#include <QAbstractCameraController>
+#include <Qt3DExtras/QAbstractCameraController>
 #include <QVector3D>
 
 class OrbitCameraController : public Qt3DExtras::QAbstractCameraController

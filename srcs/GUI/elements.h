@@ -1,6 +1,9 @@
 #ifndef ELEMENTS_H
 #define ELEMENTS_H
 
+#include <QHashIterator>
+#include <QString>
+
 static const QHash<QString, int> atomicNumbers = {
     {"H", 1}, {"He", 2}, {"Li", 3}, {"Be", 4}, {"B", 5}, {"C", 6}, {"N", 7}, {"O", 8}, {"F", 9}, {"Ne", 10},
     {"Na", 11}, {"Mg", 12}, {"Al", 13}, {"Si", 14}, {"P", 15}, {"S", 16}, {"Cl", 17}, {"Ar", 18}, {"K", 19}, {"Ca", 20},
@@ -15,5 +18,16 @@ static const QHash<QString, int> atomicNumbers = {
     {"Md", 101}, {"No", 102}, {"Lr", 103}, {"Rf", 104}, {"Db", 105}, {"Sg", 106}, {"Bh", 107}, {"Hs", 108}, {"Mt", 109}, {"Ds", 110},
     {"Rg", 111}, {"Cn", 112}, {"Nh", 113}, {"Fl", 114}, {"Mc", 115}, {"Lv", 116}, {"Ts", 117}, {"Og", 118} // Last element (Organesson)
 };
+
+QString getAtomicSymbol(int atomicNumber) {
+    QHashIterator<QString, int> it(atomicNumbers);
+    while (it.hasNext()) {
+        it.next();
+        if (it.value() == atomicNumber) {
+            return it.key();
+        }
+    }
+    return QString(); // Return an empty string if the atomic number is not found
+}
 
 #endif // ELEMENTS_H

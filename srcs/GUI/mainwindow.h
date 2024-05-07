@@ -25,7 +25,6 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
-private:
     MoleculeListModel *moleculeListModel;
     AtomTableModel *currentAtomTableModel;
     BondTableModel *currentBondTableModel;
@@ -35,6 +34,8 @@ private:
 
     QModelIndex currentSelectedMolecule;
 
+private:
+
 public slots:
     void setupAtomTableView(const QItemSelection &, const QItemSelection &);
 
@@ -42,6 +43,7 @@ public slots:
 
     void setupBondTableView(const QItemSelection &selected, const QItemSelection &deselected);
 
+    void validateMoleculeSelection(int index);
 private slots:
     void on_viewAllButton_clicked();
     void on_addBond_clicked();
@@ -51,5 +53,7 @@ private slots:
     void on_addMolecule_clicked();
     void on_deleteMolecule_clicked();
     void on_actionAdd_Molecule_From_File_triggered();
+    void on_startButton_clicked();
+    void on_actionExport_Molecules_To_File_triggered();
 };
 #endif // MAINWINDOW_H

@@ -8,6 +8,8 @@
 #include <QDebug> // for debugging
 #include <QFile>
 #include <QRegularExpression>
+#include <QFileInfo>
+#include <QDir>
 
 int getAtomicNumber(const QString& symbol) {
     static QHash<QString, int> atomicNumbers({
@@ -142,7 +144,7 @@ bool DataManager::addAtom(int molId) {
     Molecule* mol = getMoleculeByUniqueID(molId);
     if (!mol) return false;
 
-    mol->atoms.append({-1, -1, 1, QVector3D( 0.0, 0.0, 0.0) });
+    mol->atoms.append({-1, -1, 1, 0, 0, QVector3D( 0.0, 0.0, 0.0) });
     resetID();
     emit dataUpdated(false);
     return true;
@@ -248,7 +250,7 @@ void DataManager::fromXYZ(QString filepath) {
             } else {
                 atomicNumber = atomicNumbers.value(tokens[0]);
             }
-            molecule.atoms.append({i, -1, atomicNumber,
+            molecule.atoms.append({i, -1, atomicNumber, 0, 0,
                                    QVector3D(tokens[1].toFloat(), tokens[2].toFloat(), tokens[3].toFloat())});
         }
 
@@ -280,6 +282,55 @@ void DataManager::fromXYZ(QString filepath) {
     emit dataUpdated(false);
 }
 
+void DataManager::toXYZ(QString filePath, QList<int> molSelectionOrder) {
+    QFile file(filePath);
+    if (!file.open(QIODevice::WriteOnly | QIODevice::Text)) {
+        QFileInfo fileInfo(filePath);
+        QDir().mkpath(fileInfo.absolutePath());
+        file.setFileName(filePath);
+        if (!file.open(QIODevice::WriteOnly | QIODevice::Text)) {
+            qDebug() << "Failed to create and open file for writing:" << filePath;
+            return;
+        }
+    }
+
+    QTextStream out(&file);
+
+
+    for (int i: molSelectionOrder) {
+        const Molecule& molecule = (*ptrToData.data()).at(i);
+        out << molecule.atoms.size() << ", " << "0" << "\n";
+
+        for (const Atom& atom : molecule.atoms) {
+            out << getAtomicSymbol(atom.atomicNumber) << ", "
+                << atom.atomicNumber << ", "
+                << atom.neutrons << ", "
+                << atom.electrons << ", "
+                << atom.position.x() << ", " << atom.position.y() << ", " << atom.position.z() << "\n";
+        }
+
+        for (int i = 0; i < molecule.atoms.size(); ++i) {
+            QStringList bondList;
+            bondList.reserve(molecule.atoms.size());
+            for (int j = 0; j < molecule.atoms.size(); ++j) {
+                bool hasBond = false;
+                for (const Bond& bond : molecule.bonds) {
+                    if ((bond.sourceAtomID == i && bond.targetAtomID == j) ||
+                        (bond.sourceAtomID == j && bond.targetAtomID == i)) {
+                        hasBond = true;
+                        break;
+                    }
+                }
+                bondList << (hasBond ? "1" : "0");
+            }
+            out << bondList.join(", ") << "\n";
+        }
+    }
+
+    file.close();
+}
+
+
 
 void DataManager::testData() {
     Molecule m1;
@@ -289,14 +340,14 @@ void DataManager::testData() {
     m1.uniqueID = 0;
     m1.entityID = -1;
     // Adding atoms to the test molecule
-    m1.atoms.append({0, -1, 9, QVector3D( 1.2237000754, -0.1026271600,  0.0000000000) });
-    m1.atoms.append({1, -1, 6, QVector3D(-0.0018701877,  0.5587356376,  0.0000000000) });
-    m1.atoms.append({2, -1, 6, QVector3D(-1.1229785086, -0.4514445368,  0.0000000000) });
-    m1.atoms.append({3, -1, 1, QVector3D(-2.0841665028,  0.0651911794,  0.0000000000) });
-    m1.atoms.append({4, -1, 1, QVector3D(-0.0272678953,  1.1910421183,  0.8884701640) });
-    m1.atoms.append({5, -1, 1, QVector3D(-0.0272678953,  1.1910421183, -0.8884701640) });
-    m1.atoms.append({6, -1, 1, QVector3D(-1.0678055429, -1.0828676784,  0.8859444674) });
-    m1.atoms.append({7, -1, 1, QVector3D(-1.0678055429, -1.0828676784, -0.8859444674) });
+    m1.atoms.append({0, -1, 9, 0, 0, QVector3D( 1.2237000754, -0.1026271600,  0.0000000000) });
+    m1.atoms.append({1, -1, 6, 0, 0, QVector3D(-0.0018701877,  0.5587356376,  0.0000000000) });
+    m1.atoms.append({2, -1, 6, 0, 0, QVector3D(-1.1229785086, -0.4514445368,  0.0000000000) });
+    m1.atoms.append({3, -1, 1, 0, 0, QVector3D(-2.0841665028,  0.0651911794,  0.0000000000) });
+    m1.atoms.append({4, -1, 1, 0, 0, QVector3D(-0.0272678953,  1.1910421183,  0.8884701640) });
+    m1.atoms.append({5, -1, 1, 0, 0, QVector3D(-0.0272678953,  1.1910421183, -0.8884701640) });
+    m1.atoms.append({6, -1, 1, 0, 0, QVector3D(-1.0678055429, -1.0828676784,  0.8859444674) });
+    m1.atoms.append({7, -1, 1, 0, 0, QVector3D(-1.0678055429, -1.0828676784, -0.8859444674) });
 
     // Adding bonds to the test molecule
     m1.bonds.append({ 0, -1, 0, 1, 1 });
@@ -314,10 +365,10 @@ void DataManager::testData() {
     m2.uniqueID = 1;
     m2.entityID = -1;
     // Adding atoms to the test molecule
-    m2.atoms.append({-1, -1, 6, QVector3D(0.0, 0.0, 0.0) });
-    m2.atoms.append({-1, -1, 1, QVector3D(1.0, 0.0, 0.0) });
-    m2.atoms.append({-1, -1, 1, QVector3D(0.0, 1.0, 0.0) });
-    m2.atoms.append({-1, -1, 1, QVector3D(0.0, 0.0, 1.0) });
+    // m2.atoms.append({-1, -1, 6, QVector3D(0.0, 0.0, 0.0) });
+    // m2.atoms.append({-1, -1, 1, QVector3D(1.0, 0.0, 0.0) });
+    // m2.atoms.append({-1, -1, 1, QVector3D(0.0, 1.0, 0.0) });
+    // m2.atoms.append({-1, -1, 1, QVector3D(0.0, 0.0, 1.0) });
 
     // Adding bonds to the test molecule
     m2.bonds.append({ 0, -1, 1, 1, 1 }); // Carbon - Hydrogen bond

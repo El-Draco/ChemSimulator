@@ -39,13 +39,10 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         moleculeentity.h moleculeentity.cpp
         moleculelistmodel.h moleculelistmodel.cpp
         atomtablemodel.h atomtablemodel.cpp
-
         datamanager.h datamanager.cpp
         bondtablemodel.h bondtablemodel.cpp
         class_diagram.qmodel
         elements.h
-
-
     )
 # Define target properties for Android with Qt 6 as:
 #    set_property(TARGET GUI APPEND PROPERTY QT_ANDROID_PACKAGE_SOURCE_DIR
@@ -74,10 +71,6 @@ target_link_libraries(GUI PRIVATE
     Qt6::3DAnimation
 )
 
-# Add the library to link against
-# target_link_libraries(GUI PUBLIC qt3dgizmo)
-
-
 # Qt for iOS sets MACOSX_BUNDLE_GUI_IDENTIFIER automatically since Qt 6.1.
 # If you are developing for iOS or macOS you should consider setting an
 # explicit, fixed bundle identifier manually though.
@@ -102,3 +95,5 @@ install(TARGETS GUI
 if(QT_VERSION_MAJOR EQUAL 6)
     qt_finalize_executable(GUI)
 endif()
+
+add_subdirectory(tests)
