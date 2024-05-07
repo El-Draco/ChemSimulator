@@ -2512,6 +2512,8 @@ CMakeFiles/GUI.dir/datamanager.cpp.o: datamanager.cpp \
   /usr/include/x86_64-linux-gnu/qt6/QtCore/QSharedPointer \
   /usr/include/x86_64-linux-gnu/qt6/QtCore/qsharedpointer.h \
   elements.h \
+  /usr/include/x86_64-linux-gnu/qt6/QtCore/QHashIterator \
+  /usr/include/x86_64-linux-gnu/qt6/QtCore/qhash.h \
   atomtablemodel.h \
   /usr/include/x86_64-linux-gnu/qt6/QtCore/QAbstractTableModel \
   /usr/include/x86_64-linux-gnu/qt6/QtCore/qabstractitemmodel.h \
@@ -2640,7 +2642,6 @@ CMakeFiles/GUI.dir/datamanager.cpp.o: datamanager.cpp \
   /usr/include/x86_64-linux-gnu/qt6/Qt3DCore/QNode \
   /usr/include/x86_64-linux-gnu/qt6/Qt3DCore/qnode.h \
   /usr/include/x86_64-linux-gnu/qt6/QtCore/QHash \
-  /usr/include/x86_64-linux-gnu/qt6/QtCore/qhash.h \
   /usr/include/x86_64-linux-gnu/qt6/QtCore/QDebug \
   /usr/include/x86_64-linux-gnu/qt6/QtCore/QFile \
   /usr/include/x86_64-linux-gnu/qt6/QtCore/qfile.h \
@@ -2679,7 +2680,16 @@ CMakeFiles/GUI.dir/datamanager.cpp.o: datamanager.cpp \
   /usr/include/c++/11/bits/fs_dir.h \
   /usr/include/c++/11/bits/fs_ops.h \
   /usr/include/x86_64-linux-gnu/qt6/QtCore/QRegularExpression \
-  /usr/include/x86_64-linux-gnu/qt6/QtCore/qregularexpression.h
+  /usr/include/x86_64-linux-gnu/qt6/QtCore/qregularexpression.h \
+  /usr/include/x86_64-linux-gnu/qt6/QtCore/QFileInfo \
+  /usr/include/x86_64-linux-gnu/qt6/QtCore/qfileinfo.h \
+  /usr/include/x86_64-linux-gnu/qt6/QtCore/qfile.h \
+  /usr/include/x86_64-linux-gnu/qt6/QtCore/qdatetime.h \
+  /usr/include/x86_64-linux-gnu/qt6/QtCore/qcalendar.h \
+  /usr/include/x86_64-linux-gnu/qt6/QtCore/qlocale.h \
+  /usr/include/x86_64-linux-gnu/qt6/QtCore/QDir \
+  /usr/include/x86_64-linux-gnu/qt6/QtCore/qdir.h \
+  /usr/include/x86_64-linux-gnu/qt6/QtCore/qfileinfo.h
 
 CMakeFiles/GUI.dir/graphicsview.cpp.o: graphicsview.cpp \
   /usr/include/stdc-predef.h \
@@ -4233,9 +4243,24 @@ CMakeFiles/GUI.dir/mainwindow.cpp.o: mainwindow.cpp \
   /usr/include/x86_64-linux-gnu/qt6/QtGui/qinputmethod.h \
   /usr/include/x86_64-linux-gnu/qt6/QtCore/qlocale.h \
   /usr/include/x86_64-linux-gnu/qt6/QtGui/qguiapplication_platform.h \
+  /usr/include/x86_64-linux-gnu/qt6/QtWidgets/QCheckBox \
+  /usr/include/x86_64-linux-gnu/qt6/QtWidgets/qcheckbox.h \
+  /usr/include/x86_64-linux-gnu/qt6/QtWidgets/qabstractbutton.h \
+  /usr/include/x86_64-linux-gnu/qt6/QtWidgets/QComboBox \
+  /usr/include/x86_64-linux-gnu/qt6/QtWidgets/qcombobox.h \
+  /usr/include/x86_64-linux-gnu/qt6/QtWidgets/qabstractitemdelegate.h \
+  /usr/include/x86_64-linux-gnu/qt6/QtWidgets/qstyleoption.h \
+  /usr/include/x86_64-linux-gnu/qt6/QtWidgets/qabstractspinbox.h \
+  /usr/include/x86_64-linux-gnu/qt6/QtGui/qvalidator.h \
+  /usr/include/x86_64-linux-gnu/qt6/QtCore/qregularexpression.h \
+  /usr/include/x86_64-linux-gnu/qt6/QtWidgets/qslider.h \
+  /usr/include/x86_64-linux-gnu/qt6/QtWidgets/qabstractslider.h \
+  /usr/include/x86_64-linux-gnu/qt6/QtWidgets/qstyle.h \
+  /usr/include/x86_64-linux-gnu/qt6/QtWidgets/qtabbar.h \
+  /usr/include/x86_64-linux-gnu/qt6/QtWidgets/qrubberband.h \
+  /usr/include/x86_64-linux-gnu/qt6/QtWidgets/qframe.h \
   /usr/include/x86_64-linux-gnu/qt6/QtWidgets/QGroupBox \
   /usr/include/x86_64-linux-gnu/qt6/QtWidgets/qgroupbox.h \
-  /usr/include/x86_64-linux-gnu/qt6/QtWidgets/qframe.h \
   /usr/include/x86_64-linux-gnu/qt6/QtWidgets/QHBoxLayout \
   /usr/include/x86_64-linux-gnu/qt6/QtWidgets/qboxlayout.h \
   /usr/include/x86_64-linux-gnu/qt6/QtWidgets/qlayout.h \
@@ -4247,16 +4272,12 @@ CMakeFiles/GUI.dir/mainwindow.cpp.o: mainwindow.cpp \
   /usr/include/x86_64-linux-gnu/qt6/QtWidgets/qabstractitemview.h \
   /usr/include/x86_64-linux-gnu/qt6/QtWidgets/qabstractscrollarea.h \
   /usr/include/x86_64-linux-gnu/qt6/QtCore/qitemselectionmodel.h \
-  /usr/include/x86_64-linux-gnu/qt6/QtWidgets/qabstractitemdelegate.h \
-  /usr/include/x86_64-linux-gnu/qt6/QtWidgets/qstyleoption.h \
-  /usr/include/x86_64-linux-gnu/qt6/QtWidgets/qabstractspinbox.h \
-  /usr/include/x86_64-linux-gnu/qt6/QtGui/qvalidator.h \
-  /usr/include/x86_64-linux-gnu/qt6/QtCore/qregularexpression.h \
-  /usr/include/x86_64-linux-gnu/qt6/QtWidgets/qslider.h \
-  /usr/include/x86_64-linux-gnu/qt6/QtWidgets/qabstractslider.h \
-  /usr/include/x86_64-linux-gnu/qt6/QtWidgets/qstyle.h \
-  /usr/include/x86_64-linux-gnu/qt6/QtWidgets/qtabbar.h \
-  /usr/include/x86_64-linux-gnu/qt6/QtWidgets/qrubberband.h \
+  /usr/include/x86_64-linux-gnu/qt6/QtWidgets/QLabel \
+  /usr/include/x86_64-linux-gnu/qt6/QtWidgets/qlabel.h \
+  /usr/include/x86_64-linux-gnu/qt6/QtGui/qpicture.h \
+  /usr/include/x86_64-linux-gnu/qt6/QtCore/qiodevice.h \
+  /usr/include/x86_64-linux-gnu/qt6/QtGui/qtextdocument.h \
+  /usr/include/x86_64-linux-gnu/qt6/QtCore/qurl.h \
   /usr/include/x86_64-linux-gnu/qt6/QtWidgets/QListView \
   /usr/include/x86_64-linux-gnu/qt6/QtWidgets/qlistview.h \
   /usr/include/x86_64-linux-gnu/qt6/QtWidgets/QMainWindow \
@@ -4268,7 +4289,6 @@ CMakeFiles/GUI.dir/mainwindow.cpp.o: mainwindow.cpp \
   /usr/include/x86_64-linux-gnu/qt6/QtWidgets/qmenu.h \
   /usr/include/x86_64-linux-gnu/qt6/QtWidgets/QPushButton \
   /usr/include/x86_64-linux-gnu/qt6/QtWidgets/qpushbutton.h \
-  /usr/include/x86_64-linux-gnu/qt6/QtWidgets/qabstractbutton.h \
   /usr/include/x86_64-linux-gnu/qt6/QtWidgets/QSpacerItem \
   /usr/include/x86_64-linux-gnu/qt6/QtWidgets/qlayoutitem.h \
   /usr/include/x86_64-linux-gnu/qt6/QtWidgets/QStatusBar \
@@ -4286,7 +4306,6 @@ CMakeFiles/GUI.dir/mainwindow.cpp.o: mainwindow.cpp \
   /usr/include/x86_64-linux-gnu/qt6/QtCore/qdir.h \
   /usr/include/x86_64-linux-gnu/qt6/QtCore/qfile.h \
   /usr/include/x86_64-linux-gnu/qt6/QtCore/qfiledevice.h \
-  /usr/include/x86_64-linux-gnu/qt6/QtCore/qiodevice.h \
   /usr/include/c++/11/filesystem \
   /usr/include/c++/11/bits/fs_fwd.h \
   /usr/include/c++/11/bits/fs_path.h \
@@ -4322,10 +4341,12 @@ CMakeFiles/GUI.dir/mainwindow.cpp.o: mainwindow.cpp \
   /usr/include/x86_64-linux-gnu/qt6/QtCore/qfileinfo.h \
   /usr/include/x86_64-linux-gnu/qt6/QtCore/qdatetime.h \
   /usr/include/x86_64-linux-gnu/qt6/QtCore/qcalendar.h \
-  /usr/include/x86_64-linux-gnu/qt6/QtCore/qurl.h \
   /usr/include/x86_64-linux-gnu/qt6/QtWidgets/qdialog.h \
   /usr/include/x86_64-linux-gnu/qt6/QtCore/QStandardPaths \
-  /usr/include/x86_64-linux-gnu/qt6/QtCore/qstandardpaths.h
+  /usr/include/x86_64-linux-gnu/qt6/QtCore/qstandardpaths.h \
+  /usr/include/x86_64-linux-gnu/qt6/QtCore/QTimer \
+  /usr/include/x86_64-linux-gnu/qt6/QtCore/qtimer.h \
+  /usr/include/x86_64-linux-gnu/qt6/QtCore/qbasictimer.h
 
 CMakeFiles/GUI.dir/moleculeentity.cpp.o: moleculeentity.cpp \
   /usr/include/stdc-predef.h \
@@ -5543,13 +5564,11 @@ CMakeFiles/GUI.dir/orbitcameracontroller.cpp.o: orbitcameracontroller.cpp \
 
 moleculelistmodel.cpp:
 
+/usr/include/x86_64-linux-gnu/qt6/QtCore/qbasictimer.h:
+
+/usr/include/x86_64-linux-gnu/qt6/QtCore/QTimer:
+
 /usr/include/x86_64-linux-gnu/qt6/QtCore/qstandardpaths.h:
-
-/usr/include/x86_64-linux-gnu/qt6/QtCore/qcalendar.h:
-
-/usr/include/x86_64-linux-gnu/qt6/QtCore/qdatetime.h:
-
-/usr/include/x86_64-linux-gnu/qt6/QtCore/qfileinfo.h:
 
 /usr/include/x86_64-linux-gnu/qt6/QtWidgets/qfiledialog.h:
 
@@ -5560,8 +5579,6 @@ moleculelistmodel.cpp:
 /usr/include/x86_64-linux-gnu/qt6/QtWidgets/QStatusBar:
 
 /usr/include/x86_64-linux-gnu/qt6/QtWidgets/QSpacerItem:
-
-/usr/include/x86_64-linux-gnu/qt6/QtWidgets/qabstractbutton.h:
 
 /usr/include/x86_64-linux-gnu/qt6/QtWidgets/qmenubar.h:
 
@@ -5575,15 +5592,11 @@ moleculelistmodel.cpp:
 
 /usr/include/x86_64-linux-gnu/qt6/QtWidgets/QListView:
 
-/usr/include/x86_64-linux-gnu/qt6/QtWidgets/qstyle.h:
+/usr/include/x86_64-linux-gnu/qt6/QtGui/qtextdocument.h:
 
-/usr/include/x86_64-linux-gnu/qt6/QtWidgets/qabstractslider.h:
+/usr/include/x86_64-linux-gnu/qt6/QtGui/qpicture.h:
 
-/usr/include/x86_64-linux-gnu/qt6/QtGui/qvalidator.h:
-
-/usr/include/x86_64-linux-gnu/qt6/QtWidgets/qabstractspinbox.h:
-
-/usr/include/x86_64-linux-gnu/qt6/QtWidgets/qabstractitemdelegate.h:
+/usr/include/x86_64-linux-gnu/qt6/QtWidgets/qlabel.h:
 
 /usr/include/x86_64-linux-gnu/qt6/QtWidgets/QHeaderView:
 
@@ -5595,11 +5608,29 @@ moleculelistmodel.cpp:
 
 /usr/include/x86_64-linux-gnu/qt6/QtWidgets/qboxlayout.h:
 
-/usr/include/x86_64-linux-gnu/qt6/QtWidgets/qframe.h:
-
 /usr/include/x86_64-linux-gnu/qt6/QtWidgets/qgroupbox.h:
 
 /usr/include/x86_64-linux-gnu/qt6/QtWidgets/QGroupBox:
+
+/usr/include/x86_64-linux-gnu/qt6/QtWidgets/qstyle.h:
+
+/usr/include/x86_64-linux-gnu/qt6/QtWidgets/qabstractslider.h:
+
+/usr/include/x86_64-linux-gnu/qt6/QtGui/qvalidator.h:
+
+/usr/include/x86_64-linux-gnu/qt6/QtWidgets/qabstractspinbox.h:
+
+/usr/include/x86_64-linux-gnu/qt6/QtWidgets/qabstractitemdelegate.h:
+
+/usr/include/x86_64-linux-gnu/qt6/QtWidgets/qframe.h:
+
+/usr/include/x86_64-linux-gnu/qt6/QtWidgets/qcombobox.h:
+
+/usr/include/x86_64-linux-gnu/qt6/QtWidgets/QComboBox:
+
+/usr/include/x86_64-linux-gnu/qt6/QtWidgets/qabstractbutton.h:
+
+/usr/include/x86_64-linux-gnu/qt6/QtWidgets/qcheckbox.h:
 
 /usr/include/x86_64-linux-gnu/qt6/QtGui/qaction.h:
 
@@ -5637,6 +5668,16 @@ main.cpp:
 
 graphicsview.cpp:
 
+/usr/include/x86_64-linux-gnu/qt6/QtCore/QDir:
+
+/usr/include/x86_64-linux-gnu/qt6/QtCore/qcalendar.h:
+
+/usr/include/x86_64-linux-gnu/qt6/QtCore/qdatetime.h:
+
+/usr/include/x86_64-linux-gnu/qt6/QtCore/qfileinfo.h:
+
+/usr/include/x86_64-linux-gnu/qt6/QtCore/QFileInfo:
+
 /usr/include/x86_64-linux-gnu/qt6/QtCore/qregularexpression.h:
 
 /usr/include/x86_64-linux-gnu/qt6/QtCore/QRegularExpression:
@@ -5648,6 +5689,8 @@ graphicsview.cpp:
 /usr/include/c++/11/bits/sstream.tcc:
 
 /usr/include/c++/11/bits/istream.tcc:
+
+/usr/include/c++/11/bits/ostream.tcc:
 
 /usr/include/c++/11/bits/ostream_insert.h:
 
@@ -6187,13 +6230,13 @@ graphicsview.h:
 
 GUI_autogen/EWIEGA46WW/moc_graphicsview.cpp:
 
-/usr/include/c++/11/bits/ostream.tcc:
-
 /usr/include/c++/11/bits/postypes.h:
 
 /usr/include/GL/gl.h:
 
 /usr/include/x86_64-linux-gnu/bits/types/wint_t.h:
+
+/usr/include/x86_64-linux-gnu/qt6/QtWidgets/QCheckBox:
 
 /usr/include/x86_64-linux-gnu/qt6/QtCore/QSharedPointer:
 
@@ -6555,6 +6598,8 @@ GUI_autogen/EWIEGA46WW/moc_atomtablemodel.cpp:
 
 /usr/include/x86_64-linux-gnu/qt6/QtGui/qfont.h:
 
+/usr/include/x86_64-linux-gnu/qt6/QtCore/QHashIterator:
+
 /usr/include/x86_64-linux-gnu/qt6/QtGui/qcolor.h:
 
 /usr/include/x86_64-linux-gnu/bits/wctype-wchar.h:
@@ -6649,11 +6694,15 @@ GUI_autogen/EWIEGA46WW/moc_bondentity.cpp:
 
 /usr/include/x86_64-linux-gnu/qt6/QtCore/qabstractitemmodel.h:
 
+/usr/include/x86_64-linux-gnu/qt6/QtWidgets/QLabel:
+
 /usr/include/x86_64-linux-gnu/qt6/QtCore/qtmetamacros.h:
 
 /usr/include/x86_64-linux-gnu/qt6/Qt3DExtras/QCylinderMesh:
 
 /usr/include/x86_64-linux-gnu/qt6/Qt3DExtras/qcylindermesh.h:
+
+/usr/include/x86_64-linux-gnu/qt6/QtCore/qtimer.h:
 
 /usr/include/x86_64-linux-gnu/qt6/Qt3DCore/QNode:
 

@@ -49,10 +49,7 @@ std::vector<int> getElecConfig(int atomicNumber, const std::unordered_map<int, E
 
 //TODO:
 int size(Atom &atom) {
-//
-
-
-    return (0);
+    return (atom.size);
 }
 
 //TODO:
@@ -280,31 +277,50 @@ int getCarbocationState(Atom &atom) {
 
 //Algo 11: UPDATE VISITED
 //TODO ADD WHILE LOOP WITH FLAG TO CHECK IF THERE WAS A CHANGE AND REPEAT
-bool carbocationShift(Atom &a1) {
-    if (a1.protons != 6 || computeFormalCharge(a1) != 1)
-        return (NEG_INF);
-    std::set<Atom> N1 = getNeighbours(a1);
-    std::set<Atom> visited;
-    
-    for (Atom a2 : N1) {
-        if (visited.find(a2) != visited.end())
-            continue ;
-        if (a2.protons == 6 && computeFormalCharge(a2) == 0){
-            if (getCarbocationState(a2) == 4 && getCarbocationState(a1) < 3) {
-                std::set<Atom> N2 = getNeighbours(a2);
-                for (Atom a3 : N2) {
-                    if (a3.protons == 6 and getCarbocationState(a3) == 3) {
-                        c_methyl_shift(a1, a2, a3); // IF THIS CALLED THEN CHANGED
+Atom &carbocationShift(Atom &a1) {
+    bool shifted;
+    do
+    {
+        bool shifted = false;
+        if (a1.protons != 6 || computeFormalCharge(a1) != 1)
+        {
+            cout<<"Error!\n";
+            exit(0);
+        }
+        std::set<Atom> N1 = getNeighbours(a1);
+        std::set<Atom> visited;
+        
+        for (Atom a2 : N1) {
+            if (visited.find(a2) != visited.end())
+                continue ;
+            //ADD a2 TO VISTED HERE
+            visited.insert(a2);
+            if (a2.protons == 6 && computeFormalCharge(a2) == 0){
+                if (getCarbocationState(a2) == 4 && getCarbocationState(a1) < 3) {
+                    std::set<Atom> N2 = getNeighbours(a2);
+                    for (Atom a3 : N2) {//CHECK IF a3 WAS VISITED
+                        //ADD a3 TO VISITED HERE
+                         if (visited.find(a3) != visited.end())
+                            continue ;
+                        visited.insert(a3);
+                        if (a3.protons == 6 and getCarbocationState(a3) == 3) {
+                            c_methyl_shift(a1, a2, a3); // IF THIS CALLED THEN CHANGED
+                            shifted = true;
+                            visited.clear();
+                            a1 = a2;
+                        }
                     }
                 }
             }
+            if (getCarbocationState(a2) > 0 && getCarbocationState(a2) < 4) {
+                if (getCarbocationState(a1) < getCarbocationState(a2))
+                    c_hydride_shift(a1, a2); //IF THIS CALLED THEN CHANGED
+                    shifted = true;
+                    visited.clear();
+                    a1 = a2;
+            }
         }
-
-        if (getCarbocationState(a2) > 0 && getCarbocationState(a2) < 4) {
-            if (getCarbocationState(a1) < getCarbocationState(a2))
-                c_hydride_shift(a1, a2); //IF THIS CALLED THEN CHANGED
-        }
-    }
+    } while (shifted);
 }
 
 
@@ -397,7 +413,6 @@ Atom &NUPreference(Atom &a1, Atom &a2, Molecule &m) {
 //     attach(m1, NU);
 //     attach(m2, LG);
 // }
-
 
 //Algo 16:
 // void SN2_Mechanism(Molecule &m1, Molecule &m2, Molecule &ms) {

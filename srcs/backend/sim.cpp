@@ -7,43 +7,96 @@ std::vector<Molecule> parse(std::string filename)
 
 }
 
-
 void saveProduct()
 {
 
 }
 
-//-------------------------------TODO
+//-------------------------------TODO FOR OMAR
 Atom &identifyLeavingGroup(Molecule &m)
 {
     //find all possible LGs
-    
     //take every neighbor of every carbon (other than carbons) and put in a vector
-
+    std::vector<Atom> possibleLGs = getPossibleLGs(m);
+    std::vector<Atom> carbons_for_LGs;
+    for (Atom carbon : m.atoms){
+        if (carbon.protons != 6 || carbon.degree() != 4){
+            continue;
+        }
+        for (Atom neighbor : getNeighbours(carbon)){
+            if (neighbor.protons != 6){
+                possibleLGs.push_back(neighbor);
+                carbons_for_LGs.push_back(carbon);
+            }
+        }
+    }
+    int max = 0;
     //find the ones with max resonance
+    std::vector<Atom> newPossibleLGs;
+    for (Atom atom : possibleLGs){
+        if (getNumOfResonanceStructures(atom) > max){
+            max = getNumOfResonanceStructures(atom);
+        }
+    }
+    for (Atom atom : possibleLGs){
+        if (getNumOfResonanceStructures(atom) == max){
+            newPossibleLGs.push_back(atom);
+        }
+    }
     //find the ones with max size
-    // find the ones with max electronegativity
-                                                                                    //find groups by BFS
+    possibleLGs = newPossibleLGs; //MAKE SURE ITS BY COPY HERE
+    newPossibleLGs.clear();//MAKE SURE TO EMPTY newPossibleLGs HERE
+    max = 0;
+    for (Atom atom : possibleLGs){
+        if (size(atom) > max){
+            max = size(atom);
+        }
+    }
+    for (Atom &atom : possibleLGs){
+        if (size(atom) == max){
+            newPossibleLGs.push_back(atom);
+        }
+    }
+    possibleLGs = newPossibleLGs; // MAKE SURE ITS BY COPY HERE
+    newPossibleLGs.clear();// MAKE SURE TO EMPTY newPossibleLGs HERE
+    //find the ones with max electronegativity                     
+    max = 0;
+    for (Atom atom : possibleLGs){
+        if (ElectroNegativity::ID(atom.protons) > max){
+            max = ElectroNegativity::ID(atom.protons);
+        }
+    }
+    for (Atom atom : possibleLGs){
+        if (ElectroNegativity::ID(atom.protons) == max){
+            newPossibleLGs.push_back(atom);
+        }
+    }
+    possibleLGs = newPossibleLGs;
+    newPossibleLGs.clear();
+                          //find groups by BFS
+    
     //find max electronegativity (approx of inductive effect) of entire group
     //randomize 1 item from the final list.
 }
 
-//DONE
-std::vector<Atom> getPotentialNUs(Molecule &mol) {
-    return (mol.atoms);
+//-------------------------------TODO FOR RADI
+Atom &getAdjacentAtom(Molecule &parent, Atom &to_remove) {
+
 }
 
-// ------------------------------TODO:
-SubMolecule constructCarbocation(Molecule &m)
+//DONE
+SubMolecule &constructCarbocation(Molecule &m)
 {
     //YOU'RE GONNA HAVE A WHILE LOOP UNTIL YOU HAVE NO CHANGE
     //MAKE A FLAG TO CHECK FOR CHANGE
     //THIS ONE IS IN ANOTHER FUNCTION FROM ONE OF THE ALGORTIHMS IN PAPER
-    bool no_change = false;
-
-    while (no_change) {
-        
-    }
+    Atom &carbon = m.root;
+    SubMolecule &carbocation = *(carbocationShift(carbon).parent);
+    return (carbocation);
+}
+//DONE
+std::vector<Atom> getPotentialNUs(Molecule &mol) {
+    return (mol.atoms);
 }
 
 //DONE
@@ -150,7 +203,8 @@ Atom &identifyNucleophile(Molecule &mol, Molecule &solvent)
         potentialNUs = smallest_size(potentialNUs);
     //take all the ones with maximum electrongativity
     potentialNUs = max_electroneg(potentialNUs);
-    
+    //ADD BFS TO GET Nu GROUP WITHOUT PREVIOUSLY ATTACHED PART
+
     //return a random one in the resulting list.
     return potentialNUs[rand()%potentialNUs.size()];
 }
@@ -184,11 +238,6 @@ Molecule &ionicSeparation(Atom &atom, Atom &to_separate){
 
     //valence and deltas stay the same because no electrons moved
     return (*atom.parent);
-}
-
-//-------------------------------------TODO
-Atom &getAdjacentAtom(Molecule &parent, Atom &to_remove) {
-
 }
 
 //DONE

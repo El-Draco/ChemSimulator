@@ -309,6 +309,8 @@ CMakeFiles/GUI.dir/datamanager.cpp.o: \
  /usr/include/x86_64-linux-gnu/qt6/QtCore/QSharedPointer \
  /usr/include/x86_64-linux-gnu/qt6/QtCore/qsharedpointer.h \
  /home/eldraco/ChemSimulator/srcs/GUI/elements.h \
+ /usr/include/x86_64-linux-gnu/qt6/QtCore/QHashIterator \
+ /usr/include/x86_64-linux-gnu/qt6/QtCore/qhash.h \
  /home/eldraco/ChemSimulator/srcs/GUI/atomtablemodel.h \
  /usr/include/x86_64-linux-gnu/qt6/QtCore/QAbstractTableModel \
  /usr/include/x86_64-linux-gnu/qt6/QtCore/qabstractitemmodel.h \
@@ -436,7 +438,6 @@ CMakeFiles/GUI.dir/datamanager.cpp.o: \
  /usr/include/x86_64-linux-gnu/qt6/Qt3DCore/QNode \
  /usr/include/x86_64-linux-gnu/qt6/Qt3DCore/qnode.h \
  /usr/include/x86_64-linux-gnu/qt6/QtCore/QHash \
- /usr/include/x86_64-linux-gnu/qt6/QtCore/qhash.h \
  /usr/include/x86_64-linux-gnu/qt6/QtCore/QDebug \
  /usr/include/x86_64-linux-gnu/qt6/QtCore/QFile \
  /usr/include/x86_64-linux-gnu/qt6/QtCore/qfile.h \
@@ -464,4 +465,13 @@ CMakeFiles/GUI.dir/datamanager.cpp.o: \
  /usr/include/c++/11/bits/sstream.tcc /usr/include/c++/11/codecvt \
  /usr/include/c++/11/bits/fs_dir.h /usr/include/c++/11/bits/fs_ops.h \
  /usr/include/x86_64-linux-gnu/qt6/QtCore/QRegularExpression \
- /usr/include/x86_64-linux-gnu/qt6/QtCore/qregularexpression.h
+ /usr/include/x86_64-linux-gnu/qt6/QtCore/qregularexpression.h \
+ /usr/include/x86_64-linux-gnu/qt6/QtCore/QFileInfo \
+ /usr/include/x86_64-linux-gnu/qt6/QtCore/qfileinfo.h \
+ /usr/include/x86_64-linux-gnu/qt6/QtCore/qfile.h \
+ /usr/include/x86_64-linux-gnu/qt6/QtCore/qdatetime.h \
+ /usr/include/x86_64-linux-gnu/qt6/QtCore/qcalendar.h \
+ /usr/include/x86_64-linux-gnu/qt6/QtCore/qlocale.h \
+ /usr/include/x86_64-linux-gnu/qt6/QtCore/QDir \
+ /usr/include/x86_64-linux-gnu/qt6/QtCore/qdir.h \
+ /usr/include/x86_64-linux-gnu/qt6/QtCore/qfileinfo.h

@@ -1,5 +1,21 @@
+0, 1
 2
 H, 1, 1, 0, 0, 0, 0
 O, 8, 8, 8, 1.2, 0, 0
 0 1
 1 0
+2
+H, 1, 1, 0, 0, 0, 0
+O, 8, 8, 8, 1.2, 0, 0
+0 1
+1 0
+2
+H, 1, 1, 0, 0, 0, 0
+O, 8, 8, 8, 1.2, 0, 0
+0 1
+1 0
+0, sn1/sn2
+no. atoms
+symbol, protons, neutrons, electrons, x, y, z
+... for all atoms
+adjacency matrix

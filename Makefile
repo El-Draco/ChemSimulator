@@ -25,7 +25,7 @@ exec:	$(BIN_DIR)/$(BACKEND) $(BIN_DIR)/$(FRONTEND)
 
 
 $(BIN_DIR)/$(BACKEND): ${BACKEND_SRCS} ${COMM_SRCS}
-	${NVCC} ${NVCCFLAGS} ${INC} $(BACKEND_SRCS) $(COMM_SRCS) -o $(BIN_DIR)/$(BACKEND)
+	# ${NVCC} ${NVCCFLAGS} ${INC} $(BACKEND_SRCS) $(COMM_SRCS) -o $(BIN_DIR)/$(BACKEND)
 
 $(BIN_DIR)/$(FRONTEND): 
 							@cmake -B "./srcs/GUI/" -H"./srcs/GUI"

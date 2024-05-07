@@ -207,9 +207,18 @@ public:
         *this = rhs;
     }
     Atom &operator=(const Atom &rhs) {
+        position = rhs.position;
+        protons = rhs.protons;
+        neutrons = rhs.neutrons;
+        electrons = rhs.electrons;
+        valence = rhs.valence;
+        size = rhs.size;
+        charge = rhs.charge;
         return (*this);
     }
     Atom &operator+(Atom &m) {
+        // Bond b(*this,m);
+        // this->
         return (*this);
     }
     

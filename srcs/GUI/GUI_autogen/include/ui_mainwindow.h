@@ -12,9 +12,12 @@
 #include <QtCore/QVariant>
 #include <QtGui/QAction>
 #include <QtWidgets/QApplication>
+#include <QtWidgets/QCheckBox>
+#include <QtWidgets/QComboBox>
 #include <QtWidgets/QGroupBox>
 #include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QHeaderView>
+#include <QtWidgets/QLabel>
 #include <QtWidgets/QListView>
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QMenu>
@@ -32,6 +35,7 @@ class Ui_MainWindow
 {
 public:
     QAction *actionAdd_Molecule_From_File;
+    QAction *actionExport_Molecules_To_File;
     QWidget *centralwidget;
     QHBoxLayout *horizontalLayout;
     QWidget *widget;
@@ -43,6 +47,18 @@ public:
     QPushButton *deleteMolecule;
     QPushButton *addMolecule;
     QListView *listView;
+    QWidget *widget_5;
+    QHBoxLayout *horizontalLayout_6;
+    QLabel *label;
+    QComboBox *substrateComboBox;
+    QWidget *widget_6;
+    QHBoxLayout *horizontalLayout_7;
+    QLabel *label_2;
+    QComboBox *nucleoComboBox;
+    QWidget *widget_7;
+    QHBoxLayout *horizontalLayout_8;
+    QLabel *label_3;
+    QComboBox *solventComboBox;
     QGroupBox *groupBox_2;
     QVBoxLayout *verticalLayout_4;
     QWidget *widget_3;
@@ -65,7 +81,9 @@ public:
     QHBoxLayout *horizontalLayout_2;
     QPushButton *viewAllButton;
     QSpacerItem *horizontalSpacer;
-    QPushButton *pushButton;
+    QCheckBox *monteCarloCheckBox;
+    QComboBox *simTypeComboBox;
+    QPushButton *startButton;
     QMenuBar *menubar;
     QMenu *menuFile;
     QStatusBar *statusbar;
@@ -74,17 +92,19 @@ public:
     {
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName(QString::fromUtf8("MainWindow"));
-        MainWindow->resize(834, 600);
+        MainWindow->resize(834, 647);
         MainWindow->setAutoFillBackground(true);
         actionAdd_Molecule_From_File = new QAction(MainWindow);
         actionAdd_Molecule_From_File->setObjectName(QString::fromUtf8("actionAdd_Molecule_From_File"));
+        actionExport_Molecules_To_File = new QAction(MainWindow);
+        actionExport_Molecules_To_File->setObjectName(QString::fromUtf8("actionExport_Molecules_To_File"));
         centralwidget = new QWidget(MainWindow);
         centralwidget->setObjectName(QString::fromUtf8("centralwidget"));
         horizontalLayout = new QHBoxLayout(centralwidget);
         horizontalLayout->setObjectName(QString::fromUtf8("horizontalLayout"));
         widget = new QWidget(centralwidget);
         widget->setObjectName(QString::fromUtf8("widget"));
-        widget->setMaximumSize(QSize(300, 16777215));
+        widget->setMaximumSize(QSize(400, 16777215));
         verticalLayout = new QVBoxLayout(widget);
         verticalLayout->setObjectName(QString::fromUtf8("verticalLayout"));
         verticalLayout->setContentsMargins(0, 0, 0, 0);
@@ -116,6 +136,63 @@ public:
         listView->setObjectName(QString::fromUtf8("listView"));
 
         verticalLayout_3->addWidget(listView);
+
+        widget_5 = new QWidget(groupBox);
+        widget_5->setObjectName(QString::fromUtf8("widget_5"));
+        horizontalLayout_6 = new QHBoxLayout(widget_5);
+        horizontalLayout_6->setSpacing(3);
+        horizontalLayout_6->setObjectName(QString::fromUtf8("horizontalLayout_6"));
+        horizontalLayout_6->setContentsMargins(0, 0, 0, 0);
+        label = new QLabel(widget_5);
+        label->setObjectName(QString::fromUtf8("label"));
+
+        horizontalLayout_6->addWidget(label);
+
+        substrateComboBox = new QComboBox(widget_5);
+        substrateComboBox->setObjectName(QString::fromUtf8("substrateComboBox"));
+
+        horizontalLayout_6->addWidget(substrateComboBox);
+
+
+        verticalLayout_3->addWidget(widget_5);
+
+        widget_6 = new QWidget(groupBox);
+        widget_6->setObjectName(QString::fromUtf8("widget_6"));
+        horizontalLayout_7 = new QHBoxLayout(widget_6);
+        horizontalLayout_7->setSpacing(3);
+        horizontalLayout_7->setObjectName(QString::fromUtf8("horizontalLayout_7"));
+        horizontalLayout_7->setContentsMargins(0, 0, 0, 0);
+        label_2 = new QLabel(widget_6);
+        label_2->setObjectName(QString::fromUtf8("label_2"));
+
+        horizontalLayout_7->addWidget(label_2);
+
+        nucleoComboBox = new QComboBox(widget_6);
+        nucleoComboBox->setObjectName(QString::fromUtf8("nucleoComboBox"));
+
+        horizontalLayout_7->addWidget(nucleoComboBox);
+
+
+        verticalLayout_3->addWidget(widget_6);
+
+        widget_7 = new QWidget(groupBox);
+        widget_7->setObjectName(QString::fromUtf8("widget_7"));
+        horizontalLayout_8 = new QHBoxLayout(widget_7);
+        horizontalLayout_8->setSpacing(3);
+        horizontalLayout_8->setObjectName(QString::fromUtf8("horizontalLayout_8"));
+        horizontalLayout_8->setContentsMargins(0, 0, 0, 0);
+        label_3 = new QLabel(widget_7);
+        label_3->setObjectName(QString::fromUtf8("label_3"));
+
+        horizontalLayout_8->addWidget(label_3);
+
+        solventComboBox = new QComboBox(widget_7);
+        solventComboBox->setObjectName(QString::fromUtf8("solventComboBox"));
+
+        horizontalLayout_8->addWidget(solventComboBox);
+
+
+        verticalLayout_3->addWidget(widget_7);
 
 
         verticalLayout->addWidget(groupBox);
@@ -218,10 +295,20 @@ public:
 
         horizontalLayout_2->addItem(horizontalSpacer);
 
-        pushButton = new QPushButton(controlsWidget);
-        pushButton->setObjectName(QString::fromUtf8("pushButton"));
+        monteCarloCheckBox = new QCheckBox(controlsWidget);
+        monteCarloCheckBox->setObjectName(QString::fromUtf8("monteCarloCheckBox"));
 
-        horizontalLayout_2->addWidget(pushButton);
+        horizontalLayout_2->addWidget(monteCarloCheckBox);
+
+        simTypeComboBox = new QComboBox(controlsWidget);
+        simTypeComboBox->setObjectName(QString::fromUtf8("simTypeComboBox"));
+
+        horizontalLayout_2->addWidget(simTypeComboBox);
+
+        startButton = new QPushButton(controlsWidget);
+        startButton->setObjectName(QString::fromUtf8("startButton"));
+
+        horizontalLayout_2->addWidget(startButton);
 
 
         verticalLayout_2->addWidget(controlsWidget);
@@ -235,7 +322,7 @@ public:
         MainWindow->setCentralWidget(centralwidget);
         menubar = new QMenuBar(MainWindow);
         menubar->setObjectName(QString::fromUtf8("menubar"));
-        menubar->setGeometry(QRect(0, 0, 834, 21));
+        menubar->setGeometry(QRect(0, 0, 834, 25));
         menubar->setAutoFillBackground(true);
         menuFile = new QMenu(menubar);
         menuFile->setObjectName(QString::fromUtf8("menuFile"));
@@ -247,6 +334,7 @@ public:
 
         menubar->addAction(menuFile->menuAction());
         menuFile->addAction(actionAdd_Molecule_From_File);
+        menuFile->addAction(actionExport_Molecules_To_File);
 
         retranslateUi(MainWindow);
 
@@ -257,9 +345,13 @@ public:
     {
         MainWindow->setWindowTitle(QCoreApplication::translate("MainWindow", "ChemSim", nullptr));
         actionAdd_Molecule_From_File->setText(QCoreApplication::translate("MainWindow", "Add Molecule From File", nullptr));
+        actionExport_Molecules_To_File->setText(QCoreApplication::translate("MainWindow", "Export Molecules To File", nullptr));
         groupBox->setTitle(QCoreApplication::translate("MainWindow", "Molecules", nullptr));
         deleteMolecule->setText(QCoreApplication::translate("MainWindow", "Delete Molecule", nullptr));
         addMolecule->setText(QCoreApplication::translate("MainWindow", "Add Molecule", nullptr));
+        label->setText(QCoreApplication::translate("MainWindow", "Substrate", nullptr));
+        label_2->setText(QCoreApplication::translate("MainWindow", "NucleophilicMol", nullptr));
+        label_3->setText(QCoreApplication::translate("MainWindow", "Solvent", nullptr));
         groupBox_2->setTitle(QCoreApplication::translate("MainWindow", "Atoms", nullptr));
         deleteAtom->setText(QCoreApplication::translate("MainWindow", "Delete Atom", nullptr));
         addAtom->setText(QCoreApplication::translate("MainWindow", "Add Atom", nullptr));
@@ -268,7 +360,8 @@ public:
         addBond->setText(QCoreApplication::translate("MainWindow", "Add Bond", nullptr));
         groupBox_4->setTitle(QCoreApplication::translate("MainWindow", "Simulation", nullptr));
         viewAllButton->setText(QCoreApplication::translate("MainWindow", "View All", nullptr));
-        pushButton->setText(QCoreApplication::translate("MainWindow", "Start \342\217\265", nullptr));
+        monteCarloCheckBox->setText(QCoreApplication::translate("MainWindow", "Monte Carlo", nullptr));
+        startButton->setText(QCoreApplication::translate("MainWindow", "Start \342\217\265", nullptr));
         menuFile->setTitle(QCoreApplication::translate("MainWindow", "File", nullptr));
     } // retranslateUi
 

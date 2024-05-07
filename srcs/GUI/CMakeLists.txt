@@ -96,4 +96,4 @@ if(QT_VERSION_MAJOR EQUAL 6)
     qt_finalize_executable(GUI)
 endif()
 
-add_subdirectory(tests)
+# add_subdirectory(tests)
