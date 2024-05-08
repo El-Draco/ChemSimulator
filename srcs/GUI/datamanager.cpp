@@ -5,26 +5,9 @@
 #include "graphicsview.h"
 #include <QString>
 #include <QHash>
-#include <QDebug> // for debugging
 #include <QFile>
-#include <QRegularExpression>
 #include <QFileInfo>
 #include <QDir>
-
-int getAtomicNumber(const QString& symbol) {
-    static QHash<QString, int> atomicNumbers({
-        {"H", 1}, {"He", 2}, {"Li", 3}, {"Be", 4}, {"B", 5}, {"C", 6}, {"N", 7}, {"O", 8}, {"F", 9}, {"Ne", 10},
-        {"Na", 11}, {"Mg", 12}, {"Al", 13}, {"Si", 14}, {"P", 15}, {"S", 16}, {"Cl", 17}, {"Ar", 18}, {"K", 19}, {"Ca", 20}
-
-    });
-
-    if (atomicNumbers.contains(symbol)) {
-        return atomicNumbers.value(symbol);
-    } else {
-        qWarning() << "Invalid atomic symbol:" << symbol;
-        return 0; // Or return a specific value to indicate an error
-    }
-}
 
 DataManager::DataManager(QObject *parent) : QObject(parent)
 {
@@ -359,26 +342,8 @@ void DataManager::testData() {
     m1.bonds.append({ 5, -1, 2, 6, 1 });
     m1.bonds.append({ 6, -1, 2, 7, 1 });
 
-    Molecule m2;
-    m2.rotation = QQuaternion::fromAxisAndAngle(0.0, 1.0, 0.0, 45.0);
-    m2.position = QVector3D(0.0, 2.0, 2.0);
-    m2.name = "Hello2";
-    m2.uniqueID = 1;
-    m2.entityID = -1;
-    // Adding atoms to the test molecule
-    // m2.atoms.append({-1, -1, 6, QVector3D(0.0, 0.0, 0.0) });
-    // m2.atoms.append({-1, -1, 1, QVector3D(1.0, 0.0, 0.0) });
-    // m2.atoms.append({-1, -1, 1, QVector3D(0.0, 1.0, 0.0) });
-    // m2.atoms.append({-1, -1, 1, QVector3D(0.0, 0.0, 1.0) });
-
-    // Adding bonds to the test molecule
-    m2.bonds.append({ 0, -1, 1, 1, 1 }); // Carbon - Hydrogen bond
-    m2.bonds.append({ 1, -1, 1, 2, 1 }); // Carbon - Hydrogen bond
-    m2.bonds.append({ 2, -1, 1, 3, 1 }); // Carbon - Hydrogen bond
-
     // Adding the test molecule to the data
     ptrToData.data()->append(m1);
-    //ptrToData.data()->append(m2);
 }
 
 

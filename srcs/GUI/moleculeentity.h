@@ -10,12 +10,15 @@
 
 class MoleculeEntity : public Qt3DCore::QEntity
 {
+    Q_OBJECT
 public:
     MoleculeEntity(Qt3DCore::QNode *parent, Molecule mol);
 
     const Molecule molData() const;
 
     Qt3DCore::QTransform* transform;
+
+    Qt3DCore::QTransform *getTransform() const;
 
 private:
     Molecule m_molData;

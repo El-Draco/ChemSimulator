@@ -88,9 +88,9 @@ void AtomEntity::onHover(bool containsMouse) {
 void AtomEntity::handleDrag(Qt3DRender::QPickEvent *event)
 {
     if(event->buttons() & Qt::LeftButton) {
-        emit draggingChanged(true);
+        emit draggingChanged(true, event->worldIntersection());
     } else {
-        emit draggingChanged(false);
+        emit draggingChanged(false,  event->worldIntersection());
     }
 }
 

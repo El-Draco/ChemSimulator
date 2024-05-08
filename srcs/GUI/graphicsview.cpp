@@ -21,18 +21,6 @@ GraphicsView::GraphicsView(QWidget *parent, DataManager* dm)
 
     drawFromData();
 
-    // auto plane = new Qt3DCore::QEntity(scene);
-
-    // auto planeMesh = new Qt3DExtras::QPlaneMesh(plane);
-    // planeMesh->setWidth(10.0);
-    // planeMesh->setHeight(10.0);
-
-    // auto planeMaterial = new Qt3DExtras::QDiffuseSpecularMaterial(plane);
-    // planeMaterial->setAmbient(Qt::yellow);
-
-    // plane->addComponent(planeMesh);
-    // plane->addComponent(planeMaterial);
-
     Qt3DRender::QPointLight *light = new Qt3DRender::QPointLight(scene);
     light->setIntensity(0.0f);
 
@@ -72,9 +60,9 @@ void GraphicsView::drawFromData()
             atomEntity->molID = mol.uniqueID;
             //dragging
             connect(atomEntity,
-                    SIGNAL(draggingChanged(bool)),
+                    &AtomEntity::draggingChanged,
                     this,
-                    SLOT(changeDraggingEntity(bool)));
+                    &GraphicsView::changeDraggingEntity);
         }
 
         //build bond entities
@@ -94,10 +82,11 @@ void GraphicsView::showMolecule(const QItemSelection &selected, const QItemSelec
     camera()->viewEntity(molEntities.at(selected.indexes().first().row()));
 }
 
-void GraphicsView::changeDraggingEntity(bool dragging)
+void GraphicsView::changeDraggingEntity(bool dragging, QVector3D position)
 {
     if(draggingEntity) {
         if(qobject_cast<Qt3DCore::QEntity*>(sender()) == draggingEntity) {
+            worldIntersection = position;
             if (!dragging) draggingEntity = nullptr;
             return;
         }
@@ -110,18 +99,27 @@ void GraphicsView::changeDraggingEntity(bool dragging)
 
 void GraphicsView::mouseMoveEvent(QMouseEvent *event)
 {
+
     if(event->buttons() & Qt::LeftButton) {
         if(!draggingEntity) return;
 
-        auto transformList = draggingEntity->componentsOfType<Qt3DCore::QTransform>();
-        auto *transform = transformList.first();
-        if(!transform) return;
+        Qt3DCore::QTransform* transform;
+        if(event->modifiers() & Qt::ControlModifier) {
+            auto transformList = draggingEntity->parentEntity()->componentsOfType<Qt3DCore::QTransform>();
+            transform = transformList.first();
+            if(!transform) return;
+        } else {
+            auto transformList = draggingEntity->componentsOfType<Qt3DCore::QTransform>();
+            transform = transformList.first();
+            if(!transform) return;
+        }
 
         float posY = height() - event->position().y() - 0.0f;
         QVector3D screenCoordinates = QVector3D(event->position().x(),
                                                 posY,
                                                 0.0f);
 
+        qDebug() << worldIntersection;
         QVector3D projected = transform->translation().project(camera()->viewMatrix(),
                                                                camera()->projectionMatrix(),
                                                                QRect(0, 0, width(), height()));
@@ -130,24 +128,31 @@ void GraphicsView::mouseMoveEvent(QMouseEvent *event)
         QVector3D mouseIn3D = screenCoordinates.unproject(camera()->viewMatrix(),
                                                           camera()->projectionMatrix(),
                                                           QRect(0, 0, width(), height()));
+        QVector3D adjustment = transform->translation() - worldIntersection;
+        qDebug() << "adj" << adjustment;
+        qDebug() << mouseIn3D + adjustment;
         transform->setTranslation(mouseIn3D);
 
-        //redraw bonds
-        AtomEntity* draggingAtom = qobject_cast<AtomEntity*>(draggingEntity);
-        int atomIndex = draggingAtom->atomData().uniqueID;
-        for(Qt3DCore::QNode *node : draggingAtom->parentNode()->childNodes()) {
-            if(BondEntity *bondEntity = qobject_cast<BondEntity*>(node)) {
-                int sourceAtom = bondEntity->bondData().sourceAtomID;
-                int targetAtom = bondEntity->bondData().targetAtomID;
-                if(sourceAtom == atomIndex) {
-                    bondEntity->redraw(1, mouseIn3D);
-                } else if(targetAtom == atomIndex) {
-                    bondEntity->redraw(0, mouseIn3D);
+        if(!(event->modifiers() & Qt::ControlModifier)) {
+            //redraw bonds
+            AtomEntity* draggingAtom = qobject_cast<AtomEntity*>(draggingEntity);
+            int atomIndex = draggingAtom->atomData().uniqueID;
+            for(Qt3DCore::QNode *node : draggingAtom->parentNode()->childNodes()) {
+                if(BondEntity *bondEntity = qobject_cast<BondEntity*>(node)) {
+                    int sourceAtom = bondEntity->bondData().sourceAtomID;
+                    int targetAtom = bondEntity->bondData().targetAtomID;
+                    if(sourceAtom == atomIndex) {
+                        bondEntity->redraw(1, mouseIn3D);
+                    } else if(targetAtom == atomIndex) {
+                        bondEntity->redraw(0, mouseIn3D);
+                    }
                 }
             }
-        }
 
-        updateData(draggingEntity);
+            updateData(draggingEntity);
+        } else {
+            updateData(draggingEntity->parentEntity());
+        }
     }
 }
 
@@ -160,6 +165,11 @@ void GraphicsView::updateData(Qt3DCore::QEntity* blame)
         Atom* atomToUpdate = m_dm->getAtomByUniqueID(atomUniqueID, *mol);
 
         atomToUpdate->position = atomEntity->getTransform()->translation();
+    } else if(auto molEntity = qobject_cast<MoleculeEntity*>(blame)) {
+        int molUniqueID = molEntity->molData().uniqueID;
+        Molecule* mol = m_dm->getMoleculeByUniqueID(molUniqueID);
+
+        mol->position = molEntity->getTransform()->translation();
     }
     emit potentialDataChange();
 }
@@ -220,30 +230,3 @@ void GraphicsView::animateDataUpdate()
     }
     animationGroup->start();
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
