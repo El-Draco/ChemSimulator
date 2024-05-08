@@ -39,7 +39,7 @@ private:
     QColor m_color;
 
 signals:
-    void draggingChanged(bool);
+    void draggingChanged(bool, QVector3D);
 
 private slots:
     void onHover(bool);

@@ -31,6 +31,8 @@ private:
     Qt3DCore::QEntity *draggingEntity = nullptr;
     OrbitCameraController *cameraController;
 
+    QVector3D worldIntersection;
+
     QSharedPointer<QList<Molecule>> ptrToModel;
 
     int selectedMolEntity = 0;
@@ -47,7 +49,7 @@ signals:
 
 public slots:
     //sets the current entity that is being dragged
-    void changeDraggingEntity(bool);
+    void changeDraggingEntity(bool, QVector3D);
 
     void animateDataUpdate();
 
