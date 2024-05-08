@@ -1,5 +1,6 @@
 #include "simulator.hpp"
 #include "algorithms.cpp"
+#include <queue>
 using namespace std;
 #include <set>
 std::vector<Molecule> parse(std::string filename)
@@ -74,8 +75,28 @@ Atom &identifyLeavingGroup(Molecule &m)
     possibleLGs = newPossibleLGs;
     newPossibleLGs.clear();
                           //find groups by BFS
-    
+    for (int i = 0; i< possibleLGs.size();i++) {
+        std::vector<Atom> visited;
+        std::queue<Atom> queue;
+        visited.push_back(carbons_for_LGs[i]);
+        
+        while (!queue.empty()){
+            Atom current = queue.front();
+            queue.pop();
+            for (Atom neighbor : getNeighbours(current)){
+                if (IF NEIGHBOR NOT VISITED){
+                    queue.push(neighbor);
+                    visited.push_back(neighbor);
+                }
+            }
+        }
+        HERE, THE SET VISITED IS THE atoms for the LG_group of INDEX i
+        visited
+
+        STORE AS SUBMOLECULE IN A VECTOR AND NAME IT POSSIBLELG_GROUPS
+    }
     //find max electronegativity (approx of inductive effect) of entire group
+    
     //randomize 1 item from the final list.
 }
 
