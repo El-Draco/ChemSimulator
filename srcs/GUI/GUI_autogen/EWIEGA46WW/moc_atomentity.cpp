@@ -56,14 +56,14 @@ static const uint qt_meta_data_AtomEntity[] = {
        1,       // signalCount
 
  // signals: name, argc, parameters, tag, flags, initial metatype offsets
-       1,    1,   32,    2, 0x06,    1 /* Public */,
+       1,    2,   32,    2, 0x06,    1 /* Public */,
 
  // slots: name, argc, parameters, tag, flags, initial metatype offsets
-       3,    1,   35,    2, 0x08,    3 /* Private */,
-       4,    1,   38,    2, 0x08,    5 /* Private */,
+       3,    1,   37,    2, 0x08,    4 /* Private */,
+       4,    1,   40,    2, 0x08,    6 /* Private */,
 
  // signals: parameters
-    QMetaType::Void, QMetaType::Bool,    2,
+    QMetaType::Void, QMetaType::Bool, QMetaType::QVector3D,    2,    2,
 
  // slots: parameters
     QMetaType::Void, QMetaType::Bool,    2,
@@ -78,7 +78,7 @@ void AtomEntity::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         auto *_t = static_cast<AtomEntity *>(_o);
         (void)_t;
         switch (_id) {
-        case 0: _t->draggingChanged((*reinterpret_cast< std::add_pointer_t<bool>>(_a[1]))); break;
+        case 0: _t->draggingChanged((*reinterpret_cast< std::add_pointer_t<bool>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<QVector3D>>(_a[2]))); break;
         case 1: _t->onHover((*reinterpret_cast< std::add_pointer_t<bool>>(_a[1]))); break;
         case 2: _t->handleDrag((*reinterpret_cast< std::add_pointer_t<Qt3DRender::QPickEvent*>>(_a[1]))); break;
         default: ;
@@ -86,7 +86,7 @@ void AtomEntity::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
     } else if (_c == QMetaObject::IndexOfMethod) {
         int *result = reinterpret_cast<int *>(_a[0]);
         {
-            using _t = void (AtomEntity::*)(bool );
+            using _t = void (AtomEntity::*)(bool , QVector3D );
             if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&AtomEntity::draggingChanged)) {
                 *result = 0;
                 return;
@@ -102,7 +102,7 @@ const QMetaObject AtomEntity::staticMetaObject = { {
     qt_static_metacall,
     nullptr,
 qt_incomplete_metaTypeArray<qt_meta_stringdata_AtomEntity_t
-, QtPrivate::TypeAndForceComplete<AtomEntity, std::true_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<bool, std::false_type>
+, QtPrivate::TypeAndForceComplete<AtomEntity, std::true_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<bool, std::false_type>, QtPrivate::TypeAndForceComplete<QVector3D, std::false_type>
 , QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<bool, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<Qt3DRender::QPickEvent *, std::false_type>
 
 
@@ -142,9 +142,9 @@ int AtomEntity::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
 }
 
 // SIGNAL 0
-void AtomEntity::draggingChanged(bool _t1)
+void AtomEntity::draggingChanged(bool _t1, QVector3D _t2)
 {
-    void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t1))) };
+    void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t1))), const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t2))) };
     QMetaObject::activate(this, &staticMetaObject, 0, _a);
 }
 QT_WARNING_POP

@@ -19,9 +19,13 @@ enum BOND_TYPE
 class Bond
 {
 public:
-    std::initializer_list<Atom> bonds;
+    // std::initializer_list<Atom> bonds;
+    Bond() {
+        
+    }
+    Bond(int _a1, int _a2) : a1(_a1), a2(_a2) {
 
-    Bond(const std::initializer_list<Atom> &bond_input) : bonds(bond_input) {}
+    }
     Atom a1;
     Atom a2;
     bool pairwiseElectrons(int a, int b) {

@@ -65,15 +65,15 @@ static const uint qt_meta_data_GraphicsView[] = {
 
  // slots: name, argc, parameters, tag, flags, initial metatype offsets
        3,    2,   39,    2, 0x0a,    2 /* Public */,
-       7,    1,   44,    2, 0x0a,    5 /* Public */,
-       8,    0,   47,    2, 0x0a,    7 /* Public */,
+       7,    2,   44,    2, 0x0a,    5 /* Public */,
+       8,    0,   49,    2, 0x0a,    8 /* Public */,
 
  // signals: parameters
     QMetaType::Void,
 
  // slots: parameters
     QMetaType::Void, 0x80000000 | 4, 0x80000000 | 4,    5,    6,
-    QMetaType::Void, QMetaType::Bool,    2,
+    QMetaType::Void, QMetaType::Bool, QMetaType::QVector3D,    2,    2,
     QMetaType::Void,
 
        0        // eod
@@ -87,7 +87,7 @@ void GraphicsView::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id
         switch (_id) {
         case 0: _t->potentialDataChange(); break;
         case 1: _t->showMolecule((*reinterpret_cast< std::add_pointer_t<QItemSelection>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<QItemSelection>>(_a[2]))); break;
-        case 2: _t->changeDraggingEntity((*reinterpret_cast< std::add_pointer_t<bool>>(_a[1]))); break;
+        case 2: _t->changeDraggingEntity((*reinterpret_cast< std::add_pointer_t<bool>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<QVector3D>>(_a[2]))); break;
         case 3: _t->animateDataUpdate(); break;
         default: ;
         }
@@ -123,7 +123,7 @@ const QMetaObject GraphicsView::staticMetaObject = { {
     nullptr,
 qt_incomplete_metaTypeArray<qt_meta_stringdata_GraphicsView_t
 , QtPrivate::TypeAndForceComplete<GraphicsView, std::true_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>
-, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<const QItemSelection &, std::false_type>, QtPrivate::TypeAndForceComplete<const QItemSelection &, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<bool, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>
+, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<const QItemSelection &, std::false_type>, QtPrivate::TypeAndForceComplete<const QItemSelection &, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<bool, std::false_type>, QtPrivate::TypeAndForceComplete<QVector3D, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>
 
 
 >,

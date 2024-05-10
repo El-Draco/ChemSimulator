@@ -76,6 +76,7 @@ int getWeight(Atom &a1, Atom &a2) {
 //DONE
 void c_methyl_shift(Atom &a1, Atom &a2, Atom &a3) {
     SubMolecule CH3;                                               //TODO
+    
     //A1 IS POSITIVELY CHARGED CARBON
     //A2 IS THE ONE THAT IS GOING TO TAKE THE POSTIIVE CHARGE
     //A1 CHARGE REDUCED BY 1
@@ -83,10 +84,12 @@ void c_methyl_shift(Atom &a1, Atom &a2, Atom &a3) {
 
     //A2 CHARGE INC BY 1
     a2.charge += 1;
-
+    //std::vector<Atom>
     //TAKE A CH3 FROM A2, BREAK IT, GIVE IT TO A1
-    a2 = a2 - CH3.root;
-    a1 = a1 + CH3.root;
+    // a2 = a2 - CH3.root;
+    // a1 = a1 + CH3.root;
+
+
 }
 
 //DONE
@@ -300,11 +303,40 @@ Atom &carbocationShift(Atom &a1) {
                     std::set<Atom> N2 = getNeighbours(a2);
                     for (Atom a3 : N2) {//CHECK IF a3 WAS VISITED
                         //ADD a3 TO VISITED HERE
-                         if (visited.find(a3) != visited.end())
+                        if (visited.find(a3) != visited.end())
                             continue ;
                         visited.insert(a3);
                         if (a3.protons == 6 and getCarbocationState(a3) == 3) {
-                            c_methyl_shift(a1, a2, a3); // IF THIS CALLED THEN CHANGED
+                            std::vector<Atom> CH3atoms;
+                            std::vector<Bond> CH3bonds;
+                            for (Atom neighbor : getNeighbours(a3)){
+                                if (neighbor.protons != 6){
+                                    CH3atoms.push_back(neighbor);
+                                }
+                            }
+                            for (Atom atom : CH3atoms){
+                                for (Atom neighbor : CH3atoms){
+                                    for (Bond bond : a1.parent->bonds){
+                                        if (bond.a1 == atom && bond.a2 == neighbor || bond.a1 == neighbor && bond.a2 == atom){
+                                            CH3bonds.push_back(bond);
+                                        }
+                                    }
+                                }
+                            }
+                            SubMolecule CH3 = SubMolecule(CH3bonds);
+                            //c_methyl_shift(a1, a2, a3); // IF THIS CALLED THEN CHANGED
+                            Bond Carbon_carbon_bond;
+                            for (Bond bond : a1.parent->bonds){
+                                if(bond.a1 == a2 && bond.a2 == a3 || bond.a1 == a3 && bond.a2 == a2){
+                                    Carbon_carbon_bond = bond;
+                                }
+                            }
+                            for (int i = 0; i < a1.parent->bonds.size(); i++) {
+                                if (a1.parent->bonds[i] == Carbon_carbon_bond) { //TODO PUT EQUAL TO OPERATOR
+                                    a1.parent->bonds.erase(i + a1.parent->bonds.begin());
+                                }
+                            }
+                            
                             shifted = true;
                             visited.clear();
                             a1 = a2;
@@ -397,7 +429,7 @@ Atom &NUPreference(Atom &a1, Atom &a2, Molecule &m) {
 
     if (ElectroNegativity::ID(a1) < ElectroNegativity::ID(a2))
         return (a1);
-    return (a2);
+    return (a2);\
 }
 
 //Algo 15:

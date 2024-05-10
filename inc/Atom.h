@@ -3,18 +3,23 @@
 #include <iostream>
 #include "Vector3.hpp"
 
+class Molecule;
 class Atom
 {
+private :
+    static int atom_count;
 public:
     Vector3 position;
+    int id;
     int protons;
     float neutrons;
     int electrons;
     int valence;
     int size;
     int charge; 
-    //TODO:
     
+    //not for now
+    //TODO:
     // COMPUTE CHARGE BY THE FORMULAS IN THE PAPER, PAGE 18/19
     // CHECK IF ATOM HAS COVALENT OR IONIC BONDS
     // THEN COMPUTE CHARGE BY EITHER FORMULA IN PAGE 18 BOTTOM PAGE (PROP 11)
@@ -26,6 +31,7 @@ public:
     Atom(const Vector3 pos = Vector3(0, 0, 0), const int &p = -1, const int &n = -1, const int &e = -1)
         : position(pos), protons(p), neutrons(n), electrons(e)
     {
+        id = atom_count++;
         if (electrons == -1)
             electrons = p;
     }
@@ -180,9 +186,6 @@ public:
     int degree() const {
         
     }
-    int size() const {
-
-    }
     int static desiredValence(const Atom &a)
     {
         for (int i = 1; i <= 8; ++i)
@@ -200,7 +203,8 @@ public:
 
     bool operator==(const Atom &rhs) const
     {
-        return (this->position.x == rhs.position.x && this->position.y == rhs.position.y && this->position.z == rhs.position.z && this->protons == rhs.protons && this->neutrons == rhs.neutrons && this->electrons == rhs.electrons);
+        return (this->id == rhs.id);
+        // return (this->position.x == rhs.position.x && this->position.y == rhs.position.y && this->position.z == rhs.position.z && this->protons == rhs.protons && this->neutrons == rhs.neutrons && this->electrons == rhs.electrons);
     }
 
     Atom (const Atom &rhs) {
@@ -216,14 +220,28 @@ public:
         charge = rhs.charge;
         return (*this);
     }
-    Atom &operator+(Atom &m) {
-        // Bond b(*this,m);
-        // this->
-        return (*this);
-    }
     
-    Atom &operator-(Atom &m) {
-        return (*this);
-    }
+    // Atom &operator+(Atom &m) {
+    //     Bond b(*this,m);
+        
+    //     parent->bonds.push_back(b);
+       
+       
+    
+
+    //     //case 2 - diff molecule
+    //     //insert atoms to atomset
+    //     //copy and remove bonds from old loc
+    //     //insert bonds to new loc
+
+
+
+
+    //     return (*this);
+    // }
+    
+    // Atom &operator-(Atom &m) {
+    //     return (*this);
+    // }
 
 };

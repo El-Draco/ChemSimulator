@@ -14,10 +14,12 @@ class Molecule
 public:
     std::vector <Atom> atoms;
     size_t size;
-    uint8_t **Adjacency;
+    // std::vector<std::vector<int>> Adjacency;
     std::vector<Bond> bonds;
     Atom root;
+    Molecule (std::vector<Bond> &bonds) {
 
+    }
     Molecule() {
 
     }
@@ -62,10 +64,12 @@ public:
         return (*this);
     }
     Molecule &operator+(Molecule &m) {
+        this->root = this->root + m.root;
         return (*this);
     }
     
     Molecule &operator-(Molecule &m) {
+        this->root = this->root - m.root;
         return (*this);
     }
 

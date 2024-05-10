@@ -13,7 +13,7 @@ OBJ_DIR 	= obj
 
 #relative to their respective directories
 COMM_SRCS	= 	#
-BACKEND_SRCS	=	main.cpp Bond.cpp Molecule.cpp Vector3.cpp
+BACKEND_SRCS	=	sim.cpp Bond.cpp Molecule.cpp Vector3.cpp
 FRONTEND_SRCS	=	main.cpp#
 
 BACKEND_SRCS	:= ${addprefix srcs/backend/, ${BACKEND_SRCS}}

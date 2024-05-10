@@ -520,6 +520,8 @@ CMakeFiles/GUI.dir/GUI_autogen/mocs_compilation.cpp.o: GUI_autogen/mocs_compilat
   /usr/include/x86_64-linux-gnu/qt6/QtWidgets/qsizepolicy.h \
   /usr/include/x86_64-linux-gnu/qt6/QtGui/qkeysequence.h \
   /usr/include/x86_64-linux-gnu/qt6/QtWidgets/qtabwidget.h \
+  GUI_autogen/EWIEGA46WW/moc_moleculeentity.cpp \
+  moleculeentity.h \
   GUI_autogen/EWIEGA46WW/moc_moleculelistmodel.cpp \
   moleculelistmodel.h \
   GUI_autogen/EWIEGA46WW/moc_orbitcameracontroller.cpp \
@@ -5692,6 +5694,8 @@ graphicsview.cpp:
 
 /usr/include/c++/11/bits/ostream.tcc:
 
+/usr/include/c++/11/ostream:
+
 /usr/include/c++/11/bits/ostream_insert.h:
 
 /usr/include/x86_64-linux-gnu/bits/types/__fpos_t.h:
@@ -6776,6 +6780,8 @@ atomentity.cpp:
 
 /usr/include/x86_64-linux-gnu/qt6/QtWidgets/qtabwidget.h:
 
+GUI_autogen/EWIEGA46WW/moc_moleculeentity.cpp:
+
 /usr/include/x86_64-linux-gnu/c++/11/bits/cpu_defines.h:
 
 GUI_autogen/EWIEGA46WW/moc_orbitcameracontroller.cpp:
@@ -6841,5 +6847,3 @@ orbitcameracontroller.cpp:
 /usr/include/c++/11/bits/quoted_string.h:
 
 /usr/include/c++/11/istream:
-
-/usr/include/c++/11/ostream:

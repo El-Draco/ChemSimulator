@@ -467,6 +467,8 @@ CMakeFiles/GUI.dir/GUI_autogen/mocs_compilation.cpp.o: \
  /usr/include/x86_64-linux-gnu/qt6/QtWidgets/qsizepolicy.h \
  /usr/include/x86_64-linux-gnu/qt6/QtGui/qkeysequence.h \
  /usr/include/x86_64-linux-gnu/qt6/QtWidgets/qtabwidget.h \
+ /home/eldraco/ChemSimulator/srcs/GUI/GUI_autogen/EWIEGA46WW/moc_moleculeentity.cpp \
+ /home/eldraco/ChemSimulator/srcs/GUI/GUI_autogen/EWIEGA46WW/../../moleculeentity.h \
  /home/eldraco/ChemSimulator/srcs/GUI/GUI_autogen/EWIEGA46WW/moc_moleculelistmodel.cpp \
  /home/eldraco/ChemSimulator/srcs/GUI/GUI_autogen/EWIEGA46WW/../../moleculelistmodel.h \
  /home/eldraco/ChemSimulator/srcs/GUI/GUI_autogen/EWIEGA46WW/moc_orbitcameracontroller.cpp \
